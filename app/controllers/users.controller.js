@@ -1,6 +1,6 @@
 const responses = require('../models/responses');
-const hackersService = require('../services/hackers.service')
-const apiPrefix = '/api/hackers';
+const usersService = require('../services/users.service');
+const apiPrefix = '/api/users';
 
 module.exports = {
     readAll: readAll,
@@ -11,23 +11,23 @@ module.exports = {
 }
 
 function readAll(req, res) {
-    hackersService.readAll()
-        .then(hackers => {
+    usersService.readAll()
+        .then(users => {
             const responseModel = new responses.ItemsResponse()
-            responseModel.items = hackers
+            responseModel.items = users
             res.json(responseModel)
         })
         .catch(err => {
-            console.log(err)
-            res.status(500).send(new responses.ErrorResponse(err))
-        });
+            console.log("error=", error)
+            res.sendStatus(500).send(new responses.ErrorResponse(err))
+        })
 }
 
 function readById(req, res) {
-    hackersService.readById(req.params.id)
-        .then(hacker => {
+    usersService.readById(req.params.id)
+        .then(user => {
             const responseModel = new responses.ItemResponse()
-            responseModel.item = hacker
+            responseModel.item = user
             res.json(responseModel)
         })
         .catch(err => {
@@ -37,7 +37,7 @@ function readById(req, res) {
 }
 
 function create(req, res) {
-    hackersService.create(req.model)
+    usersService.create(req.model)
         .then(id => {
             const responseModel = new responses.ItemResponse()
             responseModel.item = id
@@ -50,11 +50,10 @@ function create(req, res) {
             res.status(500).send(new responses.ErrorResponse(err))
         })
 }
-
 function update(req, res) {
-    hackersService.update(req.params.id, req.model)
-        .then(hacker => {
-            const responseModel = new responses.SuccessResponse()
+    usersService.update(req.params.id, req.model)
+        .then(user => {
+            const responseModel = new responses.Success.Response()
             res.status(200).json(responseModel)
         })
         .catch(err => {
@@ -64,7 +63,7 @@ function update(req, res) {
 }
 
 function _delete(req, res) {
-    hackersService.delete(req.params.id)
+    usersService.delete(req.params.id)
         .then(() => {
             const responseModel = new responses.SuccessResponse()
             res.status(200).json(responseModel)
@@ -74,4 +73,3 @@ function _delete(req, res) {
             return res.status(500).send(new responses.ErrorResponse(err))
         })
 }
-
