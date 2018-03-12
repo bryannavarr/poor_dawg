@@ -9,7 +9,7 @@ const router = require('./app/routes')
 dotenv.config()
 
 // set our port
-const port = process.env.PORT || 80
+const port = process.env.PORT || 8080
 
 // get all data/stuff of the body (POST) parameters
 // parse application/json
@@ -31,3 +31,4 @@ mongo.connect(process.env.MONGODB_URL)
         console.error(err)
         process.exit(1)
     })
+    
