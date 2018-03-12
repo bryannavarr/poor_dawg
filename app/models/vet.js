@@ -1,12 +1,12 @@
 const Joi = require('joi')
-const Joi.objectId = require('joi-objectid')
+Joi.objectId = require('joi-objectid')(Joi)
+
 
 const schema = {
     firstName: Joi.string().required(),
     lastName: Joi.string().required(),
     email: Joi.string().email().required(),
     smsNumber: Joi.string(),
-    phones: Joi.array(),
     address: {
         street: Joi.string(),
         suite: Joi.string(),
@@ -14,6 +14,8 @@ const schema = {
         state: Joi.string().max(2),
         zip: Joi.string().max(10)
     },
+    createDate: Joi.date().default(() => new Date()),
+    updateDate: Joi.date().default(() => new Date()),
     _id: Joi.objectId()
 }
 
