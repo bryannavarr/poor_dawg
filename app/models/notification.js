@@ -1,5 +1,6 @@
 const Joi = require('joi')
 Joi.objectId = require('joi-objectid')(Joi)
+//const createDate = Joi.date().min('now')
 
 
 const schema = {
@@ -7,7 +8,9 @@ const schema = {
     _id: Joi.objectId(),
     dogId: Joi.objectId().required(),
     message: Joi.string(),
-    type: Joi.string().valid(['Challenges', 'Wellness'])
+    type: Joi.string().valid(['Challenges', 'Wellness']),
+    createDate: Joi.date().default(Date.now, 'date of creation'),
+    updateDate: Joi.date().default(Date.now, 'date of update')
 }
 
 module.exports = Joi.object().keys(schema)

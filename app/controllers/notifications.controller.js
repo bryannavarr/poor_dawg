@@ -6,8 +6,8 @@ module.exports = {
     readAll: readAll,
     readById: readById,
     create: create,
-
-
+    update: update,
+    delete: _delete
 }
 
 function readAll(req, res) {
@@ -48,5 +48,31 @@ function create(req, res) {
         .catch(err => {
             console.log(err)
             res.status(500).send(new responses.ErrorResponse(err))
+        })
+}
+
+function update(req, res) {
+    notificationsService
+        .update(req.params.id, req.model)
+        .then(notification => {
+            const responseModel = new responses.SuccessResponse()
+            res.status(200).json(responseModel)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).send(new responses.ErrorResponse(err))
+        })
+}
+
+function _delete(req, res) {
+    notificationsService
+        .delete(req.params.id)
+        .then(()=> {
+            const responseModel = new responses.SuccessResponse()
+            res.status(200).json(responseModel)
+        })
+        .catch(err => {
+            console.log(err)
+            return res.status(500).send(new responses.ErrorResponse(err))
         })
 }
