@@ -5,7 +5,9 @@ const ObjectId = mongodb.ObjectId
 
 module.exports = {
     create: create, 
-    update: update
+    update: update, 
+    readAll: readAll, 
+    readById: readById
 }
 
 
@@ -21,4 +23,23 @@ function update(id, doc){
     doc._id = new ObjectId(doc._id)
     return conn.db().collection('interaction').replaceOne({_id: new ObjectId(id)}, doc)
     .then(result => Promise.resolve())
+}
+
+function readAll(){
+    return conn.db().collection('interaction').find().toArray()
+    .then(interactions => {
+        for (let i=0; i<interactions.length; i++){
+            let interaction = interactions[i]
+            interaction._id = interaction._id.toString()
+        }
+        return interactions
+    })
+}
+
+function readById(id){
+    return conn.db().collection('interaction').findOne({_id: new ObjectId(id)})
+    .then(interaction => {
+        interaction._id = interaction._id.toString()
+        return interaction
+    })
 }

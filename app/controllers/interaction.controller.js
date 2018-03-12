@@ -4,7 +4,9 @@ const interactionServices = require('../services/interaction.service')
 
 module.exports = {
     create: create, 
-    update: update
+    update: update, 
+    readAll: readAll, 
+    readById: readById
 
 }
 
@@ -31,6 +33,32 @@ function update(req, res){
         res.status(200).json(responseModel)
     })
     .catch(err => {
+        console.log(err)
+        res.status(500).send(new responses.ErrorResponse(err))
+    })
+}
+
+function readAll(req, res){
+    interactionServices.readAll()
+    .then(interactions => {
+        const responseModel = new responses.ItemsResponse()
+        responseModel.items = interactions
+        res.json(responseModel)
+    })
+    .catch(err => {
+        console.log(err)
+        res.status(500).send(new responses.ErrorResponse(err))
+    })
+}
+
+function readById(req, res){
+    interactionServices.readById(req.params.id)
+    .then(interaction => {
+        const responseModel = new responses.ItemResponse()
+        responseModel.item = interaction
+        res.json(responseModel)
+    })
+    .catch(err=> {
         console.log(err)
         res.status(500).send(new responses.ErrorResponse(err))
     })
