@@ -5,6 +5,8 @@ const ObjectId = mongodb.ObjectId
 
 module.exports = {
     readAll: readAll,
+    readById: readById,
+    create: create
 
 }
 
@@ -18,3 +20,17 @@ function readAll() {
             return notifications
         })
 }
+
+function readById(id) {
+    return conn.db().collection('notifications').findOne({_id: new ObjectId(id)})
+        .then(notification => {
+            notification._id = notification._id.toString()
+            return notification
+        })
+}
+
+function create(model) {
+    return conn.db().collection('notifications').insert(model)
+        .then(result => result.insertedIds[0].toString())
+}
+
