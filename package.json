@@ -3,8 +3,7 @@
   "main": "server.js",
   "version": "2.0.0",
   "scripts": {
-    "heroku-postbuild": "gulp prod",
-    "postinstall": "bower install"
+    "heroku-postbuild": "gulp prod"
   },
   "cacheDirectories": [
     "content/libs"
