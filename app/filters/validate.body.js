@@ -5,7 +5,7 @@ function validate(model) {
         const result = model.validate(req.body)
         if (result.error) {
             console.log(result.error)
-            res.status(400).json(result.error)
+            res.status(400).json(result.error.details[0].message)// .details[0].message added by me to send a more clear message
             return
         }
         req.model = result.value
