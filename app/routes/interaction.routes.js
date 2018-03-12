@@ -1,5 +1,7 @@
 const router = require('express').Router()
 const interactionController = require('../controllers/interaction.controller')
+const validateInteraction = require('../filters/validate.interaction')
+const Interaction = require('../models/interaction')
 
 
 module.exports = router
@@ -7,4 +9,5 @@ module.exports = router
 
 // api routes
 
-router.post('/', interactionController.create)
+router.post('/', validateInteraction(Interaction), interactionController.create);
+router.put('/:id([0-9a-fA-F]{24})', validateInteraction(Interaction), interactionController.update)

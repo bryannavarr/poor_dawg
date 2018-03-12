@@ -8,7 +8,15 @@ module.exports = router
 
 // check authentication for all requests
 router.use(authenticate)
-
+// router.use(function (req, res, next){
+//     if(req.method === 'PUT'){
+//         req.body.updateDate = new Date()
+//     }
+//     else if(req.method === 'POST') {
+//         req.body.createDate = new Date();
+//     }
+//     next()
+// })
 // API routes (group routing modules here - no empty lines between)
 router.use('/api/hackers', hackersRoutes)
 router.use('/api/interaction', interactionRoutes)

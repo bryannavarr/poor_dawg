@@ -5,7 +5,9 @@ const schema = {
     challengeId: Joi.objectId(),
     dogOwnerId: Joi.objectId(),
     dogId: Joi.objectId(),
-    points: Joi.number()
+    points: Joi.number(), 
+    createDate: Joi.date().default(Date.now, 'time of creation'), 
+    updateDate: Joi.date().optional()
 
 }
 
