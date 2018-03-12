@@ -6,7 +6,8 @@ module.exports = {
     create: create, 
     update: update, 
     readAll: readAll, 
-    readById: readById
+    readById: readById,
+    delete: _delete
 
 }
 
@@ -57,6 +58,18 @@ function readById(req, res){
         const responseModel = new responses.ItemResponse()
         responseModel.item = interaction
         res.json(responseModel)
+    })
+    .catch(err=> {
+        console.log(err)
+        res.status(500).send(new responses.ErrorResponse(err))
+    })
+}
+
+function _delete(req, res){
+    interactionServices.delete(req.params.id)
+    .then(()=> {
+        const responseModel = new responses.SuccessResponse()
+        res.status(200).json(responseModel)
     })
     .catch(err=> {
         console.log(err)

@@ -7,7 +7,8 @@ module.exports = {
     create: create, 
     update: update, 
     readAll: readAll, 
-    readById: readById
+    readById: readById,
+    delete: _delete
 }
 
 
@@ -42,4 +43,9 @@ function readById(id){
         interaction._id = interaction._id.toString()
         return interaction
     })
+}
+
+function _delete(id){
+    return conn.db().collection('interaction').deleteOne({_id: new ObjectId(id)})
+    .then(result => Promise.resolve())
 }
