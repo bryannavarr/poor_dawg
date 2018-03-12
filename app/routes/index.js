@@ -2,6 +2,8 @@ const router = require('express').Router()
 const hackersRoutes = require('./hackers.routes')
 const clientRoutes = require('./client.routes')
 const authenticate = require('../filters/authenticate')
+const dogOwnersRoutes = require('./dogOwners.routes')
+const cookieParser = require('cookie-parser')
 
 module.exports = router
 
@@ -10,6 +12,8 @@ router.use(authenticate)
 
 // API routes (group routing modules here - no empty lines between)
 router.use('/api/hackers', hackersRoutes)
+router.use('/api/dogOwners', dogOwnersRoutes)
+router.use(cookieParser())
 // router.use('/api/entities', entitiesRoutes)
 // router.use('/api/examples', examplesRoutes)
 
