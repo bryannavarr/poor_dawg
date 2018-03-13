@@ -1,16 +1,10 @@
-<<<<<<< HEAD
-const router = require('express').Router()
-const hackersRoutes = require('./hackers.routes')
-const notificationsRoutes = require('./notifications.routes')
-const clientRoutes = require('./client.routes')
-const authenticate = require('../filters/authenticate')
-=======
 const router = require("express").Router();
 const hackersRoutes = require("./hackers.routes");
 const clientRoutes = require("./client.routes");
 const authenticate = require("../filters/authenticate");
 const interactionRoutes = require("./interaction.routes");
->>>>>>> c0d65c2ca82015bbc3c079d30bce9edb234d4435
+const notificationsRoutes = require('./notifications.routes')
+
 
 module.exports = router;
 
@@ -18,13 +12,10 @@ module.exports = router;
 router.use(authenticate);
 
 // API routes (group routing modules here - no empty lines between)
-<<<<<<< HEAD
-router.use('/api/hackers', hackersRoutes)
-router.use('/api/notifications/', notificationsRoutes)
-=======
 router.use("/api/hackers", hackersRoutes);
 router.use("/api/interactions", interactionRoutes);
->>>>>>> c0d65c2ca82015bbc3c079d30bce9edb234d4435
+router.use('/api/notifications/', notificationsRoutes)
+
 // router.use('/api/entities', entitiesRoutes)
 // router.use('/api/examples', examplesRoutes)
 
