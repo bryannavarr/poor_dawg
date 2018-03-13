@@ -1,48 +1,58 @@
+<<<<<<< HEAD
 const router = require('express').Router()
 const hackersRoutes = require('./hackers.routes')
 const clientRoutes = require('./client.routes')
 const authenticate = require('../filters/authenticate')
 const dogOwnersRoutes = require('./dogOwners.routes')
 const cookieParser = require('cookie-parser')
+=======
+const router = require("express").Router();
+const hackersRoutes = require("./hackers.routes");
+const clientRoutes = require("./client.routes");
+const authenticate = require("../filters/authenticate");
+const interactionRoutes = require("./interaction.routes");
+>>>>>>> origin/master
 
-module.exports = router
+module.exports = router;
 
 // check authentication for all requests
-router.use(authenticate)
+router.use(authenticate);
 
 // API routes (group routing modules here - no empty lines between)
+<<<<<<< HEAD
 router.use('/api/hackers', hackersRoutes)
 router.use('/api/dogOwners', dogOwnersRoutes)
 router.use(cookieParser())
+=======
+router.use("/api/hackers", hackersRoutes);
+router.use("/api/interactions", interactionRoutes);
+>>>>>>> origin/master
 // router.use('/api/entities', entitiesRoutes)
 // router.use('/api/examples', examplesRoutes)
 
-
-
 // API error handlers (API routes must be registered before this)
-useAPIErrorHandlers(router)
+useAPIErrorHandlers(router);
 
 // register client routes
-router.use(clientRoutes)
-
+router.use(clientRoutes);
 
 function useAPIErrorHandlers(router) {
-    // Handle API 404
-    router.use('/api/*', (req, res, next) => {
-        res.sendStatus(404)
-    })
+  // Handle API 404
+  router.use("/api/*", (req, res, next) => {
+    res.sendStatus(404);
+  });
 
-    // Handle API 500
-    router.use((err, req, res, next) => {
-        // If the error object doesn't exists
-        if (!err) {
-            return next()
-        }
+  // Handle API 500
+  router.use((err, req, res, next) => {
+    // If the error object doesn't exists
+    if (!err) {
+      return next();
+    }
 
-        // Log it
-        console.error(err.stack)
+    // Log it
+    console.error(err.stack);
 
-        // Redirect to error page
-        res.sendStatus(500)
-    })
+    // Redirect to error page
+    res.sendStatus(500);
+  });
 }
