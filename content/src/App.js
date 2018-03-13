@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import {BrowserRouter, Route} from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 import Hackers from './containers/Hackers'
+import Sponsors from "./containers/Sponsors"
 
 class App extends Component {
   render() {
@@ -14,11 +15,14 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <BrowserRouter>
-          <Route path="/" component={Hackers}/>
+          <React.Fragment>
+            <Route path="/" component={Hackers} />
+            <Route path="/" component={Sponsors}/>
+            </React.Fragment>
         </BrowserRouter>
       </div>
-    );
-  }
-}
-
-export default App;
+        );
+      }
+    }
+    
+    export default App;

@@ -45,7 +45,7 @@ class Hackers extends React.Component {
 
     onSave(updatedFormData) {
         this.setState(prevState => {
-            debugger;
+            //debugger;
             const existingItem = prevState.hackers.filter(item => {
                 return item._id === updatedFormData._id;
             })
