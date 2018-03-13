@@ -68,7 +68,7 @@ class Hackers extends React.Component {
             const field = formData[fieldName]
             field.valid = validationHelper.validate(field.value, field.validation)
         }
-        debugger
+        
         return formData;
     }
 

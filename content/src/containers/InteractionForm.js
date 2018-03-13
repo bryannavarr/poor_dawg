@@ -120,6 +120,7 @@ class InteractionForm extends React.Component {
     }
 
         onSave(event){
+            debugger
             if(!this.state.formValid){
                 const formData = JSON.parse(JSON.stringify(this.state.formData))
                 for(let fieldIdentifier in formData){
@@ -130,7 +131,7 @@ class InteractionForm extends React.Component {
             }
 
             const that = this;
-
+            debugger
             let item = {
                 points: this.state.formData.points.value, 
                 challengeId: this.state.formData.challengeId.value, 
@@ -141,19 +142,24 @@ class InteractionForm extends React.Component {
             }
             // this is just for changing point value of existing interactions
 
+            debugger
             if(this.state.formData._id.value.length>0){
                 item._id = this.state.formData._id.value
                 interactionService.update(item)
                 .then(data=>{
+                    console.log(data)
                     that.props.onSave(item)
                 })
                 .catch(err=> console.log(err))
                 
             }
             else{
+                debugger
+                delete item.createDate
+                delete item.updateDate
                 interactionService.create(item)
                 .then(data => {
-                    this.state(prevState => {
+                    this.setState(prevState => {
                         const field = { ...prevState.formData._id, _id:data};
                         const formData = {...prevState.formData, _id: field}; 
                         return {...prevState, formData}
@@ -191,7 +197,7 @@ class InteractionForm extends React.Component {
                         name='challengeId'
                         id='challengeId'
                         className='form-control'
-                        disabled
+                        
                         value={this.state.formData.challengeId.value}
                         onChange={this.onChange}
                         />
@@ -203,7 +209,7 @@ class InteractionForm extends React.Component {
                         name='dogOwnerId'
                         id='dogOwnerId'
                         className='form-control'
-                        disabled
+                        
                         value={this.state.formData.dogOwnerId.value}
                         onChange={this.onChange}
                         />
@@ -215,7 +221,7 @@ class InteractionForm extends React.Component {
                         name='dogId'
                         id='dogId'
                         className='form-control'
-                        disabled
+                        
                         value={this.state.formData.dogId.value}
                         onChange={this.onChange}
                         />
@@ -240,6 +246,7 @@ class InteractionForm extends React.Component {
                         className='form-control'
                         value={this.state.formData.createDate.value}
                         onChange={this.onChange}
+                        disabled
                         />
                     </div>
                     <div className='form-group'>
@@ -257,7 +264,6 @@ class InteractionForm extends React.Component {
                     <button type='button'
                             onClick={this.onSave}
                             className='btn btn-primary btn-sm'
-
                             >
                             Save
                     </button>

@@ -31,7 +31,7 @@ export function update(data){
         data: data
     }
 
-    axios(`${baseUrl}/${data._id}`, config)
+   return axios(`${baseUrl}/${data._id}`, config)
 }
 
 export function deleteById(id){

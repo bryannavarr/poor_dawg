@@ -12,6 +12,7 @@ class Interactions extends React.Component {
         this.onSelect = this.onSelect.bind(this)
         this.onCancel = this.onCancel.bind(this)
         this.onSave = this.onSave.bind(this)
+        this.onDelete = this.onDelete.bind(this)
     }
     componentDidMount() {
         interactionService.readAll()
@@ -34,7 +35,9 @@ class Interactions extends React.Component {
     }
 
     onDelete() {
-        const formData = this.state.formData
+        debugger
+        // let id = formData._id.value
+        const formData = this.state.formData;
         interactionService.deleteById(formData._id)
             .then(() => {
                 this.setState(prevState => {
