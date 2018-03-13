@@ -10,7 +10,7 @@ function validate(model) {
             return
         }
         req.model = result.value
-        //delete req.body
+        delete req.body
         next()
     }
 }
