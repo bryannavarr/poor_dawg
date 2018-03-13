@@ -13,8 +13,7 @@
         "program": "${workspaceFolder}/server.js",
         "restart": true,
         "console": "integratedTerminal",
-        "internalConsoleOptions": "neverOpen",
-        "protocol": "inspector"
+        "internalConsoleOptions": "neverOpen"
     },
         {
             "type": "node",
