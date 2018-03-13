@@ -41,7 +41,7 @@ class Interactions extends React.Component {
         interactionService.deleteById(formData._id)
             .then(() => {
                 this.setState(prevState => {
-                    const updatedItems = prevState.interactions.filter(item => item._ed !== formData._id)
+                    const updatedItems = prevState.interactions.filter(item => item._id !== formData._id)
                     return { interactions: updatedItems }
                 })
                 this.onCancel()
