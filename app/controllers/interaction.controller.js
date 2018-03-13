@@ -1,4 +1,4 @@
-const apiPrefix = "/api/interaction";
+const apiPrefix = "/api/interactions";
 const responses = require("../models/responses");
 const interactionServices = require("../services/interaction.service");
 
