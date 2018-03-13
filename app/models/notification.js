@@ -4,9 +4,9 @@ Joi.objectId = require('joi-objectid')(Joi)
 
 
 const schema = {
-    //dogOwnerId: Joi.objectId(),
+    dogOwnerId: Joi.objectId(),
     _id: Joi.objectId(),
-    //dogId: Joi.objectId(),
+    dogId: Joi.objectId(),
     message: Joi.string(),
     type: Joi.string().valid(['Challenges', 'Wellness']),
     createDate: Joi.date().iso().default(()=>new Date, 'date of creation'),

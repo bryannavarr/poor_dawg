@@ -112,8 +112,8 @@ class Notifications extends React.Component {
         let item = {
             message: this.state.formData.message.value,
             type: this.state.formData.type.value,
-            //dogOwnerId: this.state.formData.dogOwnerId.value,
-            //dogId: this.state.formData.dogId.value
+            dogOwnerId: this.state.formData.dogOwnerId.value,
+            dogId: this.state.formData.dogId.value
         };
         
         if (this.state.formData._id.value.length > 0) {
@@ -185,7 +185,7 @@ class Notifications extends React.Component {
                         <label htmlFor='dogOwnerId'>Dog Owner Id:</label>
                         <input type='text' name='dogOwnerId' id='dogOwnerId'
                             className='form-control'
-                            disabled
+                            //disabled
                             value={this.state.formData.dogOwnerId.value}
                             onChange={this.onChange} />
                     </div>
@@ -194,7 +194,7 @@ class Notifications extends React.Component {
                         <label htmlFor='dogId'>Dog Id:</label>
                         <input type='text' name='dogId' id='dogId'
                             className='form-control'
-                            disabled
+                            //disabled
                             value={this.state.formData.dogId.value}
                             onChange={this.onChange} />
                     </div>
