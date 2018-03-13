@@ -1,6 +1,6 @@
 import React from 'react'
-import * as userService from '../services/users.service.js'
-import UserForm from './UserForm'
+import * as usersService from '../services/users.service.js'
+import UsersForm from './UsersForm'
 
 class Users extends React.Component {
     constructor(props) {
@@ -15,10 +15,9 @@ class Users extends React.Component {
     }
 
     componentDidMount() {
-        userService.readAll()
-            .then(data => {
-                this.setState({ users: data.items })
-            })
+        usersService.readAll().then(data => {
+            this.setState({ users: data.items })
+        })
     }
 
     onCancel() {
@@ -27,7 +26,7 @@ class Users extends React.Component {
 
     onDelete() {
         const formData = this.state.formData;
-        userService.delete(formData._id)
+        usersService.del(formData._id)
             .then(() => {
                 this.setState(prevState => {
                     const updatedItems = prevState.users.filter(item => {
@@ -76,10 +75,9 @@ class Users extends React.Component {
     }
 
     render() {
-        const users = this.state.users ? this.state.users.map
-            (user => (
-                <li key={user._id} onCLick={this.onSelect.bind(this, user)}>{user.name}</li>
-            ))
+        const users = this.state.users ? this.state.users.map(user => (
+            <li key={user._id} onClick={this.onSelect.bind(this, user)}>{user.name}</li>
+        ))
             : <React.Fragment></React.Fragment>
 
         return (
@@ -89,8 +87,11 @@ class Users extends React.Component {
                 </ul>
 
                 <div>
-                    <UserForm
+                    <UsersForm
                         formData={this.state.formData}
+                        onSave={this.onSave}
+                        onDelete={this.onDelete}
+                        onCancel={this.onCancel}
                     />
                 </div>
             </React.Fragment>

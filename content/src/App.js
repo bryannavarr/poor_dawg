@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Route } from 'react-router-dom'
-import Hackers from './containers/Hackers'
+// import Hackers from './containers/Hackers'
 import Users from './containers/Users'
 
 class App extends Component {
@@ -15,7 +15,7 @@ class App extends Component {
         </header>
         <BrowserRouter>
           <div>
-            <Route path="/" component={Hackers} />
+            {/* <Route path="/" component={Hackers} /> */}
             <Route path="/" component={Users} />
           </div>
         </BrowserRouter>
