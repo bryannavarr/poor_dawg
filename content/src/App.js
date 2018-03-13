@@ -18,6 +18,7 @@ class App extends Component {
           <div>
             {/* <Route path="/" component={Hackers} /> */}
             <Route path="/" component={Interactions} />
+            {/* change path to '/interaction' */}
           </div>
 
         </BrowserRouter>

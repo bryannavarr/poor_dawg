@@ -39,9 +39,9 @@ class InteractionForm extends React.Component {
             challengeId: interaction.challengeId || '',
             dogOwnerId: interaction.dogOwnerId || '', 
             dogId: interaction.dogId || '', 
-            points: interaction.points || '', 
-            createDate: interaction.createDate || '', 
-            updateDate: interaction.updateDate || ''
+            points: interaction.points || ''
+            // createDate: interaction.createDate || '', 
+            // updateDate: interaction.updateDate || ''
         }
 
         let formData = {
@@ -59,7 +59,7 @@ class InteractionForm extends React.Component {
                 value: intializedInteractions.challengeId, 
                 valid: true, 
                 validation: {
-
+                    objectId: true
                 }, 
                 touched: false
             },
@@ -90,25 +90,25 @@ class InteractionForm extends React.Component {
                     max: 100
                 }, 
                 touched: false
-            },
-            createDate: {
-                originalValue: intializedInteractions.createDate, 
-                value: intializedInteractions.createDate, 
-                valid: true, 
-                validation: {
-
-                }, 
-                touched: false
-            },
-            updateDate: {
-                originalValue: intializedInteractions.updateDate, 
-                value: intializedInteractions.updateDate, 
-                valid: true, 
-                validation: {
-
-                }, 
-                touched: false
             }
+            // createDate: {
+            //     originalValue: intializedInteractions.createDate, 
+            //     value: intializedInteractions.createDate, 
+            //     valid: true, 
+            //     validation: {
+
+            //     }, 
+            //     touched: false
+            // },
+            // updateDate: {
+            //     originalValue: intializedInteractions.updateDate, 
+            //     value: intializedInteractions.updateDate, 
+            //     valid: true, 
+            //     validation: {
+
+            //     }, 
+            //     touched: false
+            // }
         }
 
         for (let fieldName in formData){
@@ -136,15 +136,16 @@ class InteractionForm extends React.Component {
                 points: this.state.formData.points.value, 
                 challengeId: this.state.formData.challengeId.value, 
                 dogOwnerId: this.state.formData.dogOwnerId.value, 
-                dogId: this.state.formData.dogOwnerId.value, 
-                createDate: this.state.formData.createDate.value,
-                updateDate: this.state.formData.updateDate.value
+                dogId: this.state.formData.dogOwnerId.value
+                // createDate: this.state.formData.createDate.value,
+                // updateDate: this.state.formData.updateDate.value
             }
             // this is just for changing point value of existing interactions
 
             debugger
             if(this.state.formData._id.value.length>0){
                 item._id = this.state.formData._id.value
+                // add update date here
                 interactionService.update(item)
                 .then(data=>{
                     console.log(data)
@@ -155,8 +156,8 @@ class InteractionForm extends React.Component {
             }
             else{
                 debugger
-                 item.createDate = new Date().toISOString()
-                 item.updateDate = new Date().toISOString()
+                //  item.createDate = new Date().toISOString()
+                //  item.updateDate = new Date().toISOString()
                 interactionService.create(item)
                 .then(data => {
                     debugger
@@ -170,8 +171,6 @@ class InteractionForm extends React.Component {
                 })
                 .catch(err=> console.log(err))
             }
-
-
         }
     
 
@@ -191,7 +190,7 @@ class InteractionForm extends React.Component {
                       onChange={this.onChange}
                         />
                     </div>
-                    <div className='form-group'>
+                    <div className={!this.state.formData.challengeId.valid && this.state.formData.challengeId.touched? 'form-group has-error': 'form-group'}>
                         <label> Challenge ID</label>
                         <input 
                         type="text"
@@ -202,6 +201,7 @@ class InteractionForm extends React.Component {
                         value={this.state.formData.challengeId.value}
                         onChange={this.onChange}
                         />
+                        {!this.state.formData.challengeId.valid && this.state.formData.challengeId.touched? <p className='has-error'>Please enter a valid object ID</p>: null}
                     </div>
                     <div className='form-group'>
                         <label> Dog Owner ID</label>
@@ -239,7 +239,7 @@ class InteractionForm extends React.Component {
                         />
                         {!this.state.formData.points.valid && this.state.formData.points.touched ? <p className='has-error'>Please enter a points value under 100 </p> : null}
                     </div>
-                    <div className='form-group'>
+                    {/* <div className='form-group'>
                         <label> Created: </label>
                         <input 
                         type="text"
@@ -261,8 +261,8 @@ class InteractionForm extends React.Component {
                         disabled
                         value={this.state.formData.updateDate.value}
                         onChange={this.onChange}
-                        />
-                    </div>
+                        /> */}
+                    {/* </div> */}
                     <button type='button'
                             onClick={this.onSave}
                             className='btn btn-primary btn-sm'

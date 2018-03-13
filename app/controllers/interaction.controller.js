@@ -28,6 +28,7 @@ function create(req, res){
 
 function update(req, res){
     req.model.updateDate = new Date();
+    delete req.model.createDate
     interactionServices.update(req.params.id, req.model)
     .then(interaction => {
         const responseModel = new responses.SuccessResponse()

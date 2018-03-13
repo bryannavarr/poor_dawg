@@ -22,7 +22,7 @@ function create (model){
 function update(id, doc){
     console.log(doc)
     doc._id = new ObjectId(doc._id)
-    return conn.db().collection('interaction').replaceOne({_id: new ObjectId(id)}, doc)
+    return conn.db().collection('interaction').updateOne({_id: new ObjectId(id)}, {$set: doc})
     .then(result => Promise.resolve())
 }
 
