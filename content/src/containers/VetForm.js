@@ -25,13 +25,29 @@ class VetForm extends React.Component {
             ? props.formData
             : {}
 
+        const initializedAddress = vet.address
+            ? {
+                street: vet.address.street || '',
+                suite: vet.address.suite || '',
+                city: vet.address.city || '',
+                state: vet.address.state || '',
+                zip: vet.address.zip || ''
+            }
+            : {
+                street: '',
+                suite: '',
+                city: '',
+                state: '',
+                zip: ''
+            }
+
         const initializedVet = {
             _id: vet._id || '',
             firstName: vet.firstName || '',
             lastName: vet.lastName || '',
             email: vet.email || '',
             smsNumber: vet.smsNumber || '',
-            address: vet.address ? {...vet.address} : {}
+            address: initializedAddress
         }
 
         let formData = {
@@ -123,7 +139,10 @@ class VetForm extends React.Component {
                 originalValue: initializedVet.address.state,
                 value: initializedVet.address.state,
                 valid: true,
-                validation: {},
+                validation: {
+                    minLength: {value: 2, msg: 'State must be 2 characters'},
+                    maxLength: {value: 2, msg: 'State must be 2 characters'},
+                },
                 brokenRules: [],
                 touched: false
             },
@@ -186,12 +205,12 @@ class VetForm extends React.Component {
                 brokenRules.push({rule: 'required', msg: msg})
             }
         }
-        if (rules.minLength && value.trim().length <= rules.minLength.value) {
+        if (rules.minLength && value.trim().length < rules.minLength.value) {
             msg = rules.minLength.message ||
                 `${fieldSpec.displayName || 'Field'} must be at least ${rules.minLength.value} characters`
             brokenRules.push({rule: 'minLength', msg: msg})
         }
-        if (rules.maxLength && value.trim().length >= rules.maxLength.value) {
+        if (rules.maxLength && value.trim().length > rules.maxLength.value) {
             msg = rules.maxLength.message ||
                 `${fieldSpec.displayName || 'Field'} must be no more than ${rules.maxLength.value} characters`
             brokenRules.push({rule: 'maxLength', msg: msg})
@@ -239,7 +258,7 @@ class VetForm extends React.Component {
                 suite: this.state.formData.suite.value,
                 city: this.state.formData.city.value,
                 state: this.state.formData.state.value,
-                zip: this.state.formData.suite.zip
+                zip: this.state.formData.zip.value
             }
         }
 
