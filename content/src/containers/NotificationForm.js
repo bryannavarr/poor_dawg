@@ -185,7 +185,6 @@ class Notifications extends React.Component {
                         <label htmlFor='dogOwnerId'>Dog Owner Id:</label>
                         <input type='text' name='dogOwnerId' id='dogOwnerId'
                             className='form-control'
-                            //disabled
                             value={this.state.formData.dogOwnerId.value}
                             onChange={this.onChange} />
                     </div>
@@ -194,7 +193,6 @@ class Notifications extends React.Component {
                         <label htmlFor='dogId'>Dog Id:</label>
                         <input type='text' name='dogId' id='dogId'
                             className='form-control'
-                            //disabled
                             value={this.state.formData.dogId.value}
                             onChange={this.onChange} />
                     </div>
