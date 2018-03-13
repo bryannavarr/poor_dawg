@@ -14,8 +14,8 @@ const schema = {
         state: Joi.string().max(2),
         zip: Joi.string().max(10)
     },
-    createDate: Joi.date().default(() => new Date()),
-    updateDate: Joi.date().default(() => new Date()),
+    createDate: Joi.date().default(() => new Date(), 'Current Date'),
+    updateDate: Joi.date().default(() => new Date(), 'Current Date'),
     _id: Joi.objectId()
 }
 

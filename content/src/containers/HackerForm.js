@@ -2,14 +2,13 @@ import React from 'react'
 import * as validationHelper from '../helpers/validation.helper'
 import * as hackerService from '../services/hacker.service'
 
-class Hackers extends React.Component {
+class HackerForm extends React.Component {
     constructor(props) {
         super(props)
 
         const formData = this.convertPropsToFormData(props);
 
         this.state = {
-            hackers: [],
             formData: formData,
             formValid: false
         }
@@ -19,17 +18,10 @@ class Hackers extends React.Component {
 
     }
 
-    componentDidMount() {
-        hackerService.readAll().then(data => {
-            this.setState({ hackers: data })
-        })
-    }
 
     componentWillReceiveProps(nextProps) {
         const formData = this.convertPropsToFormData(nextProps);
-        this.setState({formData: formData})
-
-        
+        this.setState({formData: formData})   
     }
 
     convertPropsToFormData(props) {
@@ -163,4 +155,4 @@ class Hackers extends React.Component {
     }
 }
 
-export default Hackers
+export default HackerForm

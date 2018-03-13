@@ -4,13 +4,13 @@ const headers = {
       //'SABIO-AUTH': 'U56LC3BHB'
 }
 
-const baseUrl = `http://localhost:8080/api/hackers`
+const baseUrl = `http://localhost:8080/api/vets`
 
-export function create(hackerData) {
+export function create(data) {
       const config = {
             method: 'POST',
             headers,
-            data: hackerData
+            data: data
       };
 
       return axios(baseUrl, config)
@@ -29,16 +29,16 @@ export function readAll() {
             .catch(responseErrorHandler);
 };
 
-export function update(hackerData) {
+export function update(data) {
       const config = {
             method: 'PUT',
             headers,
-            data: hackerData
+            data: data
       }
 
-      return axios(`${baseUrl}/${hackerData._id}`, config)
+      return axios(`${baseUrl}/${data._id}`, config)
             .then(responseSuccessHandler)
-            .catch(responseErrorHandler);
+            .catch(responseErrorHandler)
 };
 
 export function del(id) {
@@ -49,17 +49,18 @@ export function del(id) {
 
       return axios(`${baseUrl}/${id}`, config)
             .then(responseSuccessHandler)
-            .catch(responseErrorHandler);
+            .catch(responseErrorHandler)
 }
 
 const responseSuccessHandler = response => {
-      return response.data;
-};
+      return response.data
+}
 
 const responseErrorHandler = error => {
-      console.log(error);
-      return Promise.reject(error);
-};
+      console.log(error)
+      return Promise.reject(error)
+}
+
 
 
 
