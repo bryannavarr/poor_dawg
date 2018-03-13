@@ -5,8 +5,8 @@ const schema = {
     _id: Joi.objectId().optional(),
     challengeId: Joi.objectId().required(),
     dogOwnerId: Joi.objectId().required(),
-    dogId: Joi.objectId().required(),
-    points: Joi.number().required(), 
+    dogId: Joi.objectId(),
+    points: Joi.number(),
     createDate: Joi.date().iso().default(() => new Date, 'time of creation'), 
     updateDate: Joi.date().iso().default(() => new Date, 'time of creation')
 
