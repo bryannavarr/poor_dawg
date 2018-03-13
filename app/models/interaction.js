@@ -6,8 +6,8 @@ const schema = {
     dogOwnerId: Joi.objectId(),
     dogId: Joi.objectId(),
     points: Joi.number(), 
-    createDate: Joi.date().iso().default(Date, 'time of creation'), 
-    updateDate: Joi.date().iso().default(Date, 'time of creation')
+    createDate: Joi.date().iso().default(() => new Date, 'time of creation'), 
+    updateDate: Joi.date().iso().default(() => new Date, 'time of creation')
 
 
 }
