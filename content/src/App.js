@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
-import { BrowserRouter, Route } from 'react-router-dom'
-// import Hackers from './containers/Hackers'
-import Interactions from './containers/Interactions'
+import { BrowserRouter, Route } from "react-router-dom";
+import Hackers from './containers/Hackers'
+import Interactions from "./containers/Interactions";
 
 class App extends Component {
   render() {
@@ -16,11 +16,9 @@ class App extends Component {
         </header>
         <BrowserRouter>
           <div>
-            {/* <Route path="/" component={Hackers} /> */}
-            <Route path="/" component={Interactions} />
-            {/* change path to '/interaction' */}
+            <Route path="/" component={Hackers} />
+            <Route path="/interactions" component={Interactions} />
           </div>
-
         </BrowserRouter>
       </div>
     );

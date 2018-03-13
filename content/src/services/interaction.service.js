@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const headers = {}
-const baseUrl = `http://localhost:8080/api/interaction`
+const baseUrl = `http://localhost:8080/api/interactions`
 
 
 
