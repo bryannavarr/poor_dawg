@@ -34,6 +34,17 @@ function readById(req, res) {
             console.log(err)
             res.status(500).send(new responses.ErrorResponse(err))
         })
+}function readById(req, res) {
+    hackersService.readById(req.params.id)
+        .then(hacker => {
+            const responseModel = new responses.ItemResponse()
+            responseModel.item = hacker
+            res.json(responseModel)
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).send(new responses.ErrorResponse(err))
+        })
 }
 
 function create(req, res) {

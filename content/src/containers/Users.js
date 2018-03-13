@@ -1,14 +1,13 @@
 import React from 'react'
-import * as hackerService from '../services/hacker.service'
-import HackerForm from './HackerForm'
+import * as userService from '../services/users.service.js'
+import UserForm from './UserForm'
 
-class Hackers extends React.Component {
+class Users extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            hackers: []
+            users: []
         }
-
         this.onCancel = this.onCancel.bind(this);
         this.onDelete = this.onDelete.bind(this);
         this.onSave = this.onSave.bind(this);
@@ -16,9 +15,10 @@ class Hackers extends React.Component {
     }
 
     componentDidMount() {
-        hackerService.readAll().then(data => {
-            this.setState({ hackers: data.items })
-        })
+        userService.readAll()
+            .then(data => {
+                this.setState({ users: data.items })
+            })
     }
 
     onCancel() {
@@ -27,48 +27,43 @@ class Hackers extends React.Component {
 
     onDelete() {
         const formData = this.state.formData;
-  
-        hackerService.del(formData._id)
-           .then(() => {
-              this.setState(prevState => {
-                 const updatedItems = prevState.hackers.filter(item => {
-                    return item._id !== formData._id;
-                 });
-  
-                 return { hackers: updatedItems };
-              });
-  
-              this.onCancel();
-           })
-           .catch(err => console.log(err))
-     }
+        userService.delete(formData._id)
+            .then(() => {
+                this.setState(prevState => {
+                    const updatedItems = prevState.users.filter(item => {
+                        return item._id !== formData._id;
+                    });
+                    return { Users: updatedItems }
+                });
+                this.onCancel();
+            })
+            .catch(err => console.log("error=", err))
+    }
 
     onSave(updatedFormData) {
         this.setState(prevState => {
-            const existingItem = prevState.hackers.filter(item => {
+            const existingItem = prevState.users.filter(item => {
                 return item._id === updatedFormData._id;
+
             })
             let updatedItems = [];
             if (existingItem && existingItem.length > 0) {
-                updatedItems = prevState.hackers.map(item => {
+                updatedItems = prevState.users.map(item => {
                     return (
                         item._id === updatedFormData._id
                             ? updatedFormData
                             : item
                     );
                 });
-
             }
             else {
-                updatedItems = prevState.hackers.concat(updatedFormData);
+                updatedItems = prevState.users.concat(updatedFormData);
             }
             return {
-                hackers: updatedItems,
+                users: updatedItems,
                 formData: null,
                 errorMessage: null
             };
-
-
         }
         );
     }
@@ -81,23 +76,21 @@ class Hackers extends React.Component {
     }
 
     render() {
-        const hackers = this.state.hackers ? this.state.hackers.map(hacker => (
-            <li key={hacker._id} onClick={this.onSelect.bind(this, hacker)}>{hacker.name}</li>
-        ))
+        const users = this.state.users ? this.state.users.map
+            (user => (
+                <li key={user._id} onCLick={this.onSelect.bind(this, user)}>{user.name}</li>
+            ))
             : <React.Fragment></React.Fragment>
 
         return (
             <React.Fragment>
                 <ul>
-                    {hackers}
+                    {users}
                 </ul>
 
                 <div>
-                    <HackerForm
+                    <UserForm
                         formData={this.state.formData}
-                        onSave={this.onSave}
-                        onDelete={this.onDelete}
-                        onCancel={this.onCancel}
                     />
                 </div>
             </React.Fragment>
@@ -105,4 +98,4 @@ class Hackers extends React.Component {
     }
 }
 
-export default Hackers
+export default Users

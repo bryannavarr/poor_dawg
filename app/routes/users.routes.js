@@ -8,5 +8,5 @@ module.exports = router
 router.get('/', usersController.readAll)
 router.get('/:id([0-9a-fA-F]{24})', usersController.readById)
 router.post('/', validateBody(User), usersController.create)
-router.put('/id:([0-9a-fA-F]{24})', validateBody(User), usersController.update)
+router.put('/:id([0-9a-fA-F]{24})', validateBody(User), usersController.update)
 router.delete('/:id([0-9a-fA-F]{24})', usersController.delete)

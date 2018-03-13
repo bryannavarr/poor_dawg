@@ -20,7 +20,7 @@ function readAll(req, res) {
         .catch(err => {
             console.log("error=", error)
             res.sendStatus(500).send(new responses.ErrorResponse(err))
-        })
+        });
 }
 
 function readById(req, res) {
@@ -37,6 +37,7 @@ function readById(req, res) {
 }
 
 function create(req, res) {
+    req.model.createDate = new Date();
     usersService.create(req.model)
         .then(id => {
             const responseModel = new responses.ItemResponse()
@@ -51,9 +52,10 @@ function create(req, res) {
         })
 }
 function update(req, res) {
+    req.model.updateDate = new Date();
     usersService.update(req.params.id, req.model)
-        .then(user => {
-            const responseModel = new responses.Success.Response()
+        .then(() => {
+            const responseModel = new responses.SuccessResponse()
             res.status(200).json(responseModel)
         })
         .catch(err => {

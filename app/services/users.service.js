@@ -15,33 +15,36 @@ function readAll() {
     return conn.db().collection('users').find().toArray()
         .then(users => {
             for (i = 0; i < users.length; i++) {
-                let userResult = users[i]
-                userResult._id = userResilt._id.toString()
+                let user = users[i]
+                user._id = user._id.toString()
             }
+            return users
         })
-    return users
 }
 
 function readById(id) {
-    return conn.db().collection('users').findOne({ _id: new ObjectId(id) })
+    return conn.db().collection('users').findOne({ _id: ObjectId(id) })
         .then(user => {
-            user._id = user._id.toString()
+            user._id = user._id.toString();
+            return user
         })
-    return user
 }
 
 function create(model) {
     return conn.db().collection('users').insert(model)
-        .then(result => result.insertedIds[0].toString())
+        .then(result => {
+            result.insertedIds[0].toString()
+        })
 }
 
 function update(id, doc) {
-    doc._id = new ObjectId(doc._id)
-    return conn.db.collection().replaceOne({ _id: new ObjectId(id) }, doc)
-        .then(result => Promise.resolve())
+    return conn.db().collection('users').replaceOne({ _id: ObjectId(id) }, doc)
+        .then(result => {
+            Promise.resolve()
+        })
 }
 
-function _delete (id) {
-    return conn.db().collection('users').deleteOne({ _id: new ObjectId(id) })
+function _delete(id) {
+    return conn.db().collection('users').deleteOne({ _id: ObjectId(id) })
         .then(result => Promise.resolve())
 }

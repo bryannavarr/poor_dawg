@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-
-import {BrowserRouter, Route} from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 import Hackers from './containers/Hackers'
+import Users from './containers/Users'
 
 class App extends Component {
   render() {
@@ -14,7 +14,10 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <BrowserRouter>
-          <Route path="/" component={Hackers}/>
+          <div>
+            <Route path="/" component={Hackers} />
+            <Route path="/" component={Users} />
+          </div>
         </BrowserRouter>
       </div>
     );
