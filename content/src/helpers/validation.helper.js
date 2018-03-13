@@ -21,7 +21,11 @@ export function validate(value, rules){
         isValid = isValid &&
             rules.list.includes(value);
     }
-
+    if(rules.objectId){
+   
+        isValid = isValid && RegExp('([0-9a-fA-F]{24})').test(value)
+    }
+    
     return isValid;
 }
 
