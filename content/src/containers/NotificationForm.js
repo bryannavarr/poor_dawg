@@ -2,7 +2,7 @@ import React from 'react'
 import * as validationHelper from '../helpers/validation.helper'
 import * as notificationService from '../services/notification.service'
 
-class Notifications extends React.Component {
+class NotificationsForm extends React.Component {
     constructor(props) {
         super(props)
 
@@ -220,4 +220,4 @@ class Notifications extends React.Component {
     }
 }
 
-export default Notifications
+export default NotificationsForm

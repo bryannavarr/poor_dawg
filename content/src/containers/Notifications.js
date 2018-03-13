@@ -1,6 +1,6 @@
 import React from 'react'
 import * as notificationService from '../services/notification.service'
-import NotificationForm from './NotificationForm'
+import NotificationsForm from './NotificationForm'
 
 class Notifications extends React.Component {
     constructor(props) {
@@ -94,7 +94,7 @@ class Notifications extends React.Component {
                 </ul>
 
                 <div>
-                    <NotificationForm
+                    <NotificationsForm
                         formData={this.state.formData}
                         onSave={this.onSave}
                         onDelete={this.onDelete}
