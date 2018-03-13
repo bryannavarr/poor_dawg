@@ -68,7 +68,7 @@ function update(req, res) {
 function _delete(req, res) {
     notificationsService
         .delete(req.params.id)
-        .then(()=> {
+        .then(() => {
             const responseModel = new responses.SuccessResponse()
             res.status(200).json(responseModel)
         })
