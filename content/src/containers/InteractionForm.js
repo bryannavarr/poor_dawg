@@ -155,17 +155,18 @@ class InteractionForm extends React.Component {
             }
             else{
                 debugger
-                delete item.createDate
-                delete item.updateDate
+                 item.createDate = new Date().toISOString()
+                 item.updateDate = new Date().toISOString()
                 interactionService.create(item)
                 .then(data => {
+                    debugger
                     this.setState(prevState => {
-                        const field = { ...prevState.formData._id, _id:data};
+                        const field = { ...prevState.formData._id, _id:data.data.item};
                         const formData = {...prevState.formData, _id: field}; 
                         return {...prevState, formData}
                     })
 
-                    that.props.onSave({...item, _id: data.item})
+                    that.props.onSave({...item, _id: data.data.item})
                 })
                 .catch(err=> console.log(err))
             }
@@ -226,7 +227,7 @@ class InteractionForm extends React.Component {
                         onChange={this.onChange}
                         />
                     </div>
-                    <div className='form-group'>
+                    <div className={!this.state.formData.points.valid && this.state.formData.points.touched? 'form-group has-error': 'form-group'}>
                         <label> Points</label>
                         <input 
                         type="number"
@@ -236,6 +237,7 @@ class InteractionForm extends React.Component {
                         value={this.state.formData.points.value}
                         onChange={this.onChange}
                         />
+                        {!this.state.formData.points.valid && this.state.formData.points.touched ? <p className='has-error'>Please enter a points value under 100 </p> : null}
                     </div>
                     <div className='form-group'>
                         <label> Created: </label>
