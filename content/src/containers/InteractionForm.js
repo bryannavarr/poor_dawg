@@ -102,7 +102,7 @@ class InteractionForm extends React.Component {
     }
 
         onSave(event){
-            debugger
+            
             if(!this.state.formValid){
                 const formData = JSON.parse(JSON.stringify(this.state.formData))
                 for(let fieldIdentifier in formData){
@@ -127,7 +127,7 @@ class InteractionForm extends React.Component {
                 // add update date here
                 interactionService.update(item)
                 .then(data=>{
-                    console.log(data)
+
                     that.props.onSave(item)
                 })
                 .catch(err=> console.log(err))
@@ -136,7 +136,7 @@ class InteractionForm extends React.Component {
             else{
                 interactionService.create(item)
                 .then(data => {
-                    debugger
+                    
                     this.setState(prevState => {
                         const field = { ...prevState.formData._id, _id:data.data.item};
                         const formData = {...prevState.formData, _id: field}; 
