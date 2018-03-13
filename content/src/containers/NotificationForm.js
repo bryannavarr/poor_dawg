@@ -108,14 +108,14 @@ class Notifications extends React.Component {
             return;
         }
         const that = this;
-        
+
         let item = {
             message: this.state.formData.message.value,
             type: this.state.formData.type.value,
             dogOwnerId: this.state.formData.dogOwnerId.value,
             dogId: this.state.formData.dogId.value
         };
-        
+
         if (this.state.formData._id.value.length > 0) {
             item._id = this.state.formData._id.value
             notificationService.update(item)

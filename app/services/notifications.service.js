@@ -24,7 +24,7 @@ function readAll() {
 }
 
 function readById(id) {
-    return conn.db().collection('notifications').findOne({_id: new ObjectId(id)})
+    return conn.db().collection('notifications').findOne({ _id: new ObjectId(id) })
         .then(notification => {
             notification._id = notification._id.toString()
             return notification
@@ -38,13 +38,13 @@ function create(model) {
 
 function update(id, doc) {
     doc._id = new ObjectId(doc._id)
-    return conn.db().collection('notifications').replaceOne({_id: new ObjectId(id)}, doc)
-    .then(result => 
-        Promise.resolve())
+    return conn.db().collection('notifications').replaceOne({ _id: new ObjectId(id) }, doc)
+        .then(result =>
+            Promise.resolve())
 }
 
 function _delete(id) {
     return conn.db().collection('notifications')
-    .deleteOne({_id: new ObjectId(id)})
+        .deleteOne({ _id: new ObjectId(id) })
         .then(result => Promise.resolve())
 }

@@ -43,17 +43,17 @@ class Notifications extends React.Component {
     }
 
     onSave(updatedFormData) {
-        
+
         this.setState(prevState => {
             const existingItem = prevState.notifications.filter(item => {
                 return item._id === updatedFormData._id;
             })
-            
+
             let updatedItems = [];
-            
+
             if (existingItem && existingItem.length > 0) {
                 updatedItems = prevState.notifications.map(item => {
-                    
+
                     return (
                         item._id === updatedFormData._id
                             ? updatedFormData
@@ -64,7 +64,7 @@ class Notifications extends React.Component {
             else {
                 updatedItems = prevState.notifications.concat(updatedFormData);
             }
-            
+
             return {
                 notifications: updatedItems,
                 formData: null,
