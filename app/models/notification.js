@@ -4,13 +4,13 @@ Joi.objectId = require('joi-objectid')(Joi)
 
 
 const schema = {
-    dogOwnerId: Joi.objectId().required(),
+    dogOwnerId: Joi.objectId(),
     _id: Joi.objectId(),
-    dogId: Joi.objectId().required(),
+    dogId: Joi.objectId(),
     message: Joi.string(),
     type: Joi.string().valid(['Challenges', 'Wellness']),
-    createDate: Joi.date().default(Date.now, 'date of creation'),
-    updateDate: Joi.date().default(Date.now, 'date of update')
+    createDate: Joi.date().iso().default(()=>new Date, 'date of creation'),
+    updateDate: Joi.date().iso().default(()=>new Date, 'date of update')
 }
 
 module.exports = Joi.object().keys(schema)

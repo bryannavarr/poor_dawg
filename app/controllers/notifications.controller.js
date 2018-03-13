@@ -52,6 +52,7 @@ function create(req, res) {
 }
 
 function update(req, res) {
+    req.model.updateDate = new Date();
     notificationsService
         .update(req.params.id, req.model)
         .then(notification => {

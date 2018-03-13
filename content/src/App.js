@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import {BrowserRouter, Route} from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 import Hackers from './containers/Hackers'
+import Notifications from './containers/Notifications'
 
 class App extends Component {
   render() {
@@ -14,7 +15,10 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <BrowserRouter>
-          <Route path="/" component={Hackers}/>
+          <React.Fragment>
+            <Route path="/hackers" component={Hackers} />
+            <Route path="/notifications" component={Notifications} />
+          </React.Fragment>
         </BrowserRouter>
       </div>
     );

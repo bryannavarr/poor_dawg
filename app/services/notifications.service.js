@@ -39,7 +39,8 @@ function create(model) {
 function update(id, doc) {
     doc._id = new ObjectId(doc._id)
     return conn.db().collection('notifications').replaceOne({_id: new ObjectId(id)}, doc)
-    .then(result => Promise.resolve())
+    .then(result => 
+        Promise.resolve())
 }
 
 function _delete(id) {
