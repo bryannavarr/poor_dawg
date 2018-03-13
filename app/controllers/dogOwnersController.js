@@ -9,6 +9,7 @@ module.exports = {
 }
 
 function update(req,res){
+    req.body.updateDate= new Date();//wtf y model
     dogOwnersServices
         .update(req.params.id, req.body)
         .then(dogOwner=>{

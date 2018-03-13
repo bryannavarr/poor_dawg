@@ -9,7 +9,9 @@ const schema = {
     email: Joi.string().email(),
     phone: Joi.number(),
     dogs: Joi.string(),
-    subscriptionLevel: Joi.string().valid(['Premium','Free'])
+    subscriptionLevel: Joi.string().valid(['Premium','Free']),
+    createDate:Joi.date().iso().default(()=>new Date(),'time of creation'),
+    updateDate:Joi.date().iso().default(()=>new Date(),'time of creation')
 }
 
 module.exports=Joi.object().keys(schema)

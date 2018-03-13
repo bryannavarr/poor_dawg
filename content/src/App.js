@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
-import {BrowserRouter, Route} from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 import Hackers from './containers/Hackers'
+import DogOwners from './containers/DogOwners'
+// import dogOwners from './c'
 
 class App extends Component {
   render() {
@@ -14,7 +16,10 @@ class App extends Component {
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <BrowserRouter>
-          <Route path="/" component={Hackers}/>
+          <React.Fragment>
+            <Route exact path="/" component={Hackers} />
+            <Route path="/dogOwners" component={DogOwners} />
+          </React.Fragment>
         </BrowserRouter>
       </div>
     );
