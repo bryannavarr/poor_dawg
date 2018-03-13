@@ -40,8 +40,7 @@ class InteractionForm extends React.Component {
             dogOwnerId: interaction.dogOwnerId || '', 
             dogId: interaction.dogId || '', 
             points: interaction.points || ''
-            // createDate: interaction.createDate || '', 
-            // updateDate: interaction.updateDate || ''
+
         }
 
         let formData = {
@@ -68,7 +67,7 @@ class InteractionForm extends React.Component {
                 value: intializedInteractions.dogOwnerId, 
                 valid: true, 
                 validation: {
-
+                    objectId: true
                 }, 
                 touched: false
             },
@@ -77,7 +76,7 @@ class InteractionForm extends React.Component {
                 value: intializedInteractions.dogId, 
                 valid: true, 
                 validation: {
-
+                    objectId: true
                 }, 
                 touched: false
             },
@@ -91,24 +90,7 @@ class InteractionForm extends React.Component {
                 }, 
                 touched: false
             }
-            // createDate: {
-            //     originalValue: intializedInteractions.createDate, 
-            //     value: intializedInteractions.createDate, 
-            //     valid: true, 
-            //     validation: {
 
-            //     }, 
-            //     touched: false
-            // },
-            // updateDate: {
-            //     originalValue: intializedInteractions.updateDate, 
-            //     value: intializedInteractions.updateDate, 
-            //     valid: true, 
-            //     validation: {
-
-            //     }, 
-            //     touched: false
-            // }
         }
 
         for (let fieldName in formData){
@@ -131,18 +113,15 @@ class InteractionForm extends React.Component {
             }
 
             const that = this;
-            debugger
             let item = {
                 points: this.state.formData.points.value, 
                 challengeId: this.state.formData.challengeId.value, 
                 dogOwnerId: this.state.formData.dogOwnerId.value, 
                 dogId: this.state.formData.dogOwnerId.value
-                // createDate: this.state.formData.createDate.value,
-                // updateDate: this.state.formData.updateDate.value
-            }
-            // this is just for changing point value of existing interactions
 
-            debugger
+            }
+
+   
             if(this.state.formData._id.value.length>0){
                 item._id = this.state.formData._id.value
                 // add update date here
@@ -155,9 +134,6 @@ class InteractionForm extends React.Component {
                 
             }
             else{
-                debugger
-                //  item.createDate = new Date().toISOString()
-                //  item.updateDate = new Date().toISOString()
                 interactionService.create(item)
                 .then(data => {
                     debugger
@@ -203,7 +179,7 @@ class InteractionForm extends React.Component {
                         />
                         {!this.state.formData.challengeId.valid && this.state.formData.challengeId.touched? <p className='has-error'>Please enter a valid object ID</p>: null}
                     </div>
-                    <div className='form-group'>
+                    <div className={!this.state.formData.dogOwnerId.valid && this.state.formData.dogOwnerId.touched? 'form-group has-error': 'form-group'}>
                         <label> Dog Owner ID</label>
                         <input 
                         type="text"
@@ -214,8 +190,9 @@ class InteractionForm extends React.Component {
                         value={this.state.formData.dogOwnerId.value}
                         onChange={this.onChange}
                         />
+                        {!this.state.formData.dogOwnerId.valid && this.state.formData.dogOwnerId.touched? <p className='has-error'>Please enter a valid object ID</p>: null}
                     </div>
-                    <div className='form-group'>
+                    <div className={!this.state.formData.dogId.valid && this.state.formData.dogId.touched? 'form-group has-error': 'form-group'}>
                         <label> Dog ID</label>
                         <input 
                         type="text"
@@ -226,6 +203,7 @@ class InteractionForm extends React.Component {
                         value={this.state.formData.dogId.value}
                         onChange={this.onChange}
                         />
+                        {!this.state.formData.dogId.valid && this.state.formData.dogId.touched? <p className='has-error'>Please enter a valid object ID</p>: null}
                     </div>
                     <div className={!this.state.formData.points.valid && this.state.formData.points.touched? 'form-group has-error': 'form-group'}>
                         <label> Points</label>
@@ -239,30 +217,7 @@ class InteractionForm extends React.Component {
                         />
                         {!this.state.formData.points.valid && this.state.formData.points.touched ? <p className='has-error'>Please enter a points value under 100 </p> : null}
                     </div>
-                    {/* <div className='form-group'>
-                        <label> Created: </label>
-                        <input 
-                        type="text"
-                        name='createDate'
-                        id='createDate'
-                        className='form-control'
-                        value={this.state.formData.createDate.value}
-                        onChange={this.onChange}
-                        disabled
-                        />
-                    </div>
-                    <div className='form-group'>
-                        <label> Last Updated: </label>
-                        <input 
-                        type="text"
-                        name='updateDate'
-                        id='updateDate'
-                        className='form-control'
-                        disabled
-                        value={this.state.formData.updateDate.value}
-                        onChange={this.onChange}
-                        /> */}
-                    {/* </div> */}
+    
                     <button type='button'
                             onClick={this.onSave}
                             className='btn btn-primary btn-sm'
