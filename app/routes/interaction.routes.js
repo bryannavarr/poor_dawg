@@ -10,7 +10,7 @@ module.exports = router;
 
 router.get("/", interactionController.readAll);
 router.get("/:id([0-9a-fA-F]{24})", interactionController.readById);
-router.post("/", validateBody(Interaction), interactionController.create);
+router.post("/", validateBody(Interaction), timestamp, interactionController.create);
 router.put(
   "/:id([0-9a-fA-F]{24})",
   validateBody(Interaction),
