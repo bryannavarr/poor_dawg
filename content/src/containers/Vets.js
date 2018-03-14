@@ -37,7 +37,7 @@ class Vets extends React.Component {
           });
 
           return { vets: updatedItems };
-        });
+        })
 
         this.onCancel();
       })
@@ -75,9 +75,9 @@ class Vets extends React.Component {
   render() {
     const vets = this.state.vets ? (
       this.state.vets.map(vet => (
-        <li key={vet._id} onClick={this.onSelect.bind(this, vet)}>
-          {vet.firstName + " " + vet.lastName}
-        </li>
+        <div key={vet._id} onClick={this.onSelect.bind(this, vet)}>
+          {vet.firstName + ' ' + vet.lastName}
+        </div>
       ))
     ) : (
       <React.Fragment />
@@ -85,20 +85,33 @@ class Vets extends React.Component {
 
     return (
       <div className="container">
-        <div className="row">
-          <div className='panel'>
-            <ul>{vets}</ul>
+        <div className="row " style={{marginTop: '20px'}}>
+        <div className='col-sm-6'>
+          <div className='panel panel-default' >
+            <div className='panel-header'>
+              <h2 >
+                Veterinarians
+              </h2>
+            </div>
+            <div className='panel-body'>
+                  {vets}
+            </div>
           </div>
-          <div>
+          </div>
+          <div className='col-sm-6'>
+          <div className="well">
+            <h2>Create / Edit</h2>
             <VetForm
               formData={this.state.formData}
               onSave={this.onSave}
               onDelete={this.onDelete}
               onCancel={this.onCancel}
             />
+            </div>
           </div>
         </div>
       </div>
+
 
     )
   }

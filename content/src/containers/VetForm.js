@@ -302,7 +302,7 @@ class VetForm extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <form >
+                <form className='form'>
                     <div className={!this.state.formData.firstName.valid && this.state.formData.firstName.touched
                         ? 'form-group has-error' : 'form-group'} >
                         <label htmlFor='firstName'>First Name</label>
