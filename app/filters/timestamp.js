@@ -1,5 +1,5 @@
-module.exports = timestamp;
-function timestamp(req, res, next) {
+module.exports = updateDateTimestamp;
+function updateDateTimestamp(req, res, next) {
   if (req.method === "PUT") {
     req.model.updateDate = new Date();
     delete req.model.createDate;
