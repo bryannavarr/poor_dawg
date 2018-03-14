@@ -17,7 +17,7 @@ class App extends Component {
         </header>
         <BrowserRouter>
           <div>
-            {/* <Route path="/" component={Hackers} /> */}
+            <Route path="/hackers" component={Hackers} />
             <Route path="/interactions" component={Interactions} />
             <Route path="/challenges" component={Challenges} />
           </div>

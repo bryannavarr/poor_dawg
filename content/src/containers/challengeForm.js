@@ -15,6 +15,7 @@ class ChallengeForm extends React.Component {
     };
 
     this.onChange = validationHelper.onChange.bind(this);
+    this.onSave = this.onSave.bind(this);
   }
 
   componentDidMount() {
@@ -47,7 +48,9 @@ class ChallengeForm extends React.Component {
         originalValue: initializedChallenge._id,
         value: initializedChallenge._id,
         valid: true,
-        validation: {},
+        validation: {
+          objectId: true
+        },
         touched: false
       },
       description: {
@@ -56,7 +59,6 @@ class ChallengeForm extends React.Component {
         valid: true,
         validation: {
           required: true,
-          maxLength: 50
         },
         touched: false
       },
@@ -64,21 +66,28 @@ class ChallengeForm extends React.Component {
         originalValue: initializedChallenge.expirationDate,
         value: initializedChallenge.expirationDate,
         valid: true,
-        validation: {},
+        validation: {
+          required: true
+        },
         touched: false
       },
       points: {
         originalValue: initializedChallenge.points,
         value: initializedChallenge.points,
         valid: true,
-        validation: {},
+        validation: {
+          required: true,
+          number: true
+        },
         touched: false
       },
       dogOwnerType: {
         originalValue: initializedChallenge.dogOwnerType,
         value: initializedChallenge.dogOwnerType,
         valid: true,
-        validation: {},
+        validation: {
+          required: true
+        },
         touched: false
       },
       createDate: {
@@ -105,6 +114,48 @@ class ChallengeForm extends React.Component {
     return formData;
   }
 
+  onSave(event) {
+    if (!this.state.formValid) {
+      // Mark all fields as touched to display validation errors for all fields
+      const formData = JSON.parse(JSON.stringify(this.state.formData));
+      for (let fieldIdentifier in formData) {
+        formData[fieldIdentifier].touched = false;
+      }
+      this.setState({ formData: formData });
+      return;
+    }
+    const that = this;
+    let item = {
+      description: this.state.formData.description.value,
+      expirationDate: this.state.formData.expirationDate.value,
+      points: this.state.formData.points.value,
+      dogOwnerType: this.state.formData.dogOwnerType.value
+    };
+
+    if (this.state.formData._id.value.length > 0) {
+      item._id = this.state.formData._id.value;
+      challengeService
+        .update(item)
+        .then(data => {
+          that.props.onSave(item);
+        })
+        .catch(error => console.log(error));
+    } else {
+      challengeService
+        .create(item)
+        .then(data => {
+          //Modify state to reflect assigned id value
+          this.setState(prevState => {
+            const field = { ...prevState.formData._id, _id: data };
+            const formData = { ...prevState.formData, _id: field };
+            return { ...prevState, formData: formData };
+          });
+          that.props.onSave({ ...item, _id: data.item });
+        })
+        .catch(error => console.log(error));
+    }
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -116,11 +167,11 @@ class ChallengeForm extends React.Component {
                 : "form-group"
             }
           >
-            <label htmlFor="challengeId">Challenge Id:</label>
+            <label htmlFor="_id">Challenge Id:</label>
             <input
               type="text"
-              name="challengeId"
-              id="challengeId"
+              name="_id"
+              id="_id"
               className="form-control"
               value={this.state.formData._id.value}
               onChange={this.onChange}
@@ -134,11 +185,11 @@ class ChallengeForm extends React.Component {
                 : "form-group"
             }
           >
-            <label htmlFor="challengeDescription">Description:</label>
+            <label htmlFor="description">Description:</label>
             <input
               type="text"
-              name="challengeDescription"
-              id="challengeDescription"
+              name="description"
+              id="description"
               className="form-control"
               value={this.state.formData.description.value}
               onChange={this.onChange}
@@ -152,11 +203,11 @@ class ChallengeForm extends React.Component {
                 : "form-group"
             }
           >
-            <label htmlFor="challengeExpirationDate">Expiration Date</label>
+            <label htmlFor="expirationDate">Expiration Date</label>
             <input
               type="text"
-              name="challengeExpirationDate"
-              id="challengeExpirationDate"
+              name="expirationDate"
+              id="expirationDate"
               className="form-control"
               value={this.state.formData.expirationDate.value}
               onChange={this.onChange}
@@ -170,11 +221,11 @@ class ChallengeForm extends React.Component {
                 : "form-group"
             }
           >
-            <label htmlFor="challengePoints">Points:</label>
+            <label htmlFor="points">Points:</label>
             <input
               type="number"
-              name="challengePoints"
-              id="challengePoints"
+              name="points"
+              id="points"
               className="form-control"
               value={this.state.formData.points.value}
               onChange={this.onChange}

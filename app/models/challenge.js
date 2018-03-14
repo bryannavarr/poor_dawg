@@ -5,7 +5,7 @@ const schema = {
     _id: Joi.objectId(),
     description: Joi.string(),
     expirationDate: Joi.date(),
-    points: Joi.number(),
+    points: Joi.number()
     dogOwnerType: Joi.string().valid(['DogLover', 'DogOwner']),
     createDate: Joi.date().iso().default(()=>new Date(), 'time of creation'),
     updateDate: Joi.date().iso().default(()=>new Date(), 'time of creation')
