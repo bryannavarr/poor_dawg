@@ -1,6 +1,7 @@
 import React from "react";
 import * as validationHelper from "../helpers/validation.helper";
 import * as interactionService from "../services/interaction.service";
+import DogOwnersDropdown from "./DogOwnersDropdown";
 
 class InteractionForm extends React.Component {
   constructor(props) {
@@ -185,18 +186,15 @@ class InteractionForm extends React.Component {
                 : "form-group"
             }
           >
-            <label> Dog Owner ID</label>
-            <input
-              type="text"
-              name="dogOwnerId"
-              id="dogOwnerId"
-              className="form-control"
+            <label> Dog Owner</label>
+
+            <DogOwnersDropdown
               value={this.state.formData.dogOwnerId.value}
-              onChange={this.onChange}
+              onSelect={this.onChange}
             />
             {!this.state.formData.dogOwnerId.valid &&
             this.state.formData.dogOwnerId.touched ? (
-              <p className="has-error">Please enter a valid object ID</p>
+              <p className="has-error">Please select a dog owner</p>
             ) : null}
           </div>
           <div
