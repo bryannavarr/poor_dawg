@@ -250,6 +250,7 @@ class InteractionForm extends React.Component {
             type="button"
             onClick={this.onSave}
             className="btn btn-primary btn-sm"
+            disabled={!this.state.formValid}
           >
             Save
           </button>
