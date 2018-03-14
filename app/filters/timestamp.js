@@ -10,6 +10,6 @@ function timestamp(req, res,next){
         next()
     }
     else{
-        res.status(405).send('Timestamp does not support this method')
+        res.status(500).send('Timestamp does not support this method')
     }
 }
