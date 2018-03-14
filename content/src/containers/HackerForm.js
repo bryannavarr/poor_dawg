@@ -5,7 +5,6 @@ import * as hackerService from '../services/hacker.service'
 class HackerForm extends React.Component {
     constructor(props) {
         super(props)
-        debugger;
 
         const formData = this.convertPropsToFormData(props);
 
@@ -103,7 +102,6 @@ class HackerForm extends React.Component {
 
                     // Modify state to reflect assigned id value
                     this.setState(prevState => {
-                        debugger;
                         const field = { ...prevState.formData._id, _id: data };
                         const formData = { ...prevState.formData, _id: field };
                         return { ...prevState, formData: formData };

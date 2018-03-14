@@ -24,7 +24,7 @@ export function readAll() {
             headers
       }
 
-      return axios.get(baseUrl, config)
+      return axios(baseUrl, config)
             .then(responseSuccessHandler)
             .catch(responseErrorHandler);
 };
