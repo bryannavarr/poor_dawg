@@ -31,22 +31,29 @@ class DogOwnerDropdown extends React.Component {
     ];
   }
 
-  componentDidMount(){
-      this.setState({dogOwners: this.tempList})
+  componentDidMount() {
+    this.setState({ dogOwners: this.tempList });
   }
   render() {
     const dogOwners = this.state.dogOwners.map(dogOwner => {
-       return <option key={dogOwner._id} value={dogOwner._id}>{dogOwner.firstName} {dogOwner.lastName}</option>
-    })
+      return (
+        <option key={dogOwner._id} value={dogOwner._id}>
+          {dogOwner.firstName} {dogOwner.lastName}
+        </option>
+      );
+    });
 
     return (
       <select
-      name='dogOwnerId'
-      value={this.props.value}
-      className='form-control'
-      onChange={this.props.onSelect}>
-        <option key='' defaultValue> </option>
-       {dogOwners}
+        name="dogOwnerId"
+        value={this.props.value}
+        className="form-control"
+        onChange={this.props.onSelect}
+      >
+        <option key="" defaultValue>
+          {" "}
+        </option>
+        {dogOwners}
       </select>
     );
   }
