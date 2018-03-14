@@ -108,7 +108,6 @@ class InteractionForm extends React.Component {
     }
 
     const that = this;
-    debugger;
     let item = {
       points: this.state.formData.points.value,
       challengeId: this.state.formData.challengeId.value,
