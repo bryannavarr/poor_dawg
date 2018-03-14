@@ -15,7 +15,7 @@ router.post("/", validateBody(Interaction), interactionController.create);
 router.put(
   "/:id([0-9a-fA-F]{24})",
   validateBody(Interaction),
-  bodyIdRequired(Interaction),
+  bodyIdRequired,
   updatedDateTimestamp,
   interactionController.update
 );
