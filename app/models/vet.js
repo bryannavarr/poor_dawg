@@ -5,10 +5,10 @@ const schema = {
     firstName: Joi.string().required(),
     lastName: Joi.string().required(),
     email: Joi.string().email().required(),
-    smsNumber: Joi.string(),
+    smsNumber: Joi.string().empty(''),
     address: {
         street: Joi.string(),
-        suite: Joi.string(),
+        suite: Joi.string().empty(''),
         city: Joi.string(),
         state: Joi.string().min(2).max(2),
         zip: Joi.string().max(10)
