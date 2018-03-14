@@ -3,6 +3,8 @@ const hackersRoutes = require("./hackers.routes");
 const clientRoutes = require("./client.routes");
 const authenticate = require("../filters/authenticate");
 const interactionRoutes = require("./interaction.routes");
+const notificationsRoutes = require('./notifications.routes')
+
 
 module.exports = router;
 
@@ -12,6 +14,8 @@ router.use(authenticate);
 // API routes (group routing modules here - no empty lines between)
 router.use("/api/hackers", hackersRoutes);
 router.use("/api/interactions", interactionRoutes);
+router.use('/api/notifications/', notificationsRoutes)
+
 // router.use('/api/entities', entitiesRoutes)
 // router.use('/api/examples', examplesRoutes)
 

@@ -5,6 +5,8 @@ import "./App.css";
 import { BrowserRouter, Route } from "react-router-dom";
 import Hackers from './containers/Hackers'
 import Interactions from "./containers/Interactions";
+import Notifications from './containers/Notifications'
+
 
 class App extends Component {
   render() {
@@ -18,6 +20,7 @@ class App extends Component {
           <div>
             <Route path="/" component={Hackers} />
             <Route path="/interactions" component={Interactions} />
+            <Route path="/notifications" component={Notifications} />
           </div>
         </BrowserRouter>
       </div>
