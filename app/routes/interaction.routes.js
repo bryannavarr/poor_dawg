@@ -2,7 +2,7 @@ const router = require("express").Router();
 const interactionController = require("../controllers/interaction.controller");
 const validateBody = require("../filters/validate.body");
 const Interaction = require("../models/interaction");
-const timestamp = require('../filters/timestamp')
+const timestamp = require("../filters/timestamp");
 
 module.exports = router;
 
