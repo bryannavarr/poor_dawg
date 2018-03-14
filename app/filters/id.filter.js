@@ -1,0 +1,14 @@
+module.exports = bodyIdRequired
+
+function bodyIdRequired(model) {
+    return (req, res, next) => {
+        if (!req.model._id) {
+            const idError = "Error: _id parameter not found."
+            console.log(idError)
+            res.status(400).send(idError);
+            return;
+        } else {
+            next();
+        }
+    }
+}
