@@ -2,6 +2,7 @@ const router = require("express").Router();
 const notificationsController = require("../controllers/notifications.controller");
 const validateBody = require("../filters/validate.body");
 const Notification = require("../models/notification");
+const bodyIdRequired = require("../filters/id.filter");
 const updatedDateTimestamp = require("../filters/timestamp");
 
 module.exports = router;
@@ -12,6 +13,7 @@ router.post("/", validateBody(Notification), notificationsController.create);
 router.put(
   "/:id([0-9a-fA-F]{24})",
   validateBody(Notification),
+  bodyIdRequired(Notification),
   updatedDateTimestamp,
   notificationsController.update
 );

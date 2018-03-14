@@ -2,6 +2,7 @@ const router = require("express").Router();
 const interactionController = require("../controllers/interaction.controller");
 const validateBody = require("../filters/validate.body");
 const Interaction = require("../models/interaction");
+const bodyIdRequired = require('../filters/id.filter')
 const updatedDateTimestamp = require("../filters/timestamp");
 
 module.exports = router;
@@ -14,6 +15,7 @@ router.post("/", validateBody(Interaction), interactionController.create);
 router.put(
   "/:id([0-9a-fA-F]{24})",
   validateBody(Interaction),
+  bodyIdRequired(Interaction),
   updatedDateTimestamp,
   interactionController.update
 );
