@@ -20,7 +20,7 @@ class DogOwnerDropdown extends React.Component {
       },
       {
         _id: "5aa846517d28c6062671b724",
-        firstName: "Casey",
+        firstName: "Jimmy",
         lastName: "Smith"
       },
       {
@@ -29,11 +29,15 @@ class DogOwnerDropdown extends React.Component {
         lastName: "THERE"
       }
     ];
+
+  
   }
 
   componentDidMount() {
     this.setState({ dogOwners: this.tempList });
   }
+
+
   render() {
     const dogOwners = this.state.dogOwners.map(dogOwner => {
       return (
