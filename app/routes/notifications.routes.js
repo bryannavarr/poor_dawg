@@ -13,7 +13,7 @@ router.post("/", validateBody(Notification), notificationsController.create);
 router.put(
   "/:id([0-9a-fA-F]{24})",
   validateBody(Notification),
-  bodyIdRequired(Notification),
+  bodyIdRequired,
   updatedDateTimestamp,
   notificationsController.update
 );
