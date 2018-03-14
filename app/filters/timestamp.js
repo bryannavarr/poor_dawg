@@ -5,11 +5,11 @@ function timestamp(req, res,next){
         delete req.model.createDate
         next()
     }
-    else if (req.method === 'POST'){
+    else if(req.method === 'POST'){
         delete req.model.updateDate
         next()
     }
     else{
-        res.status(403).send('Timestamp does not support this method')
+        res.status(405).send('Timestamp does not support this method')
     }
 }
