@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = 'http://localhost:8080/api/poordawg/challenges'
+const baseUrl = 'http://localhost:8080/api/challenges'
 
 export function readAll() {
     const config = {

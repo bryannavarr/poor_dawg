@@ -23,13 +23,6 @@ class Challenges extends React.Component {
     this.setState({ formData: null });
   }
 
-  onSelect(item, event) {
-    event.preventDefault();
-    this.setState({
-      formData: item
-    });
-  }
-
   onSave(updatedFormData) {
     this.setState(prevState => {
       const existingItem = prevState.challenges.filter(item => {
@@ -41,13 +34,20 @@ class Challenges extends React.Component {
           return item._id === updatedFormData._id ? updatedFormData : item;
         });
       } else {
-          updatedItems = prevState.challenges.concat(updatedFormData)
+        updatedItems = prevState.challenges.concat(updatedFormData);
+      }
+      return {
+        challenges: updatedItems,
+        formData: null,
+        errorMessage: null
       };
-      return{
-          challenges: updatedItems,
-          formData: null,
-          errorMessage: null
-      };
+    });
+  }
+
+  onSelect(item, event) {
+    event.preventDefault();
+    this.setState({
+      formData: item
     });
   }
 
@@ -70,13 +70,15 @@ class Challenges extends React.Component {
 
     return (
       <React.Fragment>
-        <ul className="col-md-6">{challenges}</ul>
-        <div className="col-md-offset-6">
-          <ChallengeForm
-            formData={this.state.formData}
-            onSave={this.onSave}
-            onCancel={this.onCancel}
-          />
+        <div className="container">
+          <ul className="col-md-6">{challenges}</ul>
+          <div className="col-md-offset-6">
+            <ChallengeForm
+              formData={this.state.formData}
+              onSave={this.onSave}
+              onCancel={this.onCancel}
+            />
+          </div>
         </div>
       </React.Fragment>
     );
