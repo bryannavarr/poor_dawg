@@ -247,7 +247,6 @@ class InteractionForm extends React.Component {
               </p>
             ) : null}
           </div>
-          <div><DogsMenu/></div>
           <button
             type="button"
             onClick={this.onSave}
