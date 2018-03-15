@@ -124,17 +124,38 @@ class Interactions extends React.Component {
               <ul>{interactions}</ul>
             </div>
             <div className="col-sm-6">
-            <div className="jarviswidget" data-widget-colorbutton="false"	data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-sortable="false">
-              <header>
-                <h2>#interactionForm</h2>
-              </header>
-                  <InteractionForm
-                    formData={this.state.formData}
-                    onSave={this.onSave}
-                    onDelete={this.onDelete}
-                    onCancel={this.onCancel}
-                  />
+              <div
+                className="jarviswidget "
+                data-widget-togglebutton="true"
+                id="wid-id-interactionsForm"
+                
+                data-widget-colorbutton="false"
+                data-widget-editbutton="false"
+                data-widget-deletebutton="false"
+                data-widget-sortable="false"
+                role="widget"
+              >
+                <header>
+                  <h2>Interactions</h2>
+                  
+                </header>
+                
+                <div>
+                <legend>
+                  Fill this out please
+                </legend>
+                
+
+                  <div className="widget-body">
+                    <InteractionForm
+                      formData={this.state.formData}
+                      onSave={this.onSave}
+                      onDelete={this.onDelete}
+                      onCancel={this.onCancel}
+                    />
+                  </div>
                 </div>
+              </div>
             </div>
           </div>
         </div>
