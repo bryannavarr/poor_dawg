@@ -6,6 +6,7 @@ import Hackers from "../containers/Hackers";
 import Interactions from "../containers/Interactions";
 import Notifications from "../containers/Notifications";
 import Challenges from "../containers/Challenges";
+import Breeds from "../containers/Breeds";
 
 export default function Router() {
   return (
@@ -15,6 +16,7 @@ export default function Router() {
       <Route path="/hackers" component={Hackers} />
       <Route path="/interactions" component={Interactions} />
       <Route path="/notifications" component={Notifications} />
+      <Route path="/breeds" component={Breeds} />
       <Route path="/challenges" component={Challenges} />
     </React.Fragment>
   );

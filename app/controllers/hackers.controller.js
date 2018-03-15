@@ -1,5 +1,5 @@
 const responses = require('../models/responses');
-const hackersService = require('../services/hackers.service')
+const hackersService = require('../services/hackers.service');
 const apiPrefix = '/api/hackers';
 
 module.exports = {

@@ -5,6 +5,7 @@ const authenticate = require("../filters/authenticate");
 const interactionRoutes = require("./interaction.routes");
 const challengeRoutes = require("./challenge.routes");
 const notificationsRoutes = require("./notifications.routes");
+const breedsRoutes = require('./breeds.routes');
 
 module.exports = router;
 
@@ -16,6 +17,7 @@ router.use("/api/hackers", hackersRoutes);
 router.use("/api/interactions", interactionRoutes);
 router.use("/api/challenges", challengeRoutes);
 router.use("/api/notifications/", notificationsRoutes);
+router.use("/api/breeds", breedsRoutes);
 
 // router.use('/api/entities', entitiesRoutes)
 // router.use('/api/examples', examplesRoutes)
