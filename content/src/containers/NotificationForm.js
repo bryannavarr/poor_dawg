@@ -212,19 +212,12 @@ class NotificationsForm extends React.Component {
 
           <div className="form-group">
             <label htmlFor="dogId">Dog Id:</label>
-            <input
-              type="text"
-              name="dogId"
-              id="dogId"
-              className="form-control"
-              value={this.state.formData.dogId.value}
+            <DogsMenu
               onChange={this.onChange}
             />
           </div>
           <div>
-            <DogsMenu
-              onChange={this.onChange}
-            />
+            
           </div>
           <div className="btn-group" role="group">
             <button
