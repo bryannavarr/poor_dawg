@@ -1,5 +1,5 @@
 const responses = require('../models/responses');
-const hackersService = require('../services/hackers.service')
+const hackersService = require('../services/hackers.service');
 const apiPrefix = '/api/hackers';
 
 module.exports = {
@@ -52,6 +52,7 @@ function create(req, res) {
 }
 
 function update(req, res) {
+    req.model.updateDate = new Date();
     hackersService
         .update(req.params.id, req.model)
         .then(hacker => {
