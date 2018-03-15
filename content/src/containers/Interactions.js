@@ -86,19 +86,59 @@ class Interactions extends React.Component {
     );
 
     return (
-      <div>
-        <h1> Interactions</h1>
-        {interactions}
+      <React.Fragment>
+        <div id="ribbon">
+          <span className="ribbon-button-alignment">
+            <span
+              id="refresh"
+              className="btn btn-ribbon"
+              data-action="resetWidgets"
+              data-title="refresh"
+              rel="tooltip"
+              data-placement="bottom"
+              data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings."
+              data-html="true"
+            >
+              <i className="fa fa-refresh" />
+            </span>
+          </span>
 
-        <div>
-          <InteractionForm
-            formData={this.state.formData}
-            onSave={this.onSave}
-            onDelete={this.onDelete}
-            onCancel={this.onCancel}
-          />
+          <ol className="breadcrumb">
+            <li>Home</li>
+            <li>Interactions</li>
+          </ol>
         </div>
-      </div>
+        <div id="content">
+          <div class="row">
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+              <h1 class="page-title txt-color-blueDark">
+                <i class="fa fa-paw fa-fw " />
+                Interactions
+                <span>> Add or Update Interactions</span>
+              </h1>
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="col-sm-6">
+              <ul>{interactions}</ul>
+            </div>
+            <div className="col-sm-6">
+            <div className="jarviswidget" data-widget-colorbutton="false"	data-widget-editbutton="false" data-widget-deletebutton="false" data-widget-sortable="false">
+              <header>
+                <h2>#interactionForm</h2>
+              </header>
+                  <InteractionForm
+                    formData={this.state.formData}
+                    onSave={this.onSave}
+                    onDelete={this.onDelete}
+                    onCancel={this.onCancel}
+                  />
+                </div>
+            </div>
+          </div>
+        </div>
+      </React.Fragment>
     );
   }
 }

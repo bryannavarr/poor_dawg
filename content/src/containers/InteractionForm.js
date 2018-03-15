@@ -20,9 +20,7 @@ class InteractionForm extends React.Component {
   }
 
   componentDidMount() {
-    interactionService.readAll().then(data => {
-      this.setState({ interactions: data.data.items });
-    });
+ 
   }
 
   componentWillReceiveProps(nextProps) {
