@@ -7,6 +7,7 @@ const interactionRoutes = require("./interaction.routes");
 const vetsRoutes = require('./vets.routes')
 const challengeRoutes = require("./challenge.routes");
 const notificationsRoutes = require("./notifications.routes");
+const dogsRoutes = require('./dogs.routes')
 const breedsRoutes = require('./breeds.routes');
 const rewardsRoutes = require('./rewards.routes');
 
@@ -16,6 +17,7 @@ module.exports = router;
 router.use(authenticate);
 
 // API routes (group routing modules here - no empty lines between)
+router.use('/api/dogs', dogsRoutes)
 router.use('/api/rewards', rewardsRoutes)
 router.use("/api/hackers", hackersRoutes);
 router.use('/api/vets', vetsRoutes)
