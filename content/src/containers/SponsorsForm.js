@@ -1,76 +1,289 @@
 import React, { Component } from "react";
+import * as validationHelper from "../helpers/validation.helper";
 import * as SponsorsService from "../services/sponsors.service";
 
 class SponsorsForm extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            companyName: "",
-            firstName: "",
-            lastName: "",
-            email: "",
-            zipCode: "",
-            phone: ""
-        }
-        this.handleFormChange = this.handleFormChange.bind(this);
-        this.handleFormSubmit = this.handleFormSubmit.bind(this);
+  constructor(props) {
+    super(props);
+
+    const formData = this.convertPropsToFormData(props);
+
+    this.state = {
+      sponsors: [],
+      formData: formData,
+      formValid: false
+    };
+    this.onChange = validationHelper.onChange.bind(this);
+    this.onSave = this.onSave.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    const formData = this.convertPropsToFormData(nextProps);
+    this.setState({
+      formData: formData
+    });
+  }
+
+  convertPropsToFormData(props) {
+    const sponsor = props.formData && props.formData._id ? props.formData : {};
+
+    const initializedSponsor = {
+      _id: sponsor._id || "",
+      companyName: sponsor.companyName || "",
+      firstName: sponsor.firstName || "",
+      lastName: sponsor.lastName || "",
+      email: sponsor.email || "",
+      zipCode: sponsor.zipCode || "",
+      phone: sponsor.phone || "",
+      createDate: sponsor.createDate || "",
+      updateDate: sponsor.updateDate || ""
+    };
+
+    let formData = {
+      _id: {
+        originalValue: initializedSponsor._id,
+        value: initializedSponsor._id,
+        valid: true,
+        validation: {},
+        touched: false
+      },
+      companyName: {
+        originalValue: initializedSponsor.companyName,
+        value: initializedSponsor.companyName,
+        valid: true,
+        validation: {
+          required: true
+        },
+        touched: false
+      },
+      firstName: {
+        originalValue: initializedSponsor.firstName,
+        value: initializedSponsor.firstName,
+        valid: true,
+        validation: {
+          required: true
+        },
+        touched: false
+      },
+      lastName: {
+        originalValue: initializedSponsor.lastName,
+        value: initializedSponsor.lastName,
+        valid: true,
+        validation: {
+          required: true
+        },
+        touched: false
+      },
+      email: {
+        originalValue: initializedSponsor.email,
+        value: initializedSponsor.email,
+        valid: true,
+        validation: {
+          required: true
+        },
+        touched: false
+      },
+      zipCode: {
+        originalValue: initializedSponsor.zipCode,
+        value: initializedSponsor.zipCode,
+        valid: true,
+        validation: {},
+        touched: true
+      },
+      phone: {
+        originalValue: initializedSponsor.phone,
+        value: initializedSponsor.phone,
+        valid: true,
+        validation: {
+          required: true
+        },
+        touched: false
+      },
+      createDate: {
+        originalValue: initializedSponsor.createDate,
+        value: initializedSponsor.createDate,
+        valid: true,
+        validation: {},
+        touched: false
+      },
+      updateDate: {
+        originalValue: initializedSponsor.updateDate,
+        value: initializedSponsor.updateDate,
+        valid: true,
+        validation: {},
+        touched: false
+      }
+    };
+    for (let fieldName in formData) {
+      const field = formData[fieldName];
+      field.valid = validationHelper.validate(field.value, field.validation);
     }
 
-    handleFormChange = event => {
-        this.setState(
-            {
-                [event.target.name]: event.target.value
-            }
-        )
-    }
+    return formData;
+  }
 
-    handleFormSubmit = event => {
-        SponsorsService.postNew(this.state)
-            .then(
-                data => {
-                    console.log(data)
-                }
-            )
-            .catch(
-                error => {
-                    console.log(error)
-                }
-            )
+  onSave(event) {
+    if (!this.state.formValid) {
+      const formData = JSON.parse(JSON.stringify(this.state.formData));
+      for (let fieldIdentifier in formData) {
+        formData[fieldIdentifier].touched = false;
+      }
+      this.setState({
+        formData: formData
+      });
+      return;
     }
+    const that = this;
+    let item = {
+      companyName: this.state.formData.companyName.value,
+      firstName: this.state.formData.firstName.value,
+      lastName: this.state.formData.lastName.value,
+      email: this.state.formData.email.value,
+      zipCode: this.state.formData.zipCode.value,
+      phone: this.state.formData.phone.value
+    };
+    if (this.state.formData._id.value.length > 0) {
+      item.createDate = this.state.formData.createDate.value;
+      item._id = this.state.formData._id.value;
+      SponsorsService.putUpdate(item)
+        .then(data => {
+          that.props.onSave(item);
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    } else {
+      SponsorsService.postNew(item)
+        .then(data => {
+          this.setState(prevState => {
+            const field = {
+              ...prevState.formData._id,
+              _id: data
+            };
+            const formData = {
+              ...prevState.formData,
+              _id: field
+            };
+            return {
+              ...prevState,
+              formData: formData
+            };
+          });
+          that.props.onSave({
+            ...item,
+            _id: data.item
+          });
+        })
+        .catch(error => {
+          console.log(error);
+        });
+    }
+  }
 
-    render() {
-        return (
-            <React.Fragment>
-                <form>
-                    <div className="form-group">
-                        <label htmlFor="company-name">Company Name</label>
-                        <input type="text" name="companyName" className="form-control" value={this.state.companyName} placeholder="Company Name" onChange={this.handleFormChange} />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="first-name">First Name</label>
-                        <input type="text" name="firstName" className="form-control" value={this.state.firstName} placeholder="First Name" onChange={this.handleFormChange} />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="last-name">Last Name</label>
-                        <input type="text" name="lastName" className="form-control" value={this.state.lastName} placeholder="Last Name" onChange={this.handleFormChange} />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="email">Email</label>
-                        <input type="email" name="email" className="form-control" value={this.state.email} placeholder="Email" onChange={this.handleFormChange} />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="zip-code">Zip Code</label>
-                        <input type="text" name="zipCode" className="form-control" value={this.state.zipCode} placeholder="Zip Code" onChange={this.handleFormChange} />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="phone">Phone Number</label>
-                        <input type="number" name="phone" className="form-control" value={this.state.phone} placeholder="Phone Number" onChange={this.handleFormChange} />
-                    </div>
-                </form>
-                <input type="button" value="Register" onClick={this.handleFormSubmit} />
-            </React.Fragment >
-        )
-    }
+  render() {
+    return (
+      <React.Fragment>
+        <form>
+          <div className="form-group">
+            <label htmlFor="company-name">Id</label>
+            <input
+              type="text"
+              name="id"
+              value={this.state.formData._id.value}
+              disabled
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="company-name">Company Name</label>
+            <input
+              type="text"
+              name="companyName"
+              value={this.state.formData.companyName.value}
+              placeholder="Company Name"
+              onChange={this.onChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="first-name">First Name</label>
+            <input
+              type="text"
+              name="firstName"
+              value={this.state.formData.firstName.value}
+              placeholder="First Name"
+              onChange={this.onChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="last-name">Last Name</label>
+            <input
+              type="text"
+              name="lastName"
+              value={this.state.formData.lastName.value}
+              placeholder="Last Name"
+              onChange={this.onChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              name="email"
+              value={this.state.formData.email.value}
+              placeholder="Email"
+              onChange={this.onChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="zip-code">Zip Code</label>
+            <input
+              type="text"
+              name="zipCode"
+              value={this.state.formData.zipCode.value}
+              placeholder="Zip Code"
+              onChange={this.onChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="phone">Phone Number</label>
+            <input
+              type="number"
+              name="phone"
+              value={this.state.formData.phone.value}
+              placeholder="Phone Number"
+              onChange={this.onChange}
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="phone">Create Date</label>
+            <input
+              type="text"
+              name="create-date"
+              value={this.state.formData.createDate.value}
+              onChange={this.onChange}
+              disabled
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="phone">Update Date</label>
+            <input
+              type="text"
+              name="update-date"
+              value={this.state.formData.updateDate.value}
+              onChange={this.onChange}
+              disabled
+            />
+          </div>
+        </form>
+        <input type="button" value="Save" onClick={this.onSave} />
+        <input type="button" value="Cancel" onClick={this.props.onCancel} />
+        <input
+          type="button"
+          value="Delete"
+          onClick={() => this.props.onDelete(this.state.formData)}
+        />
+      </React.Fragment>
+    );
+  }
 }
 
-export default SponsorsForm
+export default SponsorsForm;

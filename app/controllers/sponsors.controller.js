@@ -12,6 +12,7 @@ module.exports = {
 }
 
 function postNew(req, res) {
+    console.log(req.model)
     sponsorsServices.postNew(req.model)
         .then(
             data => {
@@ -73,6 +74,7 @@ function getById(req, res) {
         )
 }
 function putUpdate(req, res) {
+    delete req.model._id;
     sponsorsServices.putUpdate(req.params.id, req.model)
         .then(
             data => {

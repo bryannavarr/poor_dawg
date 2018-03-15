@@ -5,7 +5,7 @@ import * as hackerService from '../services/hacker.service'
 class HackerForm extends React.Component {
     constructor(props) {
         super(props)
-        debugger;
+        // debugger;
 
         const formData = this.convertPropsToFormData(props);
 
@@ -18,12 +18,6 @@ class HackerForm extends React.Component {
         this.onChange = validationHelper.onChange.bind(this);
         this.onSave = this.onSave.bind(this);
 
-    }
-
-    componentDidMount() {
-        hackerService.readAll().then(data => {
-            this.setState({ hackers: data })
-        })
     }
 
     componentWillReceiveProps(nextProps) {
@@ -103,7 +97,7 @@ class HackerForm extends React.Component {
 
                     // Modify state to reflect assigned id value
                     this.setState(prevState => {
-                        debugger;
+                        // debugger;
                         const field = { ...prevState.formData._id, _id: data };
                         const formData = { ...prevState.formData, _id: field };
                         return { ...prevState, formData: formData };
