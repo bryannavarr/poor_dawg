@@ -48,9 +48,7 @@ class ChallengeForm extends React.Component {
         originalValue: initializedChallenge._id,
         value: initializedChallenge._id,
         valid: true,
-        validation: {
-          objectId: true
-        },
+        validation: {},
         touched: false
       },
       description: {
@@ -58,7 +56,7 @@ class ChallengeForm extends React.Component {
         value: initializedChallenge.description,
         valid: true,
         validation: {
-          required: true,
+          required: true
         },
         touched: false
       },
@@ -77,7 +75,8 @@ class ChallengeForm extends React.Component {
         valid: true,
         validation: {
           required: true,
-          number: true
+          number: true,
+          max: 500
         },
         touched: false
       },
@@ -300,6 +299,13 @@ class ChallengeForm extends React.Component {
               className="btn btn-default btn-sm"
             >
               Cancel
+            </button>
+            <button
+              type="button"
+              onClick={()=>this.props.onDelete(this.state.formData)}
+              className="btn btn-danger btn-sm"
+            >
+              Delete
             </button>
           </div>
         </form>

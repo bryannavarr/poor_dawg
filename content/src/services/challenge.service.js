@@ -2,21 +2,21 @@ import axios from "axios";
 
 const baseUrl = "http://localhost:8080/api/challenges";
 
-export function readAll() {
+export function create(challengeData) {
   const config = {
-    method: "GET",
-    headers: {}
+    method: "POST",
+    headers: {},
+    data: challengeData
   };
   return axios(baseUrl, config)
     .then(responseSuccessHandler)
     .catch(responseErrorHandler);
 }
 
-export function create(challengeData) {
+export function readAll() {
   const config = {
-    method: "POST",
-    headers: {},
-    data: challengeData
+    method: "GET",
+    headers: {}
   };
   return axios(baseUrl, config)
     .then(responseSuccessHandler)
@@ -30,6 +30,17 @@ export function update(challengeData) {
     data: challengeData
   };
   return axios(`${baseUrl}/${challengeData._id}`, config)
+    .then(responseSuccessHandler)
+    .catch(responseErrorHandler);
+}
+
+export function del(id) {
+  const config = {
+    method: "DELETE",
+    headers: {}
+  };
+
+  return axios(`${baseUrl}/${id}`, config)
     .then(responseSuccessHandler)
     .catch(responseErrorHandler);
 }

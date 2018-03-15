@@ -11,6 +11,7 @@ class Challenges extends React.Component {
 
     this.onCancel = this.onCancel.bind(this);
     this.onSave = this.onSave.bind(this);
+    this.onDelete = this.onDelete.bind(this);
   }
 
   componentDidMount() {
@@ -21,6 +22,24 @@ class Challenges extends React.Component {
 
   onCancel() {
     this.setState({ formData: null });
+  }
+
+  onDelete() {
+    const formData = this.state.formData;
+
+    challengeService
+      .del(formData._id)
+      .then(() => {
+        this.setState(prevState => {
+          const updatedItems = prevState.challenges.filter(item => {
+            return item._id !== formData._id;
+          });
+          return { challenges: updatedItems };
+        });
+
+        this.onCancel();
+      })
+      .catch(err => console.log(err));
   }
 
   onSave(updatedFormData) {
@@ -77,6 +96,7 @@ class Challenges extends React.Component {
               formData={this.state.formData}
               onSave={this.onSave}
               onCancel={this.onCancel}
+              onDelete={this.onDelete}
             />
           </div>
         </div>

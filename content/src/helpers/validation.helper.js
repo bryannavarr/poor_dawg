@@ -27,7 +27,7 @@ export function validate(value, rules) {
     isValid = isValid && RegExp("([0-9a-fA-F]{24})").test(value);
   }
   if(rules.number){
-    isValid = parseInt(value) !== NaN && typeof parseInt(value, 10) === "number";
+    isValid = isValid && !isNaN(value) && typeof parseInt(value, 10) === "number";
   }
 
   return isValid;
