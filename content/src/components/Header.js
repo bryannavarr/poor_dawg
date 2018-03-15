@@ -81,22 +81,22 @@ export default function Header() {
         {/*  Suggestion: populate this list with fetch and push technique */}
         <ul className="dropdown-menu">
           <li>
-            <a href="javascript:void(0);">
+            <a href="/">
               Online e-merchant management system - attaching integration with
               the iOS
             </a>
           </li>
           <li>
-            <a href="javascript:void(0);">Notes on pipeline upgradee</a>
+            <a href="/">Notes on pipeline upgradee</a>
           </li>
           <li>
-            <a href="javascript:void(0);">
+            <a href="/">
               Assesment Report for merchant account
             </a>
           </li>
           <li className="divider" />
           <li>
-            <a href="javascript:void(0);">
+            <a href="/">
               <i className="fa fa-power-off" /> Clear
             </a>
           </li>
@@ -112,7 +112,7 @@ export default function Header() {
           <span>
             {" "}
             <a
-              href="javascript:void(0);"
+              href="/"
               data-action="toggleMenu"
               title="Collapse Menu"
             >
@@ -130,7 +130,7 @@ export default function Header() {
         >
           <li className="">
             <a
-              href="#"
+              href="/"
               className="dropdown-toggle no-margin userdropdown"
               data-toggle="dropdown"
             >
@@ -143,7 +143,7 @@ export default function Header() {
             <ul className="dropdown-menu pull-right">
               <li>
                 <a
-                  href="javascript:void(0);"
+                  href="/"
                   className="padding-10 padding-top-0 padding-bottom-0"
                 >
                   <i className="fa fa-cog" /> Setting
@@ -162,7 +162,7 @@ export default function Header() {
               <li className="divider" />
               <li>
                 <a
-                  href="javascript:void(0);"
+                  href="/"
                   className="padding-10 padding-top-0 padding-bottom-0"
                   data-action="toggleShortcut"
                 >
@@ -172,7 +172,7 @@ export default function Header() {
               <li className="divider" />
               <li>
                 <a
-                  href="javascript:void(0);"
+                  href="/"
                   className="padding-10 padding-top-0 padding-bottom-0"
                   data-action="launchFullscreen"
                 >
@@ -216,7 +216,7 @@ export default function Header() {
         <div id="search-mobile" className="btn-header transparent pull-right">
           <span>
             {" "}
-            <a href="javascript:void(0)" title="Search">
+            <a href="/" title="Search">
               <i className="fa fa-search" />
             </a>{" "}
           </span>
@@ -258,7 +258,7 @@ export default function Header() {
             <i className="fa fa-search" />
           </button>
           <a
-            href="javascript:void(0);"
+            href="/"
             id="cancel-search-js"
             title="Cancel Search"
           >
@@ -272,7 +272,7 @@ export default function Header() {
           <span>
             {" "}
             <a
-              href="javascript:void(0);"
+              href="/"
               data-action="launchFullscreen"
               title="Full Screen"
             >
@@ -289,7 +289,7 @@ export default function Header() {
         >
           <div>
             <a
-              href="javascript:void(0)"
+              href="/"
               title="Voice Command"
               data-action="voiceCommand"
             >
@@ -314,14 +314,14 @@ export default function Header() {
                   </small>
                 </h4>
                 <a
-                  href="javascript:void(0);"
+                  href="/"
                   className="btn btn-success"
                   onClick="commands.help()"
                 >
                   See Commands
                 </a>
                 <a
-                  href="javascript:void(0);"
+                  href="/"
                   className="btn bg-color-purple txt-color-white"
                   onClick="$('#speech-btn .popover').fadeOut(50);"
                 >
@@ -336,7 +336,7 @@ export default function Header() {
         {/*  multiple lang dropdown : find all flags in the flags page */}
         <ul className="header-dropdown-list hidden-xs">
           <li>
-            <a href="#" className="dropdown-toggle" data-toggle="dropdown">
+            <a href="/" className="dropdown-toggle" data-toggle="dropdown">
               {" "}
               <img
                 src="smartadmin/img/blank.gif"
@@ -347,7 +347,7 @@ export default function Header() {
             </a>
             <ul className="dropdown-menu pull-right">
               <li className="active">
-                <a href="javascript:void(0);">
+                <a href="/">
                   <img
                     src="smartadmin/img/blank.gif"
                     className="flag flag-us"
@@ -357,7 +357,7 @@ export default function Header() {
                 </a>
               </li>
               <li>
-                <a href="javascript:void(0);">
+                <a href="/">
                   <img
                     src="smartadmin/img/blank.gif"
                     className="flag flag-fr"
@@ -367,7 +367,7 @@ export default function Header() {
                 </a>
               </li>
               <li>
-                <a href="javascript:void(0);">
+                <a href="/">
                   <img
                     src="smartadmin/img/blank.gif"
                     className="flag flag-es"
@@ -377,7 +377,7 @@ export default function Header() {
                 </a>
               </li>
               <li>
-                <a href="javascript:void(0);">
+                <a href="/">
                   <img
                     src="smartadmin/img/blank.gif"
                     className="flag flag-de"
@@ -387,7 +387,7 @@ export default function Header() {
                 </a>
               </li>
               <li>
-                <a href="javascript:void(0);">
+                <a href="/">
                   <img
                     src="smartadmin/img/blank.gif"
                     className="flag flag-jp"
@@ -397,7 +397,7 @@ export default function Header() {
                 </a>
               </li>
               <li>
-                <a href="javascript:void(0);">
+                <a href="/">
                   <img
                     src="smartadmin/img/blank.gif"
                     className="flag flag-cn"
@@ -407,7 +407,7 @@ export default function Header() {
                 </a>
               </li>
               <li>
-                <a href="javascript:void(0);">
+                <a href="/">
                   <img
                     src="smartadmin/img/blank.gif"
                     className="flag flag-it"
@@ -417,7 +417,7 @@ export default function Header() {
                 </a>
               </li>
               <li>
-                <a href="javascript:void(0);">
+                <a href="/">
                   <img
                     src="smartadmin/img/blank.gif"
                     className="flag flag-pt"
@@ -427,7 +427,7 @@ export default function Header() {
                 </a>
               </li>
               <li>
-                <a href="javascript:void(0);">
+                <a href="/">
                   <img
                     src="smartadmin/img/blank.gif"
                     className="flag flag-ru"
@@ -437,7 +437,7 @@ export default function Header() {
                 </a>
               </li>
               <li>
-                <a href="javascript:void(0);">
+                <a href="/">
                   <img
                     src="smartadmin/img/blank.gif"
                     className="flag flag-kr"
