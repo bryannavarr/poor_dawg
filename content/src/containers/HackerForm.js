@@ -5,8 +5,7 @@ import * as hackerService from '../services/hacker.service'
 class HackerForm extends React.Component {
     constructor(props) {
         super(props)
-        debugger;
-
+  
         const formData = this.convertPropsToFormData(props);
 
         this.state = {

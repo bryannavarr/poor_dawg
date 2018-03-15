@@ -2,7 +2,7 @@ import React from "react";
 import * as validationHelper from "../helpers/validation.helper";
 import * as dogOwnerService from "../services/dogOwner.service";
 
-class DogOwners extends React.Component {
+class DogOwnerForm extends React.Component {
   constructor(props) {
     super(props);
 
@@ -22,7 +22,6 @@ class DogOwners extends React.Component {
     dogOwnerService.readAll().then(data => {
       this.setState({ dogOwners: data });
     });
-
   }
   componentWillReceiveProps(nextProps) {
     const formData = this.convertPropsToFormData(nextProps);
@@ -34,7 +33,13 @@ class DogOwners extends React.Component {
 
     const initializedDogOwner = {
       _id: dogOwner._id || "",
-      name: dogOwner.name || ""
+      name: dogOwner.name || "",
+      lastName: dogOwner.lastName || "",
+      zipCode: dogOwner.zipCode || "",
+      email: dogOwner.email || "",
+      phone: dogOwner.phone||"",
+      dogs: dogOwner.dogs||"",
+      subscriptionLevel: dogOwner.subscriptionLevel||""
     };
 
     let formData = {
@@ -54,6 +59,62 @@ class DogOwners extends React.Component {
           maxLength: 50
         },
         touched: false
+      },
+      lastName: {
+        originalValue: initializedDogOwner.lastName,
+        value: initializedDogOwner.lastName,
+        valid: true,
+        validation: {
+          required: true,
+          maxLength: 50
+        },
+        touched: false
+      },
+      zipCode: {
+        originalValue: initializedDogOwner.zipCode,
+        value: initializedDogOwner.zipCode,
+        valid: true,
+        validation: {
+          required: true,
+          maxLength: 6
+        },
+        touched: false
+      },
+      email: {
+        originalValue: initializedDogOwner.email,
+        value: initializedDogOwner.email,
+        valid: true,
+        validation: {
+          maxLength: 50
+        },
+        touched: false
+      },
+      phone: {
+        originalValue: initializedDogOwner.phone,
+        value: initializedDogOwner.phone,
+        valid: true,
+        validation: {
+          maxLength: 50
+        },
+        touched: false
+      },
+      dogs: {
+        originalValue: initializedDogOwner.dogs,
+        value: initializedDogOwner.dogs,
+        valid: true,
+        validation: {
+          maxLength: 50
+        },
+        touched: false
+      },
+      subscriptionLevel:{
+        originalValue: initializedDogOwner.subscriptionLevel,
+        value: initializedDogOwner.subscriptionLevel,
+        valid: true,
+        validation:{
+          maxLength:50
+        },
+        touched: false
       }
     };
 
@@ -67,7 +128,7 @@ class DogOwners extends React.Component {
   onSave(event) {
     if (!this.state.formValid) {
       const formData = JSON.parse(JSON.stringify(this.state.formData));
-    //   for let in
+      //   for let in
       for (let fieldIdentifier in formData) {
         formData[fieldIdentifier].touched = false;
       }
@@ -76,9 +137,15 @@ class DogOwners extends React.Component {
     }
     const that = this;
     let item = {
-      name: this.state.formData.name.value
+      name: this.state.formData.name.value,
+      lastName: this.state.formData.lastName.value,
+      zipCode: this.state.formData.zipCode.value,
+      email: this.state.formData.email.value,
+      phone: this.state.formData.phone.value,
+      dogs: this.state.formData.dogs.value,
+      subscriptionLevel: this.state.formData.subscriptionLevel.value
     };
-// check for array length?
+    // check for array length?
     if (this.state.formData._id.value.length > 0) {
       item._id = this.state.formData._id.value;
       dogOwnerService
@@ -106,6 +173,7 @@ class DogOwners extends React.Component {
     return (
       <React.Fragment>
         <form>
+          {/* starts here */}
           <div
             className={
               !this.state.formData.name.valid &&
@@ -114,8 +182,6 @@ class DogOwners extends React.Component {
                 : "form-group"
             }
           >
-          {/* input starts */}
-          {/* tried to change name to first name and it's giving me an error */}
             <label htmlFor="name">First Name:</label>
             <input
               type="text"
@@ -125,13 +191,154 @@ class DogOwners extends React.Component {
               value={this.state.formData.name.value}
               onChange={this.onChange}
             />
-            {/* {!this.state.formData.name.valid &&
+            {!this.state.formData.name.valid &&
             this.state.formData.name.touched ? (
-              <p className="text-danger">The Name is required</p>
-            ) : null} */}
+              <p className="text-danger">First Name is required</p>
+            ) : null}
           </div>
+          {/* ends here */}
+          <div
+            className={
+              !this.state.formData.lastName.valid &&
+              this.state.formData.lastName.touched
+                ? "form-group has-error"
+                : "form-group"
+            }
+          >
+            <label htmlFor="lastName">Last Name:</label>
+            <input
+              type="text"
+              name="lastName"
+              id="lastName"
+              className="form-control"
+              value={this.state.formData.lastName.value}
+              onChange={this.onChange}
+            />
+            {!this.state.formData.lastName.valid &&
+            this.state.formData.lastName.touched ? (
+              <p className="errorMessage">Last Name is required</p>
+            ) : null}
+          </div>
+
+          <div
+            className={
+              !this.state.formData.zipCode.valid &&
+              this.state.formData.zipCode.touched
+                ? "form-group has-error"
+                : "form-group"
+            }
+          >
+            <label htmlFor="zipCode">Zip Code:</label>
+            <input
+              type="number" //how can i change this guy to string? stringfy()? where? Answer => valdation.helper.
+              name="zipCode"  //but i am also registering phone number as number too?? so WHY? we never got to it!? no but it's working??!?
+              id="zipCode"    //should i store data as number vs string? conflicts?
+              className="form-control"
+              value={this.state.formData.zipCode.value}
+              onChange={this.onChange}
+            />
+            {!this.state.formData.zipCode.valid &&
+            this.state.formData.zipCode.touched ? (
+              <p className="text-danger">Zip Code required</p>
+            ) : null}
+          </div>
+
+          <div
+            className={
+              !this.state.formData.email.valid &&
+              this.state.formData.email.touched
+                ? "form-group has-error"
+                : "form-group"
+            }
+          >
+            <label>Email:</label>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              className="form-control"
+              value={this.state.formData.email.value}
+              onChange={this.onChange}
+            />
+            {!this.state.formData.email.valid &&
+            this.state.formData.email.touched ? (
+              <p className="errorMessage">Type your e-mail</p>
+            ) : null}
+          </div>
+            {/* yo */}
+            <div
+            className={
+              !this.state.formData.phone.valid &&
+              this.state.formData.phone.touched
+                ? "form-group has-error"
+                : "form-group"
+            }
+          >
+            <label>Phone:</label>
+            <input
+              type="number"
+              name="phone"
+              id="phone"
+              className="form-control"
+              value={this.state.formData.phone.value}
+              onChange={this.onChange}
+            />
+            {!this.state.formData.phone.valid &&
+            this.state.formData.phone.touched ? (
+              <p className="errorMessage">Type your phone number</p>
+            ) : null}
+          </div>
+
           
-         
+          <div
+            className={
+              !this.state.formData.dogs.valid &&
+              this.state.formData.dogs.touched
+                ? "form-group has-error"
+                : "form-group"
+            }
+          >
+            <label>Dogs:</label>
+            <input
+              type="text"
+              name="dogs"
+              id="dogs"
+              className="form-control"
+              value={this.state.formData.dogs.value}
+              onChange={this.onChange}
+            />
+            {!this.state.formData.dogs.valid &&
+            this.state.formData.dogs.touched ? (
+              <p className="errorMessage">Type your dog's name</p>
+            ) : null}
+          </div>
+
+            {/* wtf */}
+            <div
+            className={
+              !this.state.formData.subscriptionLevel.valid &&
+              this.state.formData.subscriptionLevel.touched
+                ? "form-group has-error"
+                : "form-group"
+            }
+          >
+            <label>subscriptionLevel:</label>
+            <input
+            //this gona be dropdown.
+              type="text" 
+              name="subscriptionLevel"
+              id="subscriptionLevel"
+              className="form-control"
+              value={this.state.formData.subscriptionLevel.value}
+              onChange={this.onChange}
+            />
+            {!this.state.formData.subscriptionLevel.valid &&
+            this.state.formData.subscriptionLevel.touched ? (
+              <p className="errorMessage">Choose a subscriptionLevel</p>
+            ) : null}
+          </div>
+          {/* this is the bottom */}
+
           <div className="form-group">
             <label htmlFor="itemId">DogOwner Id:</label>
             <input
@@ -175,4 +382,4 @@ class DogOwners extends React.Component {
   }
 }
 
-export default DogOwners;
+export default DogOwnerForm;

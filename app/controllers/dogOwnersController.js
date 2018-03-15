@@ -1,68 +1,90 @@
-const dogOwnersServices = require('../services/dogOwnersServices')
-
+const dogOwnersServices = require("../services/dogOwnersServices");
+const responses = require("../models/responses");
 module.exports = {
-    create: create,
-    readById: readById,
-    delete: _delete,
-    readAll: readAll,
-    update: update
-}
+  create: create,
+  readById: readById,
+  delete: _delete,
+  readAll: readAll,
+  update: update
+};
 
-function update(req,res){
-    req.body.updateDate= new Date();//wtf y model
-    dogOwnersServices
-        .update(req.params.id, req.body)
-        .then(dogOwner=>{
-            res.status(200).json(dogOwner)
-        })
-        .catch(err=>{
-            console.log(err)
-            res.status(500).send(err)
-        })
+function update(req, res) {
+  req.model.updateDate = new Date(); //wtf
+  delete req.model.createDate;
 
+  dogOwnersServices
+    .update(req.params.id, req.model)
+    .then(dogOwner => {
+      const responseModel = new responses.SuccessResponse();
+      res.status(200).json(responseModel);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).send(new responses.ErrorResponse(err));
+    });
 }
 
 function readAll(req, res) {
-    dogOwnersServices.readAll()
-        .then(dogOwners => {
-            res.send(dogOwners)
-            console.log(dogOwners)
-        })
-        .catch(err=>{
-            console.log(err)
-            res.status(500).send(err)
-        })
-}
-
-function _delete(req,res){
-    dogOwnersServices
-        .delete(req.params.id)
-        .then(()=>{
-            res.status(200).json("deleted")
-        })
-        .catch(err=>{
-            return res.status(500).send(err)
-        })
-}
-
-function readById(req,res){
-    dogOwnersServices.readById(req.params.id)
-    .then(dogOwner=>{
-        res.send(dogOwner)
-        console.log(dogOwner)
+  dogOwnersServices
+    .readAll()
+    .then(dogOwners => {
+      const responseModel = new responses.ItemsResponse();
+      responseModel.items = dogOwners;
+      res.json(responseModel);
     })
-    .catch(err=>{
-        res.status(500).send(err)
-    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).send(new responses.ErrorResponse(err));
+    });
 }
 
-function create(req,res){
-    dogOwnersServices.create(req.body)
-        .then(dogOwners=>{
-            res.status(201).json(dogOwners)
-        })
-        .catch(err=>{
-            console.log(err)
-            res.status(500).send(err)
-        })
+function _delete(req, res) {
+  dogOwnersServices
+    .delete(req.params.id)
+    .then(() => {
+      const responseModel = new responses.SuccessResponse();
+      res.status(200).json(responseModel);
+    })
+    .catch(err => {
+      console.log(err);
+      return res.status(500).send(new responses.ErrorResponse(err));
+    });
+}
+
+function readById(req, res) {
+  dogOwnersServices
+    .readById(req.params.id)
+    .then(dogOwner => {
+      const responseModel = new responses.ItemResponse();
+      responseModel.item = dogOwner;
+      res.json(responseModel);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).send(new responses.ErrorResponse(err));
+    });
+}
+
+function create(req, res) {
+  dogOwnersServices
+    .create(req.model)
+    .then(id => {
+      const responseModel = new responses.ItemResponse();
+      responseModel.item = id;
+      res
+        .status(201)
+        .location(`${apiPrefix}/${id}`)
+        .json(responseModel);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).send(new responses.ErrorResponse(err));
+    });
+  // .then(dogOwners => {
+  //   res.status(201).json(dogOwners);
+  // })
+  // .catch(err => {
+  //   console.log(err);
+  //   res.status(500).send(err);
+  // });
 }
