@@ -99,7 +99,6 @@ class ChallengeForm extends React.Component {
 
   onSave(event) {
     if (!this.state.formValid) {
-      // Mark all fields as touched to display validation errors for all fields
       const formData = JSON.parse(JSON.stringify(this.state.formData));
       for (let fieldIdentifier in formData) {
         formData[fieldIdentifier].touched = false;
