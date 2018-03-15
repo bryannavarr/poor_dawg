@@ -82,9 +82,10 @@ class Hackers extends React.Component {
     }
 
     render() {
-        const hackers = this.state.hackers ? this.state.hackers.map(hacker => (
-            <li key={hacker._id} onClick={this.onSelect.bind(this, hacker)}>{hacker.name}</li>
-        ))
+        const hackers = this.state.hackers 
+            ? this.state.hackers.map(hacker => (
+                <li key={hacker._id} onClick={this.onSelect.bind(this, hacker)}>{hacker.name}</li>
+            ))
             : <React.Fragment></React.Fragment>
 
         return (
