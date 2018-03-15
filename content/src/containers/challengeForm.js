@@ -127,7 +127,6 @@ class ChallengeForm extends React.Component {
       challengeService
         .create(item)
         .then(data => {
-          //Modify state to reflect assigned id value
           this.setState(prevState => {
             const field = { ...prevState.formData._id, _id: data };
             const formData = { ...prevState.formData, _id: field };
