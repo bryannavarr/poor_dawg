@@ -9,7 +9,6 @@ class DogOwners extends React.Component {
     this.state = {
       dogOwners: []
     };
-    //why different name?
     this.onCancel = this.onCancel.bind(this);
     this.onDelete = this.onDelete.bind(this);
     this.onSave = this.onSave.bind(this);
@@ -72,9 +71,7 @@ class DogOwners extends React.Component {
   }
 
   render() {
-    // debugger
     const dogOwners = this.state.dogOwners ? (
-      
       this.state.dogOwners.map(dogOwner => (
         <li key={dogOwner._id} onClick={this.onSelect.bind(this, dogOwner)}>
         Name:{dogOwner.name}{" "}

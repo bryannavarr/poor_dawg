@@ -11,8 +11,7 @@ module.exports = {
     update: update
 }
 function update(id, doc) {
-    doc._id=new ObjectId(doc._id) //why do u do this here??
-    //what's wrong here??
+    doc._id=new ObjectId(doc._id)
     return conn.db().collection('dogOwners').replaceOne({ _id: new ObjectId(id) }, doc)
         .then(result => Promise.resolve())
 }
@@ -36,7 +35,7 @@ function readById(id){
     })
 }
 
-function create(reqbody){
-    return conn.db().collection('dogOwners').insert(reqbody)
+function create(model){
+    return conn.db().collection('dogOwners').insert(model)
         .then(result=> result.insertedIds[0].toString())
 }

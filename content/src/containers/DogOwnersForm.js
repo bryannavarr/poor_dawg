@@ -127,7 +127,6 @@ class DogOwnerForm extends React.Component {
   onSave(event) {
     if (!this.state.formValid) {
       const formData = JSON.parse(JSON.stringify(this.state.formData));
-      //   for let in
       for (let fieldIdentifier in formData) {
         formData[fieldIdentifier].touched = false;
       }
@@ -144,7 +143,6 @@ class DogOwnerForm extends React.Component {
       dogs: this.state.formData.dogs.value,
       subscriptionLevel: this.state.formData.subscriptionLevel.value
     };
-    // check for array length?
     if (this.state.formData._id.value.length > 0) {
       item._id = this.state.formData._id.value;
       dogOwnerService
@@ -172,7 +170,6 @@ class DogOwnerForm extends React.Component {
     return (
       <React.Fragment>
         <form>
-          {/* starts here */}
           <div
             className={
               !this.state.formData.name.valid &&
@@ -195,7 +192,6 @@ class DogOwnerForm extends React.Component {
               <p className="text-danger">First Name is required</p>
             ) : null}
           </div>
-          {/* ends here */}
           <div
             className={
               !this.state.formData.lastName.valid &&
@@ -229,9 +225,9 @@ class DogOwnerForm extends React.Component {
           >
             <label htmlFor="zipCode">Zip Code:</label>
             <input
-              type="number" //how can i change this guy to string? stringfy()? where? Answer => valdation.helper.
-              name="zipCode" //but i am also registering phone number as number too?? so WHY? we never got to it!? no but it's working??!?
-              id="zipCode" //should i store data as number vs string? conflicts?
+              type="number" 
+              name="zipCode" 
+              id="zipCode" 
               className="form-control"
               value={this.state.formData.zipCode.value}
               onChange={this.onChange}
@@ -264,7 +260,7 @@ class DogOwnerForm extends React.Component {
               <p className="errorMessage">Type your e-mail</p>
             ) : null}
           </div>
-          {/* yo */}
+
           <div
             className={
               !this.state.formData.phone.valid &&
@@ -311,7 +307,6 @@ class DogOwnerForm extends React.Component {
             ) : null}
           </div>
 
-          {/* wtf */}
           <div
             className={
               !this.state.formData.subscriptionLevel.valid &&
@@ -322,7 +317,6 @@ class DogOwnerForm extends React.Component {
           >
             <label>subscriptionLevel:</label>
             <input
-              //this gona be dropdown.
               type="text"
               name="subscriptionLevel"
               id="subscriptionLevel"
@@ -335,7 +329,6 @@ class DogOwnerForm extends React.Component {
               <p className="errorMessage">Choose a subscriptionLevel</p>
             ) : null}
           </div>
-          {/* this is the bottom */}
 
           <div className="form-group">
             <label htmlFor="itemId">DogOwner Id:</label>

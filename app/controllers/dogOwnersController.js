@@ -1,5 +1,7 @@
 const dogOwnersServices = require("../services/dogOwnersServices");
 const responses = require("../models/responses");
+const apiPrefix = '/api/dogOwners';
+
 module.exports = {
   create: create,
   readById: readById,
@@ -9,7 +11,7 @@ module.exports = {
 };
 
 function update(req, res) {
-  req.model.updateDate = new Date(); //wtf
+  req.model.updateDate = new Date();
   delete req.model.createDate;
 
   dogOwnersServices
@@ -66,25 +68,22 @@ function readById(req, res) {
 }
 
 function create(req, res) {
-  dogOwnersServices
-    .create(req.model)
-    .then(id => {
-      const responseModel = new responses.ItemResponse();
-      responseModel.item = id;
+  dogOwnersServices.create(req.model)
+      .then(id => {
+      debugger
+      responseModel = new responses.ItemResponse()
+      debugger
+      responseModel.item = id
+      debugger
       res
         .status(201)
         .location(`${apiPrefix}/${id}`)
         .json(responseModel);
+        debugger
     })
     .catch(err => {
+      debugger
       console.log(err);
       res.status(500).send(new responses.ErrorResponse(err));
     });
-  // .then(dogOwners => {
-  //   res.status(201).json(dogOwners);
-  // })
-  // .catch(err => {
-  //   console.log(err);
-  //   res.status(500).send(err);
-  // });
 }
