@@ -1,4 +1,4 @@
-const Notification = require("../models/notification");
+const breeds = require("../models/breed");
 const mongodb = require("../mongodb");
 const conn = mongodb.connection;
 const ObjectId = mongodb.ObjectId;
@@ -14,50 +14,50 @@ module.exports = {
 function readAll() {
   return conn
     .db()
-    .collection("notifications")
+    .collection("breeds")
     .find()
     .toArray()
-    .then(notifications => {
-      for (let i = 0; i < notifications.length; i++) {
-        let notification = notifications[i];
-        notification._id = notification._id.toString();
+    .then(breeds => {
+      for (let i = 0; i < breeds.length; i++) {
+        let breed = breeds[i];
+        breed._id = breed._id.toString();
       }
-      return notifications;
+      return breeds;
     });
 }
 
 function readById(id) {
   return conn
     .db()
-    .collection("notifications")
+    .collection("breeds")
     .findOne({ _id: new ObjectId(id) })
-    .then(notification => {
-      notification._id = notification._id.toString();
-      return notification;
+    .then(breed => {
+      breed._id = breed._id.toString();
+      return breed;
     });
 }
 
 function create(model) {
   return conn
     .db()
-    .collection("notifications")
+    .collection("breeds")
     .insert(model)
-    .then(result => result.insertedIds[0].toString());
+    .then(data => data.insertedIds[0].toString());
 }
 
 function update(id, doc) {
   doc._id = new ObjectId(doc._id);
   return conn
     .db()
-    .collection("notifications")
-    .updateOne({ _id: new ObjectId(id) }, { $set: doc })
+    .collection("breeds")
+    .replaceOne({ _id: new ObjectId(id) }, { $set: doc })
     .then(result => Promise.resolve());
 }
 
 function _delete(id) {
   return conn
     .db()
-    .collection("notifications")
+    .collection("breeds")
     .deleteOne({ _id: new ObjectId(id) })
-    .then(result => Promise.resolve());
+    .then(result => Promise.resolve()); // "return" nothing
 }

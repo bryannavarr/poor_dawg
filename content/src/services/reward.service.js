@@ -2,13 +2,13 @@ import axios from "axios";
 
 const headers = {};
 
-const baseUrl = `http://localhost:8080/api/hackers`;
+const baseUrl = `http://localhost:8080/api/rewards`;
 
-export function create(hackerData) {
+export function create(rewardData) {
   const config = {
     method: "POST",
     headers,
-    data: hackerData
+    data: rewardData
   };
 
   return axios(baseUrl, config)
@@ -22,19 +22,20 @@ export function readAll() {
     headers
   };
 
-  return axios(baseUrl, config)
+  return axios
+    .get(baseUrl, config)
     .then(responseSuccessHandler)
     .catch(responseErrorHandler);
 }
 
-export function update(hackerData) {
+export function update(rewardData) {
   const config = {
     method: "PUT",
     headers,
-    data: hackerData
+    data: rewardData
   };
 
-  return axios(`${baseUrl}/${hackerData._id}`, config)
+  return axios(`${baseUrl}/${rewardData._id}`, config)
     .then(responseSuccessHandler)
     .catch(responseErrorHandler);
 }

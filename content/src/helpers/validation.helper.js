@@ -3,11 +3,13 @@ export function validate(value, rules) {
   let isValid = true;
 
   if (rules.required) {
-    isValid =
-      value &&
-      typeof value === "string" &&
-      (typeof value !== "string" || value.trim() !== "") &&
-      isValid;
+    if (typeof value === "string") {
+      isValid = value && value.trim() !== "" && isValid;
+    } else if (typeof value === "number") {
+      isValid = (value || value === 0) && isValid;
+    } else {
+      isValid = false;
+    }
   }
   if (rules.minLength) {
     isValid = value.trim().length >= rules.minLength && isValid;
@@ -26,6 +28,10 @@ export function validate(value, rules) {
   }
   if (rules.objectId) {
     isValid = isValid && RegExp("([0-9a-fA-F]{24})").test(value);
+  }
+  if (rules.number) {
+    isValid =
+      isValid && !isNaN(value) && typeof parseInt(value, 10) === "number";
   }
 
   return isValid;

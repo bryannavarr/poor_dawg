@@ -1,16 +1,13 @@
 import axios from "axios";
 
-const headers = {};
+const baseUrl = "http://localhost:8080/api/challenges";
 
-const baseUrl = `http://localhost:8080/api/hackers`;
-
-export function create(hackerData) {
+export function create(challengeData) {
   const config = {
     method: "POST",
-    headers,
-    data: hackerData
+    headers: {},
+    data: challengeData
   };
-
   return axios(baseUrl, config)
     .then(responseSuccessHandler)
     .catch(responseErrorHandler);
@@ -19,22 +16,20 @@ export function create(hackerData) {
 export function readAll() {
   const config = {
     method: "GET",
-    headers
+    headers: {}
   };
-
   return axios(baseUrl, config)
     .then(responseSuccessHandler)
     .catch(responseErrorHandler);
 }
 
-export function update(hackerData) {
+export function update(challengeData) {
   const config = {
     method: "PUT",
-    headers,
-    data: hackerData
+    headers: {},
+    data: challengeData
   };
-
-  return axios(`${baseUrl}/${hackerData._id}`, config)
+  return axios(`${baseUrl}/${challengeData._id}`, config)
     .then(responseSuccessHandler)
     .catch(responseErrorHandler);
 }
@@ -42,7 +37,7 @@ export function update(hackerData) {
 export function del(id) {
   const config = {
     method: "DELETE",
-    headers
+    headers: {}
   };
 
   return axios(`${baseUrl}/${id}`, config)
