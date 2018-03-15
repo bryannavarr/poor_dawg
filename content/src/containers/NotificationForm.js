@@ -199,7 +199,7 @@ class NotificationsForm extends React.Component {
                     </div>
                     <div>
                         <DogsMenu
-                    //onChange={this.onChange}
+                    onChange={this.onChange}
                     />
                     </div>
                     <div className='btn-group' role='group'>

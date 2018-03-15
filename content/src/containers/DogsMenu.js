@@ -1,39 +1,42 @@
 import React from "react";
-
+//import * as validationHelper from '../helpers/validation.helper'
 class DogsMenu extends React.Component {
    constructor(props) {
       super(props);
       this.state = {
          dogs: [
-            { name: "happy", dogId: 5 },
-            { name: "scruffy", dogId: 6 },
-            { name: "skippy", dogId: 9 }
+            { dogId: "5aaae37e010207f32cae741d"},
+            { dogId: "5aaae37e010207f32cae741f" },
+            { dogId: "5aaae37e010207f32cae741c" }
          ]
       };
-      this.onChange = this.onChange.bind(this);
+      //this.onChange = validationHelper.onChange.bind(this);
    }
 
-   onChange(dog, e) {
-      this.setState({
-         name: dog.name,
-         dogId: dog.dogId
-      });
-   }
+//    onChange(dog, e) {
+//       this.setState({
+//          //name: dog.name,
+//          dogId: dog.dogId
+//       });
+//    }
 
    render() {
       const dogs = 
       //this.state.dogs ? (
          this.state.dogs.map(dog => (
             <option
-               name={dog.name}
+               name={dog.dogId}
                key={dog.dogId}
                value={dog.dogId}
-               onClick={(e)=> {
-                debugger;
-                this.onChange(dog, e)}}
+               //id={dog.dogId}
+            //    onClick={
+            //        (e)=> {
+            //     debugger;
+            //     this.onChange(dog, e)}
+            // }
                
             >
-               {dog.name}
+               {dog.dogId}
             </option>
          ))
     //   ) : (
@@ -44,11 +47,12 @@ class DogsMenu extends React.Component {
          <React.Fragment>
             <select 
             onChange={
-                //this.props.onChange
-                (e) => 
-                this.onChange(e)
+                this.props.onChange
+                //(e) => 
+                //this.onChange
             }
-            value={this.state.dogs}>{dogs}</select>
+            name="dogId"
+            value={this.state.dogs.dogId}>{dogs}</select>
          </React.Fragment>
       );
    }
