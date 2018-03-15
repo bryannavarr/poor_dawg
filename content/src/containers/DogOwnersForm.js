@@ -37,9 +37,9 @@ class DogOwnerForm extends React.Component {
       lastName: dogOwner.lastName || "",
       zipCode: dogOwner.zipCode || "",
       email: dogOwner.email || "",
-      phone: dogOwner.phone||"",
-      dogs: dogOwner.dogs||"",
-      subscriptionLevel: dogOwner.subscriptionLevel||""
+      phone: dogOwner.phone || "",
+      dogs: dogOwner.dogs || "",
+      subscriptionLevel: dogOwner.subscriptionLevel || ""
     };
 
     let formData = {
@@ -75,8 +75,7 @@ class DogOwnerForm extends React.Component {
         value: initializedDogOwner.zipCode,
         valid: true,
         validation: {
-          required: true,
-          maxLength: 6
+          maxLength: 50
         },
         touched: false
       },
@@ -107,12 +106,12 @@ class DogOwnerForm extends React.Component {
         },
         touched: false
       },
-      subscriptionLevel:{
+      subscriptionLevel: {
         originalValue: initializedDogOwner.subscriptionLevel,
         value: initializedDogOwner.subscriptionLevel,
         valid: true,
-        validation:{
-          maxLength:50
+        validation: {
+          maxLength: 50
         },
         touched: false
       }
@@ -231,8 +230,8 @@ class DogOwnerForm extends React.Component {
             <label htmlFor="zipCode">Zip Code:</label>
             <input
               type="number" //how can i change this guy to string? stringfy()? where? Answer => valdation.helper.
-              name="zipCode"  //but i am also registering phone number as number too?? so WHY? we never got to it!? no but it's working??!?
-              id="zipCode"    //should i store data as number vs string? conflicts?
+              name="zipCode" //but i am also registering phone number as number too?? so WHY? we never got to it!? no but it's working??!?
+              id="zipCode" //should i store data as number vs string? conflicts?
               className="form-control"
               value={this.state.formData.zipCode.value}
               onChange={this.onChange}
@@ -265,8 +264,8 @@ class DogOwnerForm extends React.Component {
               <p className="errorMessage">Type your e-mail</p>
             ) : null}
           </div>
-            {/* yo */}
-            <div
+          {/* yo */}
+          <div
             className={
               !this.state.formData.phone.valid &&
               this.state.formData.phone.touched
@@ -289,7 +288,6 @@ class DogOwnerForm extends React.Component {
             ) : null}
           </div>
 
-          
           <div
             className={
               !this.state.formData.dogs.valid &&
@@ -313,8 +311,8 @@ class DogOwnerForm extends React.Component {
             ) : null}
           </div>
 
-            {/* wtf */}
-            <div
+          {/* wtf */}
+          <div
             className={
               !this.state.formData.subscriptionLevel.valid &&
               this.state.formData.subscriptionLevel.touched
@@ -324,8 +322,8 @@ class DogOwnerForm extends React.Component {
           >
             <label>subscriptionLevel:</label>
             <input
-            //this gona be dropdown.
-              type="text" 
+              //this gona be dropdown.
+              type="text"
               name="subscriptionLevel"
               id="subscriptionLevel"
               className="form-control"

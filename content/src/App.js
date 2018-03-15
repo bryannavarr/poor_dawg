@@ -5,6 +5,7 @@ import "./App.css";
 import { BrowserRouter, Route } from "react-router-dom";
 import Hackers from './containers/Hackers'
 import Interactions from "./containers/Interactions";
+import Notifications from './containers/Notifications'
 import DogOwners from './containers/DogOwners'
 
 class App extends Component {
@@ -20,6 +21,7 @@ class App extends Component {
             <Route exact path="/" component={Hackers} />
             <Route path="/dogOwners" component={DogOwners} />
             <Route path="/interactions" component={Interactions} />
+            <Route path="/notifications" component={Notifications} />
           </div>
         </BrowserRouter>
       </div>

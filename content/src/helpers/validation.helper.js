@@ -13,12 +13,8 @@ export function validate(value, rules) {
   }
 
   if (rules.maxLength && typeof value==="string") {
-//dont do check for numbers... :'(
     isValid = value.trim().length <= rules.maxLength && isValid;
   }
-  //got rid of trim(). what purpose does it serve? and 
-  //i had other numbers but they worked????????? so why giving me trouble with my zipcode only for the last one?
-  //i see zip code is stored as number. why?
   if (rules.min || rules.min === 0) {
     isValid = value >= rules.min && isValid;
   }
@@ -44,14 +40,22 @@ export function onChange(event) {
     const field = { ...prevState.formData[name] };
     field.value = value;
     field.touched = true;
-    
+ //not sure what this function does..
     field.valid = validate(field.value, field.validation);
+    
 
     const formData = { ...prevState.formData, [name]: field };
 
+//form valid is already false 
     let formValid = true;
+    console.log(formValid)
+    //it is console logging true though?????????
+    //why isn't this changing?
+    //setting state doesn't change right away?? maybe that's why?
+    //but it's inside a function??
     for (let inputIdentifier in formData) {
       formValid = formValid && formData[inputIdentifier].valid;
+      console.log(formValid +"  "+inputIdentifier)
     }
     return { formData: formData, formValid: formValid };
   });
