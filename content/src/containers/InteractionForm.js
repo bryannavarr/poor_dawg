@@ -2,6 +2,7 @@ import React from "react";
 import * as validationHelper from "../helpers/validation.helper";
 import * as interactionService from "../services/interaction.service";
 import DogOwnersDropdown from "./DogOwnersDropdown";
+import DogsMenu from  './DogsMenu'
 
 class InteractionForm extends React.Component {
   constructor(props) {
@@ -206,6 +207,9 @@ class InteractionForm extends React.Component {
             }
           >
             <label> Dog ID</label>
+            <DogsMenu
+              onChange={this.onChange}
+            />
             <input
               type="text"
               name="dogId"
@@ -243,7 +247,6 @@ class InteractionForm extends React.Component {
               </p>
             ) : null}
           </div>
-
           <button
             type="button"
             onClick={this.onSave}
@@ -266,6 +269,7 @@ class InteractionForm extends React.Component {
           >
             Delete
           </button>
+          
         </form>
       </React.Fragment>
     );

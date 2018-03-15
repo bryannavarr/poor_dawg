@@ -10,6 +10,8 @@ import Notifications from './containers/Notifications'
 import DogOwners from './containers/DogOwners'
 
 class App extends Component {
+
+
   render() {
     return (
       <BrowserRouter>

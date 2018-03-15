@@ -1,20 +1,20 @@
 const responses = require('../models/responses');
-const hackersService = require('../services/hackers.service');
-const apiPrefix = '/api/hackers';
+const rewardsService = require('../services/rewards.service')
+const apiPrefix = '/api/rewards';
 
 module.exports = {
     readAll: readAll,
-    readById: readById,
     create: create,
+    readById: readById,
     update: update,
     delete: _delete
 }
 
 function readAll(req, res) {
-    hackersService.readAll()
-        .then(hackers => {
+    rewardsService.readAll()
+        .then(rewards => {
             const responseModel = new responses.ItemsResponse()
-            responseModel.items = hackers
+            responseModel.items = rewards
             res.json(responseModel)
         })
         .catch(err => {
@@ -24,10 +24,10 @@ function readAll(req, res) {
 }
 
 function readById(req, res) {
-    hackersService.readById(req.params.id)
-        .then(hacker => {
+    rewardsService.readById(req.params.id)
+        .then(reward => {
             const responseModel = new responses.ItemResponse()
-            responseModel.item = hacker
+            responseModel.item = reward
             res.json(responseModel)
         })
         .catch(err => {
@@ -37,7 +37,7 @@ function readById(req, res) {
 }
 
 function create(req, res) {
-    hackersService.create(req.model)
+    rewardsService.create(req.model)
         .then(id => {
             const responseModel = new responses.ItemResponse()
             responseModel.item = id
@@ -51,11 +51,10 @@ function create(req, res) {
         })
 }
 
-function update(req, res) {
-    req.model.updateDate = new Date();
-    hackersService
+function update(req, res) {   
+    rewardsService
         .update(req.params.id, req.model)
-        .then(hacker => {
+        .then(reward => {
             const responseModel = new responses.SuccessResponse()
             res.status(200).json(responseModel)
         })
@@ -66,7 +65,7 @@ function update(req, res) {
 }
 
 function _delete(req, res) {
-    hackersService
+    rewardsService
         .delete(req.params.id)
         .then(() => {
             const responseModel = new responses.SuccessResponse()
@@ -77,4 +76,3 @@ function _delete(req, res) {
             return res.status(500).send(new responses.ErrorResponse(err))
         })
 }
-
