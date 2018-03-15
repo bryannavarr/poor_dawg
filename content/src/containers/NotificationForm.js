@@ -1,6 +1,7 @@
 import React from 'react'
 import * as validationHelper from '../helpers/validation.helper'
 import * as notificationService from '../services/notification.service'
+import DogsMenu from './DogsMenu'
 
 class NotificationsForm extends React.Component {
     constructor(props) {
@@ -13,7 +14,7 @@ class NotificationsForm extends React.Component {
             formData: formData,
             formValid: false
         }
-
+        //this.onChange = this.onChange.bind(this)
         this.onChange = validationHelper.onChange.bind(this);
         this.onSave = this.onSave.bind(this);
     }
@@ -196,6 +197,11 @@ class NotificationsForm extends React.Component {
                             value={this.state.formData.dogId.value}
                             onChange={this.onChange} />
                     </div>
+                    <div>
+                        <DogsMenu
+                    //onChange={this.onChange}
+                    />
+                    </div>
                     <div className='btn-group' role='group'>
                         <button type='button'
                             onClick={this.onSave}
@@ -214,6 +220,7 @@ class NotificationsForm extends React.Component {
                             Delete
                     </button>
                     </div>
+                    
                 </form>
             </React.Fragment>
         )

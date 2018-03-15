@@ -1,6 +1,7 @@
 import React from "react";
 import * as validationHelper from "../helpers/validation.helper";
 import * as interactionService from "../services/interaction.service";
+import DogsMenu from  './DogsMenu'
 
 class InteractionForm extends React.Component {
   constructor(props) {
@@ -245,7 +246,7 @@ class InteractionForm extends React.Component {
               </p>
             ) : null}
           </div>
-
+          <div><DogsMenu/></div>
           <button
             type="button"
             onClick={this.onSave}
@@ -268,6 +269,7 @@ class InteractionForm extends React.Component {
           >
             Delete
           </button>
+          
         </form>
       </React.Fragment>
     );
