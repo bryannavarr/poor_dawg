@@ -74,13 +74,10 @@ class Challenges extends React.Component {
     const challenges = this.state.challenges ? (
       this.state.challenges.map(challenge => (
         <li key={challenge._id} onClick={this.onSelect.bind(this, challenge)}>
-          <p>{challenge._id}</p>
           <p>{challenge.description}</p>
           <p>{challenge.expirationDate}</p>
           <p>{challenge.points}</p>
           <p>{challenge.dogOwnerType}</p>
-          <p>{challenge.createDate}</p>
-          <p>{challenge.updateDate}</p>
         </li>
       ))
     ) : (
