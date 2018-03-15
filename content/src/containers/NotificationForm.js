@@ -2,6 +2,7 @@ import React from "react";
 import * as validationHelper from "../helpers/validation.helper";
 import * as notificationService from "../services/notification.service";
 import DogOwnersDropdown from './DogOwnersDropdown'
+import DogsMenu from './DogsMenu'
 
 class NotificationsForm extends React.Component {
   constructor(props) {
@@ -211,14 +212,12 @@ class NotificationsForm extends React.Component {
 
           <div className="form-group">
             <label htmlFor="dogId">Dog Id:</label>
-            <input
-              type="text"
-              name="dogId"
-              id="dogId"
-              className="form-control"
-              value={this.state.formData.dogId.value}
+            <DogsMenu
               onChange={this.onChange}
             />
+          </div>
+          <div>
+            
           </div>
           <div className="btn-group" role="group">
             <button
