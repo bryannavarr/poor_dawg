@@ -128,7 +128,6 @@ class Interactions extends React.Component {
                 className="jarviswidget "
                 data-widget-togglebutton="true"
                 id="wid-id-interactionsForm"
-                
                 data-widget-colorbutton="false"
                 data-widget-editbutton="false"
                 data-widget-deletebutton="false"
@@ -137,14 +136,10 @@ class Interactions extends React.Component {
               >
                 <header>
                   <h2>Interactions</h2>
-                  
                 </header>
-                
+
                 <div>
-                <legend>
-                  Fill this out please
-                </legend>
-                
+                  <legend>Fill this out please</legend>
 
                   <div className="widget-body">
                     <InteractionForm

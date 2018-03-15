@@ -210,7 +210,7 @@ class InteractionForm extends React.Component {
                 ? "form-group has-error has-feedback inputGroupContainer"
                 : "form-group inputGroupContainer"
             }
-          >      
+          >
             <input
               type="text"
               name="dogId"
@@ -225,7 +225,9 @@ class InteractionForm extends React.Component {
             ) : null}
             {!this.state.formData.dogId.valid &&
             this.state.formData.dogId.touched ? (
-              <small className="has-error">Please enter a valid object ID</small>
+              <small className="has-error">
+                Please enter a valid object ID
+              </small>
             ) : null}
           </div>
           <label> Points</label>
