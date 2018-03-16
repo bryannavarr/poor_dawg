@@ -11,3 +11,4 @@ router.get('/:id([0-9a-fA-F]{24})', hackersController.readById)
 router.post('/', validateBody(Hacker), hackersController.create)
 router.put('/:id([0-9a-fA-F]{24})', validateBody(Hacker),hackersController.update)
 router.delete('/:id([0-9a-fA-F]{24})', hackersController.delete)
+

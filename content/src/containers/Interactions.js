@@ -76,10 +76,12 @@ class Interactions extends React.Component {
   render() {
     const interactions = this.state.interactions ? (
       this.state.interactions.map(interaction => (
+        
         <li
           key={interaction._id}
           onClick={this.onSelect.bind(this, interaction)}
         >{`ID: ${interaction._id}`}</li>
+        
       ))
     ) : (
       <h2> NONE</h2>
