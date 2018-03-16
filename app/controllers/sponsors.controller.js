@@ -67,6 +67,7 @@ function getById(req, res) {
 }
 function update(req, res) {
   delete req.model._id;
+  req.model.updateDate = new Date()
   sponsorsServices
     .update(req.params.id, req.model)
     .then(sponsor => {

@@ -140,14 +140,14 @@ class SponsorsForm extends Component {
       lastName: this.state.formData.lastName.value,
       email: this.state.formData.email.value,
       zipCode: this.state.formData.zipCode.value,
-      phone: this.state.formData.phone.value
+      phone: this.state.formData.phone.value,
+      updateDate: this.state.formData.updateDate.value
     };
     if (this.state.formData._id.value.length > 0) {
       item.createDate = this.state.formData.createDate.value;
       item._id = this.state.formData._id.value;
       SponsorsService.update(item)
         .then(data => {
-          item.updateDate = data.updateDate;
           that.props.onSave(item);
           this.setState({
             formValid: false
