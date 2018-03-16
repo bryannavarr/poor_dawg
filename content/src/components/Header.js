@@ -316,14 +316,12 @@ export default function Header() {
                 <a
                   href="/"
                   className="btn btn-success"
-                  onClick="commands.help()"
                 >
                   See Commands
                 </a>
                 <a
                   href="/"
                   className="btn bg-color-purple txt-color-white"
-                  onClick="$('#speech-btn .popover').fadeOut(50);"
                 >
                   Close Popup
                 </a>

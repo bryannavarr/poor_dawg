@@ -205,12 +205,12 @@ class VetForm extends React.Component {
                 brokenRules.push({rule: 'required', msg: msg})
             }
         }
-        if (rules.minLength && value.trim().length < rules.minLength.value) {
+        if (rules.minLength && value.trim() && value.trim().length < rules.minLength.value) {
             msg = rules.minLength.message ||
                 `${fieldSpec.displayName || 'Field'} must be at least ${rules.minLength.value} characters`
             brokenRules.push({rule: 'minLength', msg: msg})
         }
-        if (rules.maxLength && value.trim().length > rules.maxLength.value) {
+        if (rules.maxLength && value.trim() && value.trim().length > rules.maxLength.value) {
             msg = rules.maxLength.message ||
                 `${fieldSpec.displayName || 'Field'} must be no more than ${rules.maxLength.value} characters`
             brokenRules.push({rule: 'maxLength', msg: msg})

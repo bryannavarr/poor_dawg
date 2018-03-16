@@ -89,7 +89,7 @@ class Vets extends React.Component {
           <span className="ribbon-button-alignment">
             <span
               id="refresh"
-              class="btn btn-ribbon"
+              className="btn btn-ribbon"
               data-action="resetWidgets"
               data-title="refresh"
               rel="tooltip"

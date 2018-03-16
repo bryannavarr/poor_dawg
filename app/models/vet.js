@@ -7,11 +7,11 @@ const schema = {
     email: Joi.string().email().required(),
     smsNumber: Joi.string().empty(''),
     address: {
-        street: Joi.string(),
+        street: Joi.string().empty(''),
         suite: Joi.string().empty(''),
-        city: Joi.string(),
-        state: Joi.string().min(2).max(2),
-        zip: Joi.string().max(10)
+        city: Joi.string().empty(''),
+        state: Joi.string().empty('').min(2).max(2),
+        zip: Joi.string().empty('').max(10)
     },
     createDate: Joi.date().iso().default(() => new Date(), 'Current Date'),
     updateDate: Joi.date().iso().default(() => new Date(), 'Current Date'),
