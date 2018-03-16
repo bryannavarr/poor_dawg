@@ -1,9 +1,18 @@
 import $ from "jquery";
-import "smartadmin-plugins/smartwidgets/jarvis.widget"
+
+import 'jquery-ui'
+// import 'jquery-color'
+import "smartadmin-plugins/jquery-ui-custom/jquery-ui.core.min.js"
+import "smartadmin-plugins/jquery-ui-custom/jquery-ui.widgets.min.js"
+
+import "smartadmin-plugins/smartwidgets/jarvis.widget.ng2.js"
+
 
 import React from "react";
 import InteractionForm from "./InteractionForm";
 import * as interactionService from "../services/interaction.service";
+import Sortable from './Sortable'
+window.jQuery = window.$ = $;
 
 const defaults = {
   grid: "article",
@@ -67,8 +76,8 @@ const defaults = {
   afterLoad: function() {},
   rtl: false, // best not to toggle this!
   onChange: function() {},
-  onSave: function() {}
-  // ajaxnav : $.navAsAjax // declears how the localstorage should be saved (HTML or AJAX Version)
+  onSave: function() {},
+  ajaxnav : $.navAsAjax // declears how the localstorage should be saved (HTML or AJAX Version)
 };
 
 class Interactions extends React.Component {
@@ -91,7 +100,9 @@ class Interactions extends React.Component {
       })
       .catch(err => console.log(err));
 
-    $(this.grid).jarvisWidgets(defaults);
+      // this.$grid = $(this.grid)
+      // this.$grid .jarvisWidgets(defaults);
+      $(this.grid).jarvisWidgets(defaults)
   }
 
   onSelect(item, event) {
@@ -180,10 +191,10 @@ class Interactions extends React.Component {
           </ol>
         </div>
         <div id="content">
-          <div class="row">
-            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
-              <h1 class="page-title txt-color-blueDark">
-                <i class="fa fa-paw fa-fw " />
+          <div className="row">
+            <div className="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+              <h1 className="page-title txt-color-blueDark">
+                <i className="fa fa-paw fa-fw " />
                 Interactions
                 <span>> Add or Update Interactions</span>
               </h1>
@@ -194,6 +205,7 @@ class Interactions extends React.Component {
             <div className="row">
               <div className="col-sm-6">
                 <ul>{interactions}</ul>
+                <Sortable/>
               </div>
               <div className="col-sm-6">
                 <div
@@ -204,7 +216,7 @@ class Interactions extends React.Component {
                   data-widget-editbutton="false"
                   data-widget-deletebutton="false"
                   data-widget-sortable="false"
-                  role="widget"
+              
                 >
                   <header>
                     <h2>Interactions</h2>
