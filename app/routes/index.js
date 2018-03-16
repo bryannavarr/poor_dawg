@@ -1,8 +1,10 @@
+
 const router = require("express").Router();
 const hackersRoutes = require("./hackers.routes");
 const clientRoutes = require("./client.routes");
 const authenticate = require("../filters/authenticate");
 const interactionRoutes = require("./interaction.routes");
+const vetsRoutes = require('./vets.routes')
 const challengeRoutes = require("./challenge.routes");
 const notificationsRoutes = require("./notifications.routes");
 const dogsRoutes = require('./dogs.routes')
@@ -19,6 +21,7 @@ router.use(authenticate);
 router.use('/api/dogs', dogsRoutes)
 router.use('/api/rewards', rewardsRoutes)
 router.use("/api/hackers", hackersRoutes);
+router.use('/api/vets', vetsRoutes)
 router.use("/api/interactions", interactionRoutes);
 router.use("/api/challenges", challengeRoutes);
 router.use("/api/notifications/", notificationsRoutes);
