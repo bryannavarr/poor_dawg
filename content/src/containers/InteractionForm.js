@@ -208,6 +208,7 @@ class InteractionForm extends React.Component {
           >
             <label> Dog ID</label>
             <DogsMenu
+              value={this.state.formData.dogId.value}
               onChange={this.onChange}
             />
             <input
