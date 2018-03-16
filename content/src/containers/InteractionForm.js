@@ -113,7 +113,7 @@ class InteractionForm extends React.Component {
       points: this.state.formData.points.value,
       challengeId: this.state.formData.challengeId.value,
       dogOwnerId: this.state.formData.dogOwnerId.value,
-      dogId: this.state.formData.dogOwnerId.value
+      dogId: this.state.formData.dogId.value
     };
 
     if (this.state.formData._id.value.length > 0) {
