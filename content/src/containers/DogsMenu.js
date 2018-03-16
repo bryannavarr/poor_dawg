@@ -25,6 +25,7 @@ class DogsMenu extends React.Component {
       return (
          <React.Fragment>
             <select
+                className="form-control"
                onChange={this.props.onChange}
                name="dogId"
                value={this.state.dogs.dogId}

@@ -101,9 +101,10 @@ class Notifications extends React.Component {
                            data-widget-editbutton="false"
                            data-widget-deletebutton="false"
                            data-widget-sortable="false"
+                           data-widget-fullscreenbutton="true"
                         >
                            <header>
-                              <h2>Notifications</h2>
+                              <h2><i className="fa fa-bell-o"/>  Notifications</h2>
                            </header>
                            <div>
                               <div className="jarviswidget-editbox" />
