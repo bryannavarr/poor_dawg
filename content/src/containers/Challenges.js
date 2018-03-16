@@ -86,16 +86,16 @@ class Challenges extends React.Component {
 
     return (
       <React.Fragment>
-        <div className="container">
-          <ul className="col-md-6">{challenges}</ul>
-          <div className="col-md-offset-6">
-            <ChallengeForm
-              formData={this.state.formData}
-              onSave={this.onSave}
-              onCancel={this.onCancel}
-              onDelete={this.onDelete}
-            />
-          </div>
+        <div class="container">
+          <ChallengeForm
+            challenges={challenges}
+            formData={this.state.formData}
+            onSave={this.onSave}
+            onCancel={this.onCancel}
+            onDelete={this.onDelete}
+          />
+
+          {/* <ul className="col-sm-6">{challenges}</ul> */}
         </div>
       </React.Fragment>
     );
