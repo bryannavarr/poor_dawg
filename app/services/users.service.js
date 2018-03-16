@@ -43,13 +43,6 @@ function update(id, doc) {
         .then(result => Promise.resolve()) 
 }
 
-// function update(id, doc) {
-//     return conn.db().collection('users').replaceOne({ _id: ObjectId(id) }, doc)
-//         .then(result => {
-//             Promise.resolve()
-//         })
-// }
-
 function _delete(id) {
     return conn.db().collection('users').deleteOne({ _id: ObjectId(id) })
         .then(result => Promise.resolve())
