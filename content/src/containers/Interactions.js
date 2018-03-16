@@ -2,74 +2,11 @@ import React from "react";
 import InteractionForm from "./InteractionForm";
 import * as interactionService from "../services/interaction.service";
 import jquery from "jquery";
+import WizardGrid from "./widgets/WidgetGrid";
 import JarvisWidget from "./widgets/JarvisWidget";
 window.$ = window.jQuery = jquery;
 require("smartadmin-plugins/smartwidgets/jarvis.widget.ng2.js");
-const defaults = {
-  grid: "article",
-  widgets: ".jarviswidget",
-  localStorage: false,
-  deleteSettingsKey: "#deletesettingskey-options",
-  settingsKeyLabel: "Reset settings?",
-  deletePositionKey: "#deletepositionkey-options",
-  positionKeyLabel: "Reset position?",
-  sortable: true,
-  buttonsHidden: false,
-  // toggle button
-  toggleButton: true,
-  toggleClass: "fa fa-minus | fa fa-plus",
-  toggleSpeed: 200,
-  onToggle: function() {},
-  // delete btn
-  deleteButton: true,
-  deleteMsg: "Warning: This action cannot be undone!",
-  deleteClass: "fa fa-times",
-  deleteSpeed: 200,
-  onDelete: function() {},
-  // edit btn
-  editButton: true,
-  editPlaceholder: ".jarviswidget-editbox",
-  editClass: "fa fa-cog | fa fa-save",
-  editSpeed: 200,
-  onEdit: function() {},
-  // color button
-  colorButton: true,
-  // full screen
-  fullscreenButton: true,
-  fullscreenClass: "fa fa-expand | fa fa-compress",
-  fullscreenDiff: 3,
-  onFullscreen: function() {},
-  // custom btn
-  customButton: false,
-  customClass: "folder-10 | next-10",
-  customStart: function() {
-    alert("Hello you, this is a custom button...");
-  },
-  customEnd: function() {
-    alert("bye, till next time...");
-  },
-  // order
-  buttonOrder: "%refresh% %custom% %edit% %toggle% %fullscreen% %delete%",
-  opacity: 1.0,
-  dragHandle: "> header",
-  placeholderClass: "jarviswidget-placeholder",
-  indicator: true,
-  indicatorTime: 600,
-  ajax: true,
-  timestampPlaceholder: ".jarviswidget-timestamp",
-  timestampFormat: "Last update: %m%/%d%/%y% %h%:%i%:%s%",
-  refreshButton: true,
-  refreshButtonClass: "fa fa-refresh",
-  labelError: "Sorry but there was a error:",
-  labelUpdated: "Last Update:",
-  labelRefresh: "Refresh",
-  labelDelete: "Delete widget:",
-  afterLoad: function() {},
-  rtl: false, // best not to toggle this!
-  onChange: function() {},
-  onSave: function() {}
-  // ajaxnav : $.navAsAjax // declears how the localstorage should be saved (HTML or AJAX Version)
-};
+
 class Interactions extends React.Component {
   constructor(props) {
     super(props);
@@ -85,12 +22,9 @@ class Interactions extends React.Component {
     interactionService
       .readAll()
       .then(data => {
-        //console.log(data)
         this.setState({ interactions: data.data.items });
       })
       .catch(err => console.log(err));
-
-    window.$(this.grid).jarvisWidgets(defaults);
   }
 
   onSelect(item, event) {
@@ -105,8 +39,6 @@ class Interactions extends React.Component {
   }
 
   onDelete() {
-    debugger;
-    // let id = formData._id.value
     const formData = this.state.formData;
     interactionService
       .deleteById(formData._id)
@@ -146,14 +78,16 @@ class Interactions extends React.Component {
   render() {
     const interactions = this.state.interactions ? (
       this.state.interactions.map(interaction => (
-        <li
+        <tr
           key={interaction._id}
           onClick={this.onSelect.bind(this, interaction)}
-        >{`ID: ${interaction._id}`}</li>
+        >
+          <td> {interaction._id}</td>
+          <td> {interaction.points}</td>
+          <td> {interaction.dogOwnerId}</td>
+        </tr>
       ))
-    ) : (
-      <h2> NONE</h2>
-    );
+    ) : null;
 
     return (
       <React.Fragment>
@@ -187,30 +121,48 @@ class Interactions extends React.Component {
               </h1>
             </div>
           </div>
-          <section id="widget-grid" ref={grid => (this.grid = grid)}>
+
+          <WizardGrid>
             <div className="row">
-              <div className="col-sm-6">
-                <JarvisWidget
-                  title="Current Interactions"
-                  body={<ol>{interactions} </ol>}
-                />
+              <div className="col-sm-7">
+                <JarvisWidget title="Current Interactions">
+                  <div className="table-responsive">
+                    <table className="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                        <td>
+                          <strong> Interaction ID</strong>
+                        </td>
+                        <td>
+                          <strong>Points</strong>
+                        </td>
+                        <td>
+                          <strong> Dog Owner Id</strong>
+                        </td>
+                        </tr>            
+                      </thead>
+                      <tbody>
+                        {interactions}
+                      </tbody>
+                    </table>
+                  </div>
+                </JarvisWidget>
               </div>
-              <div className="col-sm-6">
+              <div className="col-sm-5">
                 <JarvisWidget
                   title="Interactions Form"
                   legend="Please fill me out"
-                  body={
-                    <InteractionForm
-                      formData={this.state.formData}
-                      onSave={this.onSave}
-                      onDelete={this.onDelete}
-                      onCancel={this.onCancel}
-                    />
-                  }
-                />
+                >
+                  <InteractionForm
+                    formData={this.state.formData}
+                    onSave={this.onSave}
+                    onDelete={this.onDelete}
+                    onCancel={this.onCancel}
+                  />
+                </JarvisWidget>
               </div>
             </div>
-          </section>
+          </WizardGrid>
         </div>
       </React.Fragment>
     );
