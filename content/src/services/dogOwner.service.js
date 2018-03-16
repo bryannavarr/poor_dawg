@@ -1,14 +1,11 @@
 import axios from "axios";
 
-const headers = {};
+const baseUrl = "http://localhost:8080/api/dogOwners";
 
-const baseUrl = `http://localhost:8080/api/hackers`;
-
-export function create(hackerData) {
+export function create(dogOwnerData) {
   const config = {
     method: "POST",
-    headers,
-    data: hackerData
+    data: dogOwnerData
   };
 
   return axios(baseUrl, config)
@@ -16,36 +13,33 @@ export function create(hackerData) {
     .catch(responseErrorHandler);
 }
 
-export function readAll() {
-  const config = {
-    method: "GET",
-    headers
-  };
-
-  return axios(baseUrl, config)
-    .then(responseSuccessHandler)
-    .catch(responseErrorHandler);
-}
-
-export function update(hackerData) {
+export function update(dogOwnerData) {
   const config = {
     method: "PUT",
-    headers,
-    data: hackerData
+    data: dogOwnerData
   };
 
-  return axios(`${baseUrl}/${hackerData._id}`, config)
+  return axios(`${baseUrl}/${dogOwnerData._id}`, config)
     .then(responseSuccessHandler)
     .catch(responseErrorHandler);
 }
 
 export function del(id) {
   const config = {
-    method: "DELETE",
-    headers
+    method: "DELETE"
   };
 
   return axios(`${baseUrl}/${id}`, config)
+    .then(responseSuccessHandler)
+    .catch(responseErrorHandler);
+}
+
+export function readAll() {
+  const config = {
+    method: "GET"
+  };
+  return axios
+    .get(baseUrl, config)
     .then(responseSuccessHandler)
     .catch(responseErrorHandler);
 }

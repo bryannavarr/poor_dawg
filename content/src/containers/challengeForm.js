@@ -1,17 +1,15 @@
 import React from "react";
 import * as validationHelper from "../helpers/validation.helper";
-import * as notificationService from "../services/notification.service";
-import DogOwnersDropdown from './DogOwnersDropdown'
-import DogsMenu from './DogsMenu'
+import * as challengeService from "../services/challenge.service";
 
-class NotificationsForm extends React.Component {
+class ChallengeForm extends React.Component {
   constructor(props) {
     super(props);
 
     const formData = this.convertPropsToFormData(props);
 
     this.state = {
-      notifications: [],
+      challenges: [],
       formData: formData,
       formValid: false
     };
@@ -21,9 +19,9 @@ class NotificationsForm extends React.Component {
   }
 
   componentDidMount() {
-    notificationService.readAll().then(data => {
-      this.setState({ notifications: data });
-    });
+    challengeService
+      .readAll()
+      .then(data => [this.setState({ challenges: data })]);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -32,53 +30,61 @@ class NotificationsForm extends React.Component {
   }
 
   convertPropsToFormData(props) {
-    const notification =
+    const challenge =
       props.formData && props.formData._id ? props.formData : {};
 
-    const initializedNotification = {
-      _id: notification._id || "",
-      type: notification.type || "",
-      dogOwnerId: notification.dogOwnerId || "",
-      dogId: notification.dogId || "",
-      message: notification.message || ""
+    const initializedChallenge = {
+      _id: challenge._id || "",
+      description: challenge.description || "",
+      expirationDate: challenge.expirationDate || "",
+      points: challenge.points || "",
+      dogOwnerType: challenge.dogOwnerType || ""
     };
 
     let formData = {
       _id: {
-        originalValue: initializedNotification._id,
-        value: initializedNotification._id,
+        originalValue: initializedChallenge._id,
+        value: initializedChallenge._id,
         valid: true,
         validation: {},
         touched: false
       },
-      type: {
-        originalValue: initializedNotification.type,
-        value: initializedNotification.type,
+      description: {
+        originalValue: initializedChallenge.description,
+        value: initializedChallenge.description,
         valid: true,
         validation: {
           required: true
         },
         touched: false
       },
-      dogOwnerId: {
-        originalValue: initializedNotification.dogOwnerId,
-        value: initializedNotification.dogOwnerId,
+      expirationDate: {
+        originalValue: initializedChallenge.expirationDate,
+        value: initializedChallenge.expirationDate,
         valid: true,
-        validation: {},
+        validation: {
+          required: true
+        },
         touched: false
       },
-      dogId: {
-        originalValue: initializedNotification.dogId,
-        value: initializedNotification.dogId,
+      points: {
+        originalValue: initializedChallenge.points,
+        value: initializedChallenge.points,
         valid: true,
-        validation: {},
+        validation: {
+          required: true,
+          number: true,
+          max: 500
+        },
         touched: false
       },
-      message: {
-        originalValue: initializedNotification.message,
-        value: initializedNotification.message,
+      dogOwnerType: {
+        originalValue: initializedChallenge.dogOwnerType,
+        value: initializedChallenge.dogOwnerType,
         valid: true,
-        validation: {},
+        validation: {
+          required: true
+        },
         touched: false
       }
     };
@@ -101,36 +107,28 @@ class NotificationsForm extends React.Component {
       return;
     }
     const that = this;
-
     let item = {
-      message: this.state.formData.message.value,
-      type: this.state.formData.type.value,
-      dogOwnerId: this.state.formData.dogOwnerId.value,
-      dogId: this.state.formData.dogId.value
+      description: this.state.formData.description.value,
+      expirationDate: this.state.formData.expirationDate.value,
+      points: this.state.formData.points.value,
+      dogOwnerType: this.state.formData.dogOwnerType.value
     };
 
     if (this.state.formData._id.value.length > 0) {
       item._id = this.state.formData._id.value;
-      notificationService
+      challengeService
         .update(item)
         .then(data => {
           that.props.onSave(item);
         })
         .catch(error => console.log(error));
     } else {
-      notificationService
+      challengeService
         .create(item)
         .then(data => {
-          //mod state to show assigned id
           this.setState(prevState => {
-            const field = {
-              ...prevState.formData._id,
-              _id: data
-            };
-            const formData = {
-              ...prevState.formData,
-              _id: field
-            };
+            const field = { ...prevState.formData._id, _id: data };
+            const formData = { ...prevState.formData, _id: field };
             return { ...prevState, formData: formData };
           });
           that.props.onSave({ ...item, _id: data.item });
@@ -145,79 +143,75 @@ class NotificationsForm extends React.Component {
         <form>
           <div
             className={
-              !this.state.formData.type.valid &&
-              this.state.formData.type.touched
+              !this.state.formData.description.valid &&
+              this.state.formData.description.touched
                 ? "form-group has-error"
                 : "form-group"
             }
           >
-            <label htmlFor="type">Type:</label>
+            <label htmlFor="description">Description:</label>
             <input
               type="text"
-              name="type"
-              id="type"
+              name="description"
+              id="description"
               className="form-control"
-              value={this.state.formData.type.value}
+              value={this.state.formData.description.value}
               onChange={this.onChange}
             />
-            {!this.state.formData.type.valid &&
-            this.state.formData.type.touched ? (
-              <p className="text-danger">A type is required.</p>
-            ) : null}
           </div>
-
           <div
             className={
-              !this.state.formData.message.valid &&
-              this.state.formData.message.touched
+              !this.state.formData.expirationDate.valid &&
+              this.state.formData.expirationDate.touched
                 ? "form-group has-error"
                 : "form-group"
             }
           >
-            <label htmlFor="message">Message:</label>
+            <label htmlFor="expirationDate">Expiration Date</label>
             <input
               type="text"
-              name="message"
-              id="message"
+              name="expirationDate"
+              id="expirationDate"
               className="form-control"
-              value={this.state.formData.message.value}
+              value={this.state.formData.expirationDate.value}
               onChange={this.onChange}
             />
-            {!this.state.formData.message.valid &&
-            this.state.formData.message.touched ? (
-              <p className="text-danger">A message is required.</p>
-            ) : null}
           </div>
-
-          <div className="form-group">
-            <label htmlFor="notificationId">Notification Id:</label>
+          <div
+            className={
+              !this.state.formData.points.valid &&
+              this.state.formData.points.touched
+                ? "form-group has-error"
+                : "form-group"
+            }
+          >
+            <label htmlFor="points">Points:</label>
+            <input
+              type="number"
+              name="points"
+              id="points"
+              className="form-control"
+              value={this.state.formData.points.value}
+              onChange={this.onChange}
+            />
+          </div>
+          <div
+            className={
+              !this.state.formData.dogOwnerType.valid &&
+              this.state.formData.dogOwnerType.touched
+                ? "form-group has-error"
+                : "form-group"
+            }
+          >
+            <label htmlFor="dogOwnerType">Dog Owner Type:</label>
             <input
               type="text"
-              name="notificationId"
-              id="notificationId"
+              name="dogOwnerType"
+              id="dogOwnerType"
               className="form-control"
-              disabled
-              value={this.state.formData._id.value}
+              value={this.state.formData.dogOwnerType.value}
               onChange={this.onChange}
             />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="dogOwnerId">Dog Owner Id:</label>
-            <DogOwnersDropdown
-              value={this.state.formData.dogOwnerId.value}
-              onSelect={this.onChange}
-            />
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="dogId">Dog Id:</label>
-            <DogsMenu
-              onChange={this.onChange}
-            />
-          </div>
-          <div>
-            
           </div>
           <div className="btn-group" role="group">
             <button
@@ -249,4 +243,4 @@ class NotificationsForm extends React.Component {
   }
 }
 
-export default NotificationsForm;
+export default ChallengeForm;

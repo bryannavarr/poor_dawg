@@ -1,15 +1,15 @@
 import React from "react";
 import * as validationHelper from "../helpers/validation.helper";
-import * as hackerService from "../services/hacker.service";
+import * as breedService from "../services/breed.service";
 
-class HackerForm extends React.Component {
+class BreedForm extends React.Component {
   constructor(props) {
     super(props);
 
     const formData = this.convertPropsToFormData(props);
 
     this.state = {
-      hackers: [],
+      breeds: [],
       formData: formData,
       formValid: false
     };
@@ -18,32 +18,48 @@ class HackerForm extends React.Component {
     this.onSave = this.onSave.bind(this);
   }
 
- 
   componentWillReceiveProps(nextProps) {
     const formData = this.convertPropsToFormData(nextProps);
     this.setState({ formData: formData });
   }
 
   convertPropsToFormData(props) {
-    const hacker = props.formData && props.formData._id ? props.formData : {};
+    const breed = props.formData && props.formData._id ? props.formData : {};
 
-    const initializedHacker = {
-      _id: hacker._id || "",
-      name: hacker.name || ""
+    const initializedBreed = {
+      _id: breed._id || "",
+      name: breed.name || "",
+      individualNeeds: breed.individualNeeds || "",
+      activityLevel: breed.activityLevel || ""
     };
 
     let formData = {
       _id: {
-        originalValue: initializedHacker._id,
-        value: initializedHacker._id,
+        originalValue: initializedBreed._id,
+        value: initializedBreed._id,
         valid: true,
         validation: {},
         touched: false
       },
       name: {
-        originalValue: initializedHacker.name,
-        value: initializedHacker.name,
-        valid: true,
+        originalValue: initializedBreed.name,
+        value: initializedBreed.name,
+        validation: {
+          required: true
+        },
+        touched: false
+      },
+      individualNeeds: {
+        originalValue: initializedBreed.individualNeeds,
+        value: initializedBreed.individualNeeds,
+        validation: {
+          required: true
+        },
+        touched: false
+      },
+      activityLevel: {
+        originalValue: initializedBreed.activityLevel,
+        value: initializedBreed.activityLevel,
         validation: {
           required: true,
           maxLength: 50
@@ -51,7 +67,6 @@ class HackerForm extends React.Component {
         touched: false
       }
     };
-
     for (let fieldName in formData) {
       const field = formData[fieldName];
       field.valid = validationHelper.validate(field.value, field.validation);
@@ -62,7 +77,6 @@ class HackerForm extends React.Component {
 
   onSave(event) {
     if (!this.state.formValid) {
-      // Mark all fields as touched to display validation errors for all fields
       const formData = JSON.parse(JSON.stringify(this.state.formData));
       for (let fieldIdentifier in formData) {
         formData[fieldIdentifier].touched = false;
@@ -72,31 +86,32 @@ class HackerForm extends React.Component {
     }
     const that = this;
     let item = {
-      name: this.state.formData.name.value
+      name: this.state.formData.name.value,
+      individualNeeds: this.state.formData.individualNeeds.value,
+      activityLevel: this.state.formData.activityLevel.value
     };
 
     if (this.state.formData._id.value.length > 0) {
       item._id = this.state.formData._id.value;
-      hackerService
+      breedService
         .update(item)
         .then(data => {
           that.props.onSave(item);
         })
-        .catch(error => console.log(error));
+        .catch(err => console.log(err));
     } else {
-      hackerService
+      breedService
         .create(item)
         .then(data => {
-          // Modify state to reflect assigned id value
           this.setState(prevState => {
-            const field = { ...prevState.formData._id, _id: data };
+            const field = { ...prevState.formData._id, _id: data.data.item };
             const formData = { ...prevState.formData, _id: field };
-            return { ...prevState, formData: formData };
+            return { ...prevState, formData };
           });
 
-          that.props.onSave({ ...item, _id: data.item });
+          that.props.onSave({ ...item, _id: data.data.item });
         })
-        .catch(error => console.log(error));
+        .catch(err => console.log(err));
     }
   }
 
@@ -123,11 +138,55 @@ class HackerForm extends React.Component {
             />
             {!this.state.formData.name.valid &&
             this.state.formData.name.touched ? (
-              <p className="text-danger">The Name is required</p>
+              <p className="text-danger">The Name is Required</p>
+            ) : null}
+          </div>
+          <div
+            className={
+              !this.state.formData.individualNeeds.valid &&
+              this.state.formData.individualNeeds.touched
+                ? "form-group has-error"
+                : "form-group"
+            }
+          >
+            <label htmlFor="individualNeeds">Individual Needs:</label>
+            <input
+              type="text"
+              name="individualNeeds"
+              id="individualNeeds"
+              className="form-control"
+              value={this.state.formData.individualNeeds.value}
+              onChange={this.onChange}
+            />
+            {!this.state.formData.individualNeeds.valid &&
+            this.state.formData.individualNeeds.touched ? (
+              <p className="text-danger">Individual Needs is Required</p>
+            ) : null}
+          </div>
+          <div
+            className={
+              !this.state.formData.activityLevel.valid &&
+              this.state.formData.activityLevel.touched
+                ? "form-group has-error"
+                : "form-group"
+            }
+          >
+            <label htmlFor="activityLevel">Activity Level:</label>
+            <input
+              type="text"
+              name="activityLevel"
+              id="activityLevel"
+              className="form-control"
+              value={this.state.formData.activityLevel.value}
+              onChange={this.onChange}
+            />
+            {!this.state.formData.activityLevel.valid &&
+            this.state.formData.activityLevel.touched ? (
+              <p className="text-danger">Activity Level is Required</p>
             ) : null}
           </div>
           <div className="form-group">
-            <label htmlFor="itemId">Hacker Id:</label>
+            <label htmlFor="itemId">Breed Id:</label>
             <input
               type="text"
               name="id"
@@ -169,4 +228,4 @@ class HackerForm extends React.Component {
   }
 }
 
-export default HackerForm;
+export default BreedForm;

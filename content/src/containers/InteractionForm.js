@@ -2,6 +2,7 @@ import React from "react";
 import * as validationHelper from "../helpers/validation.helper";
 import * as interactionService from "../services/interaction.service";
 import DogOwnersDropdown from "./DogOwnersDropdown";
+import DogsMenu from  './DogsMenu'
 
 class InteractionForm extends React.Component {
   constructor(props) {
@@ -211,6 +212,9 @@ class InteractionForm extends React.Component {
                 : "form-group inputGroupContainer"
             }
           >
+            <DogsMenu
+              onChange={this.onChange}
+            />
             <input
               type="text"
               name="dogId"

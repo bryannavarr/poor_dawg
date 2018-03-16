@@ -1,33 +1,33 @@
-const responses = require('../models/responses');
-const hackersService = require('../services/hackers.service');
-const apiPrefix = '/api/hackers';
+const responses = require('../models/responses')
+const dogsService = require('../services/dogs.service')
+const apiPrefix = '/api/dogs'
 
 module.exports = {
-    readAll: readAll,
-    readById: readById,
-    create: create,
-    update: update,
-    delete: _delete
+    readAll: readAll
+    , readById: readById
+    , create: create
+    , update: update
+    , delete: _delete
 }
 
-function readAll(req, res) {
-    hackersService.readAll()
-        .then(hackers => {
+function readAll (req, res) {
+    dogsService.readAll()
+        .then(dogs => {
             const responseModel = new responses.ItemsResponse()
-            responseModel.items = hackers
+            responseModel.items = dogs
             res.json(responseModel)
         })
         .catch(err => {
             console.log(err)
             res.status(500).send(new responses.ErrorResponse(err))
-        });
+        })
 }
 
 function readById(req, res) {
-    hackersService.readById(req.params.id)
-        .then(hacker => {
+    dogsService.readById(req.params.id)
+        .then(dogs => {
             const responseModel = new responses.ItemResponse()
-            responseModel.item = hacker
+            responseModel.item = dogs
             res.json(responseModel)
         })
         .catch(err => {
@@ -36,8 +36,8 @@ function readById(req, res) {
         })
 }
 
-function create(req, res) {
-    hackersService.create(req.model)
+function create (req, res) {
+    dogsService.create(req.model)
         .then(id => {
             const responseModel = new responses.ItemResponse()
             responseModel.item = id
@@ -51,11 +51,10 @@ function create(req, res) {
         })
 }
 
-function update(req, res) {
+function update (req, res) {
     req.model.updateDate = new Date();
-    hackersService
-        .update(req.params.id, req.model)
-        .then(hacker => {
+    dogsService.update(req.params.id, req.model)
+        .then(dogs => {
             const responseModel = new responses.SuccessResponse()
             res.status(200).json(responseModel)
         })
@@ -66,8 +65,7 @@ function update(req, res) {
 }
 
 function _delete(req, res) {
-    hackersService
-        .delete(req.params.id)
+    dogsService.delete(req.params.id)
         .then(() => {
             const responseModel = new responses.SuccessResponse()
             res.status(200).json(responseModel)
@@ -77,4 +75,3 @@ function _delete(req, res) {
             return res.status(500).send(new responses.ErrorResponse(err))
         })
 }
-
