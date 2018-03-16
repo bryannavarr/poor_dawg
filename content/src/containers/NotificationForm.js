@@ -78,7 +78,9 @@ class NotificationsForm extends React.Component {
         originalValue: initializedNotification.message,
         value: initializedNotification.message,
         valid: true,
-        validation: {},
+        validation: {
+            required: true
+        },
         touched: false
       }
     };
