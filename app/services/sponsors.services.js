@@ -4,19 +4,19 @@ const conn = mongodb.connection
 const ObjectId = mongodb.ObjectId
 
 module.exports = {
-    postNew: postNew,
-    getAll: getAll,
+    create: create,
+    readAll: readAll,
     getByEmail: getByEmail,
     getById: getById,
-    putUpdate: putUpdate,
-    deleteEntry: deleteEntry
+    update: update,
+    del: del
 }
 
-function postNew(model) {
+function create(model) {
     return conn.db().collection("sponsors").insertOne(model)
         .then(result => result.insertedId.toString())
 }
-function getAll() {
+function readAll() {
     return conn.db().collection("sponsors").find().toArray()
         .then(result => {
             for (let i = 0; i < result.length; i++) {
@@ -27,11 +27,11 @@ function getAll() {
         )
 }
 function getByEmail(email) {
-    return conn.db().collection("sponsors").findOne({ "email": email }) //Use this returned data to check for a truthy value (data).
+    return conn.db().collection("sponsors").findOne({ "email": email })
         .then(
             data => {
                 if (data) {
-                    data._id = data._id.toString() //Needed if statement because a null data value errors out.
+                    data._id = data._id.toString()
                 }
                 return data
             }
@@ -45,11 +45,11 @@ function getById(id) {
         }
         )
 }
-function putUpdate(id, model) {
+function update(id, model) {
     return conn.db().collection("sponsors").replaceOne({ "_id": ObjectId(id) }, model)
         .then(result => Promise.resolve())
 }
-function deleteEntry(id) {
+function del(id) {
     return conn.db().collection("sponsors").deleteOne({ "_id": ObjectId(id) })
         .then(result => Promise.resolve())
 }

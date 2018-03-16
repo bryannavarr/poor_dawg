@@ -5,7 +5,7 @@ const headers = {};
 const url = "http://localhost:8080/api/sponsors/";
 
 //POST functions
-export function postNew(sponsorData) {
+export function create(sponsorData) {
   const config = {
     headers,
     data: sponsorData,
@@ -17,7 +17,7 @@ export function postNew(sponsorData) {
 }
 
 //GET functions
-export function getAll() {
+export function readAll() {
   const config = {
     headers,
     method: "GET"
@@ -28,7 +28,7 @@ export function getAll() {
 }
 
 //PUT functions
-export function putUpdate(sponsorData) {
+export function update(sponsorData) {
   const config = {
     headers,
     data: sponsorData,
@@ -40,7 +40,7 @@ export function putUpdate(sponsorData) {
 }
 
 //DEL functions
-export function deleteEntry(id) {
+export function del(id) {
   const config = {
     headers,
     method: "DELETE"

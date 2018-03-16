@@ -2,10 +2,7 @@ import React, { Component } from "react";
 
 import "./App.css";
 
-import { BrowserRouter, Route } from "react-router-dom";
-import Hackers from "./containers/Hackers";
-import Sponsors from "./containers/Sponsors";
-import Interactions from "./containers/Interactions";
+import { BrowserRouter } from "react-router-dom";
 import Layout from "./components/Layout";
 
 class App extends Component {
@@ -13,7 +10,6 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Layout />
-        <Route path="/" component={Sponsors} />
       </BrowserRouter>
     );
   }

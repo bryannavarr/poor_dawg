@@ -6,8 +6,7 @@ const SponsorsSchema = require('../models/sponsorsSchema')
 module.exports = router
 
 router.post("/", validateBody(SponsorsSchema), sponsorsController.getByEmail)
-router.get("/", sponsorsController.getAll)
-// router.get("/:email", sponsorsController.getByEmail)
+router.get("/", sponsorsController.readAll)
 router.get("/:id", sponsorsController.getById)
-router.put("/:id", validateBody(SponsorsSchema), sponsorsController.putUpdate)
-router.delete("/:id", sponsorsController.deleteEntry)
+router.put("/:id", validateBody(SponsorsSchema), sponsorsController.update)
+router.delete("/:id", sponsorsController.del)

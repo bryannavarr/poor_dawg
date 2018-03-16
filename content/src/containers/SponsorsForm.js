@@ -145,19 +145,28 @@ class SponsorsForm extends Component {
     if (this.state.formData._id.value.length > 0) {
       item.createDate = this.state.formData.createDate.value;
       item._id = this.state.formData._id.value;
-      SponsorsService.putUpdate(item)
+      SponsorsService.update(item)
         .then(data => {
+          item.updateDate = data.updateDate;
           that.props.onSave(item);
+          this.setState({
+            formValid: false
+          });
         })
         .catch(error => {
           console.log(error);
         });
     } else {
-      SponsorsService.postNew(item) //create
+      SponsorsService.create(item)
         .then(data => {
           that.props.onSave({
             ...item,
-            _id: data
+            _id: data._id,
+            createDate:data.createDate,
+            updateDate:data.updateDate
+          });
+          this.setState({
+            formValid: false
           });
         })
         .catch(error => {

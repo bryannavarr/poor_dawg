@@ -3,20 +3,19 @@ const sponsorsServices = require("../services/sponsors.services")
 const apiPrefix = '/api/sponsors';
 
 module.exports = {
-    // postNew: postNew,
-    getAll: getAll,
+    readAll: readAll,
     getByEmail: getByEmail,
     getById: getById,
-    putUpdate: putUpdate,
-    deleteEntry: deleteEntry
+    update: update,
+    del: del
 }
 
-function postNew(req, res) {
-    // console.log(req.model)
-    sponsorsServices.postNew(req.model)
+function create(req, res) {
+    sponsorsServices.create(req.model)
         .then(
             data => {
-                res.status(200).send(data)
+                req.model._id = data;
+                res.status(200).send(req.model)
             }
         )
         .catch(
@@ -26,8 +25,8 @@ function postNew(req, res) {
         )
 }
 
-function getAll(req, res) {
-    sponsorsServices.getAll()
+function readAll(req, res) {
+    sponsorsServices.readAll()
         .then(
             data => {
                 res.status(200).send(data)
@@ -48,7 +47,7 @@ function getByEmail(req, res) {
                     res.status(409).send("This user already exists.")
                 }
                 else {
-                    postNew(req, res)
+                    create(req, res)
                 }
             }
         )
@@ -73,12 +72,12 @@ function getById(req, res) {
             }
         )
 }
-function putUpdate(req, res) {
+function update(req, res) {
     delete req.model._id;
-    sponsorsServices.putUpdate(req.params.id, req.model)
+    sponsorsServices.update(req.params.id, req.model)
         .then(
             data => {
-                res.status(200).send(data)
+                res.status(200).send(req.model)
             }
         )
         .catch(
@@ -87,8 +86,8 @@ function putUpdate(req, res) {
             }
         )
 }
-function deleteEntry(req, res) {
-    sponsorsServices.deleteEntry(req.params.id)
+function del(req, res) {
+    sponsorsServices.del(req.params.id)
         .then(
             data => {
                 res.status(200).send(data)

@@ -15,7 +15,7 @@ class Sponsors extends Component {
   }
 
   componentDidMount() {
-    SponsorsService.getAll()
+    SponsorsService.readAll()
       .then(data => {
         this.setState({
           sponsors: data
@@ -61,7 +61,7 @@ class Sponsors extends Component {
 
   onDelete() {
     const formData = this.state.formData;
-    SponsorsService.deleteEntry(formData._id)
+    SponsorsService.del(formData._id)
       .then(() => {
         this.setState(prevState => {
           const updatedItems = prevState.sponsors.filter(item => {
@@ -78,7 +78,6 @@ class Sponsors extends Component {
 
   render() {
     const sponsorItem = this.state.sponsors.map(sponsors => {
-      debugger;
       return (
         <li key={sponsors._id} onClick={this.onSelect.bind(this, sponsors)}>
           <h3>
