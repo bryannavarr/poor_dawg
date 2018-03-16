@@ -10,7 +10,8 @@ import Dogs from "../containers/Dogs";
 import Challenges from "../containers/Challenges";
 import Breeds from "../containers/Breeds";
 import Rewards from "../containers/Rewards";
-import DogOwners from "../containers/DogOwners";
+import DogOwners from "../containers/DogOwners"
+import Users from "../containers/Users"
 import Sponsors from "../containers/Sponsors";
 
 export default function Router() {
@@ -27,6 +28,7 @@ export default function Router() {
       <Route path="/challenges" component={Challenges} />
       <Route path="/rewards" component={Rewards} />
       <Route path="/dogOwners" component={DogOwners} />
+      <Route path="/users" component={Users} />
       <Route path="/sponsors" component={Sponsors} />
     </React.Fragment>
   );
