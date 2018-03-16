@@ -4,6 +4,7 @@ class DogsMenu extends React.Component {
       super(props);
       this.state = {
          dogs: [
+            { dogId: "" },
             { dogId: "5aaae37e010207f32cae741d" },
             { dogId: "5aaae37e010207f32cae741f" },
             { dogId: "5aaae37e010207f32cae741c" }
