@@ -46,7 +46,6 @@ class Hackers extends React.Component {
 
   onSave(updatedFormData) {
     this.setState(prevState => {
-      //debugger;
       const existingItem = prevState.hackers.filter(item => {
         return item._id === updatedFormData._id;
       });
@@ -86,15 +85,48 @@ class Hackers extends React.Component {
 
     return (
       <React.Fragment>
-        <ul>{hackers}</ul>
+        <div id="ribbon">
+          <span class="ribbon-button-alignment">
+            <span
+              id="refresh"
+              class="btn btn-ribbon"
+              data-action="resetWidgets"
+              data-title="refresh"
+              rel="tooltip"
+              data-placement="bottom"
+              data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings."
+              data-html="true"
+            >
+              <i class="fa fa-refresh" />
+            </span>
+          </span>
 
-        <div>
-          <HackerForm
-            formData={this.state.formData}
-            onSave={this.onSave}
-            onDelete={this.onDelete}
-            onCancel={this.onCancel}
-          />
+          <ol class="breadcrumb">
+            <li>Home</li>
+            <li>Hacker</li>
+          </ol>
+        </div>
+
+        <div id="content">
+          <div class="row">
+            <div class="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+              <h1 class="page-title txt-color-blueDark">
+                <i class="fa fa-bomb fa-fw " />
+                Hackers
+                <span>> Do NOT touch</span>
+              </h1>
+            </div>
+          </div>
+          <ul>{hackers}</ul>
+
+          <div>
+            <HackerForm
+              formData={this.state.formData}
+              onSave={this.onSave}
+              onDelete={this.onDelete}
+              onCancel={this.onCancel}
+            />
+          </div>
         </div>
       </React.Fragment>
     );

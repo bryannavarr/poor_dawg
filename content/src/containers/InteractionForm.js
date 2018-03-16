@@ -1,6 +1,8 @@
 import React from "react";
 import * as validationHelper from "../helpers/validation.helper";
 import * as interactionService from "../services/interaction.service";
+import DogOwnersDropdown from "./DogOwnersDropdown";
+import DogsMenu from  './DogsMenu'
 
 class InteractionForm extends React.Component {
   constructor(props) {
@@ -185,18 +187,15 @@ class InteractionForm extends React.Component {
                 : "form-group"
             }
           >
-            <label> Dog Owner ID</label>
-            <input
-              type="text"
-              name="dogOwnerId"
-              id="dogOwnerId"
-              className="form-control"
+            <label> Dog Owner</label>
+
+            <DogOwnersDropdown
               value={this.state.formData.dogOwnerId.value}
-              onChange={this.onChange}
+              onSelect={this.onChange}
             />
             {!this.state.formData.dogOwnerId.valid &&
             this.state.formData.dogOwnerId.touched ? (
-              <p className="has-error">Please enter a valid object ID</p>
+              <p className="has-error">Please select a dog owner</p>
             ) : null}
           </div>
           <div
@@ -208,6 +207,9 @@ class InteractionForm extends React.Component {
             }
           >
             <label> Dog ID</label>
+            <DogsMenu
+              onChange={this.onChange}
+            />
             <input
               type="text"
               name="dogId"
@@ -245,11 +247,11 @@ class InteractionForm extends React.Component {
               </p>
             ) : null}
           </div>
-
           <button
             type="button"
             onClick={this.onSave}
             className="btn btn-primary btn-sm"
+            disabled={!this.state.formValid}
           >
             Save
           </button>
@@ -267,6 +269,7 @@ class InteractionForm extends React.Component {
           >
             Delete
           </button>
+          
         </form>
       </React.Fragment>
     );
