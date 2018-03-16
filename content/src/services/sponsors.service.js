@@ -1,10 +1,6 @@
 import axios from "axios";
-
 const headers = {};
-
 const url = "http://localhost:8080/api/sponsors/";
-
-//POST functions
 export function create(sponsorData) {
   const config = {
     headers,
@@ -15,8 +11,6 @@ export function create(sponsorData) {
     .then(responseSuccessHandler)
     .catch(responseErrorHandler);
 }
-
-//GET functions
 export function readAll() {
   const config = {
     headers,
@@ -26,8 +20,6 @@ export function readAll() {
     .then(responseSuccessHandler)
     .catch(responseErrorHandler);
 }
-
-//PUT functions
 export function update(sponsorData) {
   const config = {
     headers,
@@ -38,8 +30,6 @@ export function update(sponsorData) {
     .then(responseSuccessHandler)
     .catch(responseErrorHandler);
 }
-
-//DEL functions
 export function del(id) {
   const config = {
     headers,
@@ -49,12 +39,9 @@ export function del(id) {
     .then(responseSuccessHandler)
     .catch(responseErrorHandler);
 }
-
-//Response functions
 const responseSuccessHandler = response => {
   return response.data;
 };
-
 const responseErrorHandler = error => {
   console.log(error);
   return Promise.reject(error);

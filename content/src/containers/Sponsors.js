@@ -18,7 +18,7 @@ class Sponsors extends Component {
     SponsorsService.readAll()
       .then(data => {
         this.setState({
-          sponsors: data
+          sponsors: data.items
         });
       })
       .catch(error => {

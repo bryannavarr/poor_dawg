@@ -161,7 +161,7 @@ class SponsorsForm extends Component {
         .then(data => {
           that.props.onSave({
             ...item,
-            _id: data._id,
+            _id: data.id,
             createDate:data.createDate,
             updateDate:data.updateDate
           });
