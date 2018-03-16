@@ -40,6 +40,11 @@ export default function Sidebar() {
               <span className="menu-item-parent">Dashboard</span>
             </Link>
             <ul style={{ display: "block" }}>
+            <li className="active">
+                <Link to="/notifications">
+                  <span className="menu-item-parent">Notifications</span>
+                </Link>
+              </li>
               <li className="active">
                 <Link to="/hackers">
                   <span className="menu-item-parent">Hackers</span>
