@@ -11,6 +11,7 @@ import Challenges from "../containers/Challenges";
 import Breeds from "../containers/Breeds";
 import Rewards from "../containers/Rewards";
 import DogOwners from "../containers/DogOwners"
+import Users from "../containers/Users"
 
 export default function Router() {
   return (
@@ -26,6 +27,8 @@ export default function Router() {
       <Route path="/challenges" component={Challenges} />
       <Route path="/rewards" component={Rewards} />
       <Route path="/dogOwners" component={DogOwners} />
+      <Route path="/users" component={Users} />
+      
     </React.Fragment>
   );
 }
