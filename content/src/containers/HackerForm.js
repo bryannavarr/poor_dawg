@@ -17,8 +17,7 @@ class HackerForm extends React.Component {
     this.onChange = validationHelper.onChange.bind(this);
     this.onSave = this.onSave.bind(this);
   }
-
- 
+  
   componentWillReceiveProps(nextProps) {
     const formData = this.convertPropsToFormData(nextProps);
     this.setState({ formData: formData });

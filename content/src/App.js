@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 
+
 import "./App.css";
 
 import Layout from "./components/Layout";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 
 class App extends Component {
 
@@ -17,4 +18,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default App

@@ -1,4 +1,5 @@
 export function validate(value, rules) {
+
   let isValid = true;
 
   if (rules.required) {
