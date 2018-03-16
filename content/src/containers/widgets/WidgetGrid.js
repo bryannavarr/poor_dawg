@@ -12,11 +12,7 @@ class WidgetGrid extends React.Component {
   render() {
     return (
       <section id="widget-grid" ref={grid => (this.grid = grid)}>
-        {/* {this.props.children} */}
-
-        <div>
-            
-        </div>
+        {this.props.children}
       </section>
     );
   }
