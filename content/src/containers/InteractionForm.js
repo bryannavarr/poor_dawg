@@ -20,7 +20,6 @@ class InteractionForm extends React.Component {
     this.onSave = this.onSave.bind(this);
   }
 
-  componentDidMount() {}
 
   componentWillReceiveProps(nextProps) {
     const formData = this.convertPropsToFormData(nextProps);
@@ -168,7 +167,7 @@ class InteractionForm extends React.Component {
               className="form-control "
               value={this.state.formData.challengeId.value}
               onChange={this.onChange}
-            />{" "}
+            />
             {!this.state.formData.challengeId.valid &&
             this.state.formData.challengeId.touched ? (
               <i className=" form-control-feedback bv-icon-input-group glyphicon glyphicon-remove" />
