@@ -10,6 +10,7 @@ const notificationsRoutes = require("./notifications.routes");
 const dogsRoutes = require('./dogs.routes')
 const breedsRoutes = require('./breeds.routes');
 const rewardsRoutes = require('./rewards.routes');
+const dogOwnersRoutes = require('./dogOwners.routes')
 
 module.exports = router;
 
@@ -25,7 +26,7 @@ router.use("/api/interactions", interactionRoutes);
 router.use("/api/challenges", challengeRoutes);
 router.use("/api/notifications/", notificationsRoutes);
 router.use("/api/breeds", breedsRoutes);
-
+router.use('/api/dogOwners', dogOwnersRoutes)
 // router.use('/api/entities', entitiesRoutes)
 // router.use('/api/examples', examplesRoutes)
 

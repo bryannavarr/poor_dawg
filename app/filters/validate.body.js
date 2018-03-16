@@ -9,7 +9,6 @@ function validate(model) {
       return;
     }
     req.model = result.value;
-    //delete req.body
     next();
   };
 }
