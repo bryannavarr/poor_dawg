@@ -70,19 +70,14 @@ function readById(req, res) {
 function create(req, res) {
   dogOwnersServices.create(req.model)
       .then(id => {
-      debugger
       responseModel = new responses.ItemResponse()
-      debugger
       responseModel.item = id
-      debugger
       res
         .status(201)
         .location(`${apiPrefix}/${id}`)
         .json(responseModel);
-        debugger
     })
     .catch(err => {
-      debugger
       console.log(err);
       res.status(500).send(new responses.ErrorResponse(err));
     });

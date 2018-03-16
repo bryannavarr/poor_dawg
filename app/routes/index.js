@@ -23,7 +23,7 @@ router.use("/api/interactions", interactionRoutes);
 router.use("/api/challenges", challengeRoutes);
 router.use("/api/notifications/", notificationsRoutes);
 router.use("/api/breeds", breedsRoutes);
-const dogOwnersRoutes = require('./dogOwners.routes')
+router.use('/api/dogOwners', dogOwnersRoutes)
 // router.use('/api/entities', entitiesRoutes)
 // router.use('/api/examples', examplesRoutes)
 
