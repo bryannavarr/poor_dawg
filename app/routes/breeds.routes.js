@@ -5,8 +5,6 @@ const Breed = require("../models/breed");
 
 module.exports = router;
 
-//api routes ===============================
-
 router.get("/", breedsController.readAll);
 router.get("/:id([0-9a-fA-F]{24})", breedsController.readById);
 router.post("/", validateBody(Breed), breedsController.create);
