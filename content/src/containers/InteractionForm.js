@@ -216,14 +216,6 @@ class InteractionForm extends React.Component {
               value={this.state.formData.dogId.value}
               onChange={this.onChange}
             />
-            <input
-              type="text"
-              name="dogId"
-              id="dogId"
-              className="form-control"
-              value={this.state.formData.dogId.value}
-              onChange={this.onChange}
-            />
             {!this.state.formData.dogId.valid &&
             this.state.formData.dogId.touched ? (
               <i className=" form-control-feedback bv-icon-input-group glyphicon glyphicon-remove" />
