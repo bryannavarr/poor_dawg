@@ -18,7 +18,12 @@ function update(id, doc) {
 
 function readAll() {
     return conn.db().collection('dogOwners').find().toArray()
-        .then(faqs => { return faqs })
+        .then(dogOwners => {
+            for (let i=0; i < dogOwners.length; i++){
+                let dogOwner = dogOwners[i]
+                dogOwner._id=dogOwner._id.toString()
+            }
+            return dogOwners })
 }
 
 function _delete(id){

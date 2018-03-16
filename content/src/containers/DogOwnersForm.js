@@ -18,11 +18,6 @@ class DogOwnerForm extends React.Component {
     this.onSave = this.onSave.bind(this);
   }
 
-  componentDidMount() {
-    dogOwnerService.readAll().then(data => {
-      this.setState({ dogOwners: data });
-    });
-  }
   componentWillReceiveProps(nextProps) {
     const formData = this.convertPropsToFormData(nextProps);
     this.setState({ formData: formData });
