@@ -1,19 +1,9 @@
-import $ from "jquery";
-
-import 'jquery-ui'
-// import 'jquery-color'
-import "smartadmin-plugins/jquery-ui-custom/jquery-ui.core.min.js"
-import "smartadmin-plugins/jquery-ui-custom/jquery-ui.widgets.min.js"
-
-import "smartadmin-plugins/smartwidgets/jarvis.widget.ng2.js"
-
-
 import React from "react";
 import InteractionForm from "./InteractionForm";
 import * as interactionService from "../services/interaction.service";
-import Sortable from './Sortable'
-window.jQuery = window.$ = $;
-
+import jquery from "jquery";
+window.$ = window.jQuery = jquery;
+require("smartadmin-plugins/smartwidgets/jarvis.widget.ng2.js");
 const defaults = {
   grid: "article",
   widgets: ".jarviswidget",
@@ -76,10 +66,9 @@ const defaults = {
   afterLoad: function() {},
   rtl: false, // best not to toggle this!
   onChange: function() {},
-  onSave: function() {},
-  ajaxnav : $.navAsAjax // declears how the localstorage should be saved (HTML or AJAX Version)
-};
-
+  onSave: function() {}
+  // ajaxnav : $.navAsAjax // declears how the localstorage should be saved (HTML or AJAX Version)
+}
 class Interactions extends React.Component {
   constructor(props) {
     super(props);
@@ -100,9 +89,7 @@ class Interactions extends React.Component {
       })
       .catch(err => console.log(err));
 
-      // this.$grid = $(this.grid)
-      // this.$grid .jarvisWidgets(defaults);
-      $(this.grid).jarvisWidgets(defaults)
+    window.$(this.grid).jarvisWidgets(defaults);
   }
 
   onSelect(item, event) {
@@ -178,7 +165,7 @@ class Interactions extends React.Component {
               data-title="refresh"
               rel="tooltip"
               data-placement="bottom"
-              data-original-title="<i class='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings."
+              data-original-title="<i className='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings."
               data-html="true"
             >
               <i className="fa fa-refresh" />
@@ -200,26 +187,37 @@ class Interactions extends React.Component {
               </h1>
             </div>
           </div>
-
           <section id="widget-grid" ref={grid => (this.grid = grid)}>
             <div className="row">
               <div className="col-sm-6">
-                <ul>{interactions}</ul>
-                <Sortable/>
+                <div
+                  className="jarviswidget"
+                  id="wid-id-interactionsForm"
+                  data-widget-colorbutton="false"
+                  data-widget-deletebutton="true"
+                >
+                  <header>
+                    <h2>Current Interactions</h2>
+                  </header>
+
+                  <div>
+                    <div className="widget-body">
+                    <ul>
+                    {interactions}
+                    </ul>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div className="col-sm-6">
                 <div
-                  className="jarviswidget "
-                  data-widget-togglebutton="true"
+                  className="jarviswidget"
                   id="wid-id-interactionsForm"
                   data-widget-colorbutton="false"
-                  data-widget-editbutton="false"
-                  data-widget-deletebutton="false"
-                  data-widget-sortable="false"
-              
+                  data-widget-deletebutton="true"
                 >
                   <header>
-                    <h2>Interactions</h2>
+                    <h2>Interactions Form</h2>
                   </header>
 
                   <div>
