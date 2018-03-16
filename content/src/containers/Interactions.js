@@ -124,7 +124,7 @@ class Interactions extends React.Component {
 
           <WizardGrid>
             <div className="row">
-              <div className="col-sm-7">
+              <div className="col-sm-6">
                 <JarvisWidget title="Current Interactions">
                   <div className="table-responsive">
                     <table className="table table-bordered table-striped">
@@ -148,7 +148,7 @@ class Interactions extends React.Component {
                   </div>
                 </JarvisWidget>
               </div>
-              <div className="col-sm-5">
+              <div className="col-sm-6">
                 <JarvisWidget
                   title="Interactions Form"
                   legend="Please fill me out"
