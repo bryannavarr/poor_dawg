@@ -168,7 +168,6 @@ class NotificationsForm extends React.Component {
               className="form-control"
               value={this.state.formData.type.value}
               onChange={this.onChange}
-              onSelect={this.onChange}
             />
             <i className={
                 !this.state.formData.type.valid &&
@@ -205,7 +204,6 @@ class NotificationsForm extends React.Component {
               className="form-control"
               value={this.state.formData.message.value}
               onChange={this.onChange}
-              onSelect={this.onChange}
             />
             <i className={
                 !this.state.formData.message.valid &&
@@ -233,7 +231,6 @@ class NotificationsForm extends React.Component {
               disabled
               value={this.state.formData._id.value}
               onChange={this.onChange}
-              onSelect={this.onChange}
             />
           </div>
 
