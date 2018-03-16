@@ -90,8 +90,29 @@ class Notifications extends React.Component {
 
       return (
          <React.Fragment>
-            <div>
-               <section id="widget-grid">
+            <div id="main" style={{marginLeft: 0}} role="main">
+            <div id="ribbon">
+				<span className="ribbon-button-alignment"> 
+					<span id="refresh" className="btn btn-ribbon" data-action="resetWidgets" data-title="refresh"  rel="tooltip" data-placement="bottom" data-original-title="<i className='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings." data-html="true">
+						<i className="fa fa-refresh"></i>
+					</span> 
+				</span>
+				<ol className="breadcrumb">
+					<li>Home</li><li>Notifications</li>
+				</ol>
+			</div>
+            <div id="content" style={{paddingLeft: 13}}>
+            <div className="row">
+					<div className="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+						<h1 className="page-title txt-color-blueDark">
+							
+							<i className="fa-fw fa fa-home"></i> 
+								Notifications 
+							
+						</h1>
+					</div>
+				</div>
+            <section id="widget-grid">
                   <div className="row">
                      <div className="col-sm-6">
                         <div
@@ -122,6 +143,7 @@ class Notifications extends React.Component {
                      </div>
                   </div>
                </section>
+               </div>
             </div>
          </React.Fragment>
       );

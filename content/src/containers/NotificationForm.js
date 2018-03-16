@@ -272,7 +272,7 @@ class NotificationsForm extends React.Component {
             }>
             <label htmlFor="dogId">Dog Id:</label>
             <DogsMenu
-            value={this.state.formData.dogId.value}
+              value={this.state.formData.dogId.value}
               onChange={this.onChange}
             />
             <i className={
