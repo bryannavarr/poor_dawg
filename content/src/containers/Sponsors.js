@@ -8,6 +8,7 @@ class Sponsors extends Component {
     this.state = {
       sponsors: []
     };
+    this.onSave = this.onSave.bind(this);
     this.onSelect = this.onSelect.bind(this);
     this.onCancel = this.onCancel.bind(this);
     this.onDelete = this.onDelete.bind(this);
@@ -26,7 +27,6 @@ class Sponsors extends Component {
   }
 
   onSave(updatedFormData) {
-    debugger;
     this.setState(prevState => {
       const existingItem = prevState.sponsors.filter(item => {
         return item._id === updatedFormData._id;
@@ -78,6 +78,7 @@ class Sponsors extends Component {
 
   render() {
     const sponsorItem = this.state.sponsors.map(sponsors => {
+      debugger;
       return (
         <li key={sponsors._id} onClick={this.onSelect.bind(this, sponsors)}>
           <h3>

@@ -153,25 +153,11 @@ class SponsorsForm extends Component {
           console.log(error);
         });
     } else {
-      SponsorsService.postNew(item)
+      SponsorsService.postNew(item) //create
         .then(data => {
-          this.setState(prevState => {
-            const field = {
-              ...prevState.formData._id,
-              _id: data
-            };
-            const formData = {
-              ...prevState.formData,
-              _id: field
-            };
-            return {
-              ...prevState,
-              formData: formData
-            };
-          });
           that.props.onSave({
             ...item,
-            _id: data.item
+            _id: data
           });
         })
         .catch(error => {
@@ -202,6 +188,10 @@ class SponsorsForm extends Component {
               placeholder="Company Name"
               onChange={this.onChange}
             />
+            {!this.state.formData.companyName.valid &&
+            this.state.formData.companyName.touched ? (
+              <p className="text-danger">This field is required</p>
+            ) : null}
           </div>
           <div className="form-group">
             <label htmlFor="first-name">First Name</label>
@@ -212,6 +202,10 @@ class SponsorsForm extends Component {
               placeholder="First Name"
               onChange={this.onChange}
             />
+            {!this.state.formData.firstName.valid &&
+            this.state.formData.firstName.touched ? (
+              <p className="text-danger">This field is required</p>
+            ) : null}
           </div>
           <div className="form-group">
             <label htmlFor="last-name">Last Name</label>
@@ -222,6 +216,10 @@ class SponsorsForm extends Component {
               placeholder="Last Name"
               onChange={this.onChange}
             />
+            {!this.state.formData.lastName.valid &&
+            this.state.formData.lastName.touched ? (
+              <p className="text-danger">This field is required</p>
+            ) : null}
           </div>
           <div className="form-group">
             <label htmlFor="email">Email</label>
@@ -232,6 +230,10 @@ class SponsorsForm extends Component {
               placeholder="Email"
               onChange={this.onChange}
             />
+            {!this.state.formData.email.valid &&
+            this.state.formData.email.touched ? (
+              <p className="text-danger">This field is required</p>
+            ) : null}
           </div>
           <div className="form-group">
             <label htmlFor="zip-code">Zip Code</label>
@@ -252,6 +254,10 @@ class SponsorsForm extends Component {
               placeholder="Phone Number"
               onChange={this.onChange}
             />
+            {!this.state.formData.phone.valid &&
+            this.state.formData.phone.touched ? (
+              <p className="text-danger">This field is required</p>
+            ) : null}
           </div>
           <div className="form-group">
             <label htmlFor="phone">Create Date</label>
@@ -274,12 +280,18 @@ class SponsorsForm extends Component {
             />
           </div>
         </form>
-        <input type="button" value="Save" onClick={this.onSave} />
+        <input
+          type="button"
+          value="Save"
+          onClick={this.onSave}
+          disabled={!this.state.formValid}
+        />
         <input type="button" value="Cancel" onClick={this.props.onCancel} />
         <input
           type="button"
           value="Delete"
           onClick={() => this.props.onDelete(this.state.formData)}
+          disabled={!this.state.formData._id.value}
         />
       </React.Fragment>
     );

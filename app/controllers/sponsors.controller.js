@@ -12,7 +12,7 @@ module.exports = {
 }
 
 function postNew(req, res) {
-    console.log(req.model)
+    // console.log(req.model)
     sponsorsServices.postNew(req.model)
         .then(
             data => {
