@@ -114,7 +114,6 @@ class InteractionForm extends React.Component {
 
     if (this.state.formData._id.value.length > 0) {
       item._id = this.state.formData._id.value;
-      // add update date here
       interactionService
         .update(item)
         .then(data => {
