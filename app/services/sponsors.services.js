@@ -46,6 +46,7 @@ function getById(id) {
         )
 }
 function update(id, model) {
+    model._id = new ObjectId(model._id)
     return conn.db().collection("sponsors").replaceOne({ "_id": ObjectId(id) }, model)
         .then(result => Promise.resolve())
 }
