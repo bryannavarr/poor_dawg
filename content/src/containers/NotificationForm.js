@@ -149,8 +149,11 @@ class NotificationsForm extends React.Component {
             className={
               !this.state.formData.type.valid &&
               this.state.formData.type.touched
-                ? "form-group has-error"
-                : "form-group"
+                ? "form-group has-feedback has-error"
+                : this.state.formData.type.valid &&
+                this.state.formData.type.touched ?
+                "form-group has-feedback has-success"
+                : "form-group has-feedback"
             }
           >
             <label htmlFor="type">Type:</label>
@@ -162,6 +165,16 @@ class NotificationsForm extends React.Component {
               value={this.state.formData.type.value}
               onChange={this.onChange}
             />
+            <i className={
+                !this.state.formData.type.valid &&
+                this.state.formData.type.touched
+                  ? "form-control-feedback glyphicon glyphicon-remove"
+                  : this.state.formData.type.valid &&
+                    this.state.formData.type.touched
+                  ? "form-control-feedback glyphicon glyphicon-ok"
+                  : "form-control-feedback"
+            }
+            />
             {!this.state.formData.type.valid &&
             this.state.formData.type.touched ? (
               <p className="text-danger">A type is required.</p>
@@ -172,8 +185,11 @@ class NotificationsForm extends React.Component {
             className={
               !this.state.formData.message.valid &&
               this.state.formData.message.touched
-                ? "form-group has-error"
-                : "form-group"
+                ? "form-group has-feedback has-error"
+                : this.state.formData.message.valid &&
+                  this.state.formData.message.touched
+                ? "form-group has-feedback has-success"
+                : "form-group has-feedback"
             }
           >
             <label htmlFor="message">Message:</label>
@@ -184,6 +200,16 @@ class NotificationsForm extends React.Component {
               className="form-control"
               value={this.state.formData.message.value}
               onChange={this.onChange}
+            />
+            <i className={
+                !this.state.formData.message.valid &&
+                this.state.formData.message.touched
+                  ? "form-control-feedback glyphicon glyphicon-remove"
+                  : this.state.formData.message.valid &&
+                  this.state.formData.message.touched
+                  ? "form-control-feedback glyphicon glyphicon-ok"
+                  : "form-control-feedback"
+            }
             />
             {!this.state.formData.message.valid &&
             this.state.formData.message.touched ? (
