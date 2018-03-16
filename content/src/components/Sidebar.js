@@ -56,6 +56,11 @@ export default function Sidebar() {
                 </Link>
               </li>
               <li>
+                <Link to="/interactions">
+                  <span className="menu-item-parent">Interactions</span>
+                </Link>
+              </li>
+              <li>
                 <a href="dashboard-marketing.html" title="Dashboard">
                   <span className="menu-item-parent">Marketing Dashboard</span>
                 </a>
