@@ -32,17 +32,23 @@ function readById(id) {
 
 function create(model) {
     return conn.db().collection('users').insert(model)
-        .then(result => {
-            result.insertedIds[0].toString()
-        })
+        .then(result =>
+            result.insertedIds[0].toString())
 }
 
+
 function update(id, doc) {
-    return conn.db().collection('users').replaceOne({ _id: ObjectId(id) }, doc)
-        .then(result => {
-            Promise.resolve()
-        })
+    doc._id = new ObjectId(doc._id)
+    return conn.db().collection('hackers').replaceOne( { _id: new ObjectId(id) }, doc )
+        .then(result => Promise.resolve()) 
 }
+
+// function update(id, doc) {
+//     return conn.db().collection('users').replaceOne({ _id: ObjectId(id) }, doc)
+//         .then(result => {
+//             Promise.resolve()
+//         })
+// }
 
 function _delete(id) {
     return conn.db().collection('users').deleteOne({ _id: ObjectId(id) })

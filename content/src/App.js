@@ -1,19 +1,11 @@
-<<<<<<< HEAD
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter, Route } from 'react-router-dom'
-// import Hackers from './containers/Hackers'
-import Users from './containers/Users'
-=======
-import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
-
-import { BrowserRouter, Route } from "react-router-dom";
 import Hackers from './containers/Hackers'
-import Interactions from "./containers/Interactions";
->>>>>>> origin/master
+import Users from './containers/Users'
+import Interactions from './containers/Interactions';
+
 
 class App extends Component {
   render() {
@@ -25,13 +17,9 @@ class App extends Component {
         </header>
         <BrowserRouter>
           <div>
-<<<<<<< HEAD
-            {/* <Route path="/" component={Hackers} /> */}
-            <Route path="/" component={Users} />
-=======
-            <Route path="/" component={Hackers} />
+            <Route path="/hackers" component={Hackers} />
             <Route path="/interactions" component={Interactions} />
->>>>>>> origin/master
+            <Route path="/" component={Users} />
           </div>
         </BrowserRouter>
       </div>

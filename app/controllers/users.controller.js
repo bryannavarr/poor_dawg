@@ -37,7 +37,6 @@ function readById(req, res) {
 }
 
 function create(req, res) {
-    req.model.createDate = new Date();
     usersService.create(req.model)
         .then(id => {
             const responseModel = new responses.ItemResponse()
@@ -51,8 +50,8 @@ function create(req, res) {
             res.status(500).send(new responses.ErrorResponse(err))
         })
 }
+
 function update(req, res) {
-    req.model.updateDate = new Date();
     usersService.update(req.params.id, req.model)
         .then(() => {
             const responseModel = new responses.SuccessResponse()
