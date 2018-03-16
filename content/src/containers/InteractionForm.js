@@ -259,28 +259,30 @@ class InteractionForm extends React.Component {
             ) : null}
           </div>
           <div className="form-actions btn-toolbar">
-            <button
-              type="button"
-              onClick={this.onSave}
-              className="btn btn-primary"
-              disabled={!this.state.formValid}
-            >
-              Save
-            </button>
-            <button
-              type="button"
-              onClick={this.props.onCancel}
-              className="btn btn-default"
-            >
-              Cancel
-            </button>
-            <button
-              type="button"
-              onClick={() => this.props.onDelete(this.state.formData)}
-              className="btn btn-danger"
-            >
-              Delete
-            </button>
+            <div className="pull-right">
+              <button
+                type="button"
+                onClick={this.onSave}
+                className="btn btn-primary"
+                disabled={!this.state.formValid}
+              >
+                Save
+              </button>
+              <button
+                type="button"
+                onClick={this.props.onCancel}
+                className="btn btn-default"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={() => this.props.onDelete(this.state.formData)}
+                className="btn btn-danger"
+              >
+                Delete
+              </button>
+            </div>
           </div>
         </form>
       </React.Fragment>

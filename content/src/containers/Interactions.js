@@ -1,7 +1,75 @@
 import React from "react";
 import InteractionForm from "./InteractionForm";
 import * as interactionService from "../services/interaction.service";
+import "smartadmin-plugins/smartwidgets/jarvis.widget.ng2.js";
+import "./jarvis.widget.min.js";
+// import $ from "https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js";
 
+const defaults = {
+  grid: "article",
+  widgets: ".jarviswidget",
+  localStorage: true,
+  deleteSettingsKey: "#deletesettingskey-options",
+  settingsKeyLabel: "Reset settings?",
+  deletePositionKey: "#deletepositionkey-options",
+  positionKeyLabel: "Reset position?",
+  sortable: true,
+  buttonsHidden: false,
+  // toggle button
+  toggleButton: true,
+  toggleClass: "fa fa-minus | fa fa-plus",
+  toggleSpeed: 200,
+  onToggle: function() {},
+  // delete btn
+  deleteButton: true,
+  deleteMsg: "Warning: This action cannot be undone!",
+  deleteClass: "fa fa-times",
+  deleteSpeed: 200,
+  onDelete: function() {},
+  // edit btn
+  editButton: true,
+  editPlaceholder: ".jarviswidget-editbox",
+  editClass: "fa fa-cog | fa fa-save",
+  editSpeed: 200,
+  onEdit: function() {},
+  // color button
+  colorButton: true,
+  // full screen
+  fullscreenButton: true,
+  fullscreenClass: "fa fa-expand | fa fa-compress",
+  fullscreenDiff: 3,
+  onFullscreen: function() {},
+  // custom btn
+  customButton: false,
+  customClass: "folder-10 | next-10",
+  customStart: function() {
+    alert("Hello you, this is a custom button...");
+  },
+  customEnd: function() {
+    alert("bye, till next time...");
+  },
+  // order
+  buttonOrder: "%refresh% %custom% %edit% %toggle% %fullscreen% %delete%",
+  opacity: 1.0,
+  dragHandle: "> header",
+  placeholderClass: "jarviswidget-placeholder",
+  indicator: true,
+  indicatorTime: 600,
+  ajax: true,
+  timestampPlaceholder: ".jarviswidget-timestamp",
+  timestampFormat: "Last update: %m%/%d%/%y% %h%:%i%:%s%",
+  refreshButton: true,
+  refreshButtonClass: "fa fa-refresh",
+  labelError: "Sorry but there was a error:",
+  labelUpdated: "Last Update:",
+  labelRefresh: "Refresh",
+  labelDelete: "Delete widget:",
+  afterLoad: function() {},
+  rtl: false, // best not to toggle this!
+  onChange: function() {},
+  onSave: function() {},
+  // ajaxnav: $.navAsAjax // declears how the localstorage should be saved (HTML or AJAX Version)
+};
 class Interactions extends React.Component {
   constructor(props) {
     super(props);
@@ -21,6 +89,8 @@ class Interactions extends React.Component {
         this.setState({ interactions: data.data.items });
       })
       .catch(err => console.log(err));
+
+    $(this.grid).jarvisWidgets(defaults);
   }
 
   onSelect(item, event) {
@@ -119,40 +189,42 @@ class Interactions extends React.Component {
             </div>
           </div>
 
-          <div className="row">
-            <div className="col-sm-6">
-              <ul>{interactions}</ul>
-            </div>
-            <div className="col-sm-6">
-              <div
-                className="jarviswidget "
-                data-widget-togglebutton="true"
-                id="wid-id-interactionsForm"
-                data-widget-colorbutton="false"
-                data-widget-editbutton="false"
-                data-widget-deletebutton="false"
-                data-widget-sortable="false"
-                role="widget"
-              >
-                <header>
-                  <h2>Interactions</h2>
-                </header>
+          <section id="widget-grid" ref={(grid) => this.grid = grid}>
+            <div className="row">
+              <div className="col-sm-6">
+                <ul>{interactions}</ul>
+              </div>
+              <div className="col-sm-6">
+                <div
+                  className="jarviswidget "
+                  data-widget-togglebutton="true"
+                  id="wid-id-interactionsForm"
+                  data-widget-colorbutton="false"
+                  data-widget-editbutton="false"
+                  data-widget-deletebutton="false"
+                  data-widget-sortable="false"
+                  role="widget"
+                >
+                  <header>
+                    <h2>Interactions</h2>
+                  </header>
 
-                <div>
-                  <legend>Fill this out please</legend>
+                  <div>
+                    <legend>Fill this out please</legend>
 
-                  <div className="widget-body">
-                    <InteractionForm
-                      formData={this.state.formData}
-                      onSave={this.onSave}
-                      onDelete={this.onDelete}
-                      onCancel={this.onCancel}
-                    />
+                    <div className="widget-body">
+                      <InteractionForm
+                        formData={this.state.formData}
+                        onSave={this.onSave}
+                        onDelete={this.onDelete}
+                        onCancel={this.onCancel}
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </section>
         </div>
       </React.Fragment>
     );
