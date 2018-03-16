@@ -172,7 +172,6 @@ class Interactions extends React.Component {
               <i className="fa fa-refresh" />
             </span>
           </span>
-
           <ol className="breadcrumb">
             <li>Home</li>
             <li>Interactions</li>
@@ -184,12 +183,18 @@ class Interactions extends React.Component {
               <h1 className="page-title txt-color-blueDark">
                 <i className="fa fa-paw fa-fw " />
                 Interactions
-                <span>> Add or Update Interactions</span>
+                <span> > Add or Update Interactions</span>
               </h1>
             </div>
           </div>
           <section id="widget-grid" ref={grid => (this.grid = grid)}>
             <div className="row">
+              <div className="col-sm-6">
+                <JarvisWidget
+                  title="Current Interactions"
+                  body={<ol>{interactions} </ol>}
+                />
+              </div>
               <div className="col-sm-6">
                 <JarvisWidget
                   title="Interactions Form"
@@ -202,12 +207,6 @@ class Interactions extends React.Component {
                       onCancel={this.onCancel}
                     />
                   }
-                />
-              </div>
-              <div className="col-sm-6">
-                <JarvisWidget
-                  title="Current Interactions"
-                  body={<ol>{interactions} </ol>}
                 />
               </div>
             </div>
