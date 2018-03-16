@@ -2,6 +2,7 @@ import React from "react";
 import InteractionForm from "./InteractionForm";
 import * as interactionService from "../services/interaction.service";
 import jquery from "jquery";
+import JarvisWidget from "./widgets/JarvisWidget";
 window.$ = window.jQuery = jquery;
 require("smartadmin-plugins/smartwidgets/jarvis.widget.ng2.js");
 const defaults = {
@@ -68,7 +69,7 @@ const defaults = {
   onChange: function() {},
   onSave: function() {}
   // ajaxnav : $.navAsAjax // declears how the localstorage should be saved (HTML or AJAX Version)
-}
+};
 class Interactions extends React.Component {
   constructor(props) {
     super(props);
@@ -190,49 +191,24 @@ class Interactions extends React.Component {
           <section id="widget-grid" ref={grid => (this.grid = grid)}>
             <div className="row">
               <div className="col-sm-6">
-                <div
-                  className="jarviswidget"
-                  id="wid-id-interactionsForm"
-                  data-widget-colorbutton="false"
-                  data-widget-deletebutton="true"
-                >
-                  <header>
-                    <h2>Current Interactions</h2>
-                  </header>
-
-                  <div>
-                    <div className="widget-body">
-                    <ul>
-                    {interactions}
-                    </ul>
-                    </div>
-                  </div>
-                </div>
+                <JarvisWidget
+                  title="Interactions Form"
+                  legend="Please fill me out"
+                  body={
+                    <InteractionForm
+                      formData={this.state.formData}
+                      onSave={this.onSave}
+                      onDelete={this.onDelete}
+                      onCancel={this.onCancel}
+                    />
+                  }
+                />
               </div>
               <div className="col-sm-6">
-                <div
-                  className="jarviswidget"
-                  id="wid-id-interactionsForm"
-                  data-widget-colorbutton="false"
-                  data-widget-deletebutton="true"
-                >
-                  <header>
-                    <h2>Interactions Form</h2>
-                  </header>
-
-                  <div>
-                    <legend>Fill this out please</legend>
-
-                    <div className="widget-body">
-                      <InteractionForm
-                        formData={this.state.formData}
-                        onSave={this.onSave}
-                        onDelete={this.onDelete}
-                        onCancel={this.onCancel}
-                      />
-                    </div>
-                  </div>
-                </div>
+                <JarvisWidget
+                  title="Current Interactions"
+                  body={<ol>{interactions} </ol>}
+                />
               </div>
             </div>
           </section>
