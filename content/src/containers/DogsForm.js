@@ -66,7 +66,7 @@ class DogsForm extends React.Component {
                 valid: true,
                 validation: {
                     required: true,
-                    maxLength: 50
+                    date: true
                 },
                 touched: false
             },
@@ -76,7 +76,7 @@ class DogsForm extends React.Component {
                 valid: true,
                 validation: {
                     required: true,
-                    maxLength: 50
+                    date: true
                 },
                 touched: false
             },
@@ -86,7 +86,7 @@ class DogsForm extends React.Component {
                 valid: true,
                 validation: {
                     required: true,
-                    maxLength: 50
+                    date: true
                 },
                 touched: false
             }

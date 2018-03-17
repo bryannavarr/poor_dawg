@@ -18,12 +18,6 @@ class ChallengeForm extends React.Component {
     this.onSave = this.onSave.bind(this);
   }
 
-  componentDidMount() {
-    challengeService
-      .readAll()
-      .then(data => [this.setState({ challenges: data })]);
-  }
-
   componentWillReceiveProps(nextProps) {
     const formData = this.convertPropsToFormData(nextProps);
     this.setState({ formData: formData });
@@ -63,7 +57,8 @@ class ChallengeForm extends React.Component {
         value: initializedChallenge.expirationDate,
         valid: true,
         validation: {
-          required: true
+          required: true,
+          date: true
         },
         touched: false
       },
@@ -140,104 +135,210 @@ class ChallengeForm extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <form>
-          <div
-            className={
-              !this.state.formData.description.valid &&
-              this.state.formData.description.touched
-                ? "form-group has-error"
-                : "form-group"
-            }
-          >
-            <label htmlFor="description">Description:</label>
-            <input
-              type="text"
-              name="description"
-              id="description"
-              className="form-control"
-              value={this.state.formData.description.value}
-              onChange={this.onChange}
-            />
+        <div className="jarviswidget">
+          <header role="heading">
+            <span className="widget-icon">
+              <i className="fa fa-trophy" />
+            </span>
+            <h2>Challenges</h2>
+          </header>
+          <div role="content">
+            <div className="widget-body">
+              <form className="bv-form">
+                <fieldset>
+                  <div className="form-group">
+                    <div className="row">
+                      {/* ============================================================== */}
+                      <div
+                        className={
+                          !this.state.formData.description.touched
+                            ? "col-md-8 has-feedback"
+                            : !this.state.formData.description.valid
+                              ? "col-md-8 has-feedback has-error"
+                              : "col-md-8 has-feedback has-success"
+                        }
+                      >
+                        <label className="control-label">Description:</label>
+                        <input
+                          type="text"
+                          name="description"
+                          id="description"
+                          className="form-control"
+                          value={this.state.formData.description.value}
+                          onChange={this.onChange}
+                        />
+                        <i
+                          className={
+                            !this.state.formData.description.valid &&
+                            this.state.formData.description.touched
+                              ? "form-control-feedback glyphicon glyphicon-remove"
+                              : "form-control-feedback glyphicon glyphicon-ok"
+                          }
+                          data-bv-icon-for="description"
+                          style={{
+                            display: this.state.formData.description.touched
+                              ? "block"
+                              : "none"
+                          }}
+                        />
+                      </div>
+                      {/* ============================================================== */}
+                      <div
+                        className={
+                          !this.state.formData.dogOwnerType.touched
+                            ? "col-md-4 selecetContainer has-feedback"
+                            : !this.state.formData.dogOwnerType.valid
+                              ? "col-md-4 selecetContainer has-feedback has-error"
+                              : "col-md-4 selecetContainer has-feedback has-success"
+                        }
+                      >
+                        <label className="control-label" htmlFor="dogOwnerType">
+                          Dog Owner Type:
+                        </label>
+                        <select
+                          type="text"
+                          name="dogOwnerType"
+                          id="dogOwnerType"
+                          className="form-control"
+                          data-bv-field="dogOwnerType"
+                          value={this.state.formData.dogOwnerType.value}
+                          onChange={this.onChange}
+                        >
+                          <option value="">Choose Owner Type</option>
+                          <option value="DogLover">DogLover</option>
+                          <option value="DogOwner">DogOwner</option>
+                        </select>
+                        <i
+                          className={
+                            !this.state.formData.dogOwnerType.valid &&
+                            this.state.formData.dogOwnerType.touched
+                              ? "form-control-feedback glyphicon glyphicon-remove"
+                              : "form-control-feedback glyphicon glyphicon-ok"
+                          }
+                          data-bv-icon-for="dogOwnerType"
+                          style={{
+                            display: this.state.formData.dogOwnerType.touched
+                              ? "block"
+                              : "none"
+                          }}
+                        />
+                      </div>
+                      {/* ============================================================== */}
+                    </div>
+                  </div>
+                </fieldset>
+                <fieldset>
+                  <div className="form-group">
+                    <div className="row">
+                      {/* ============================================================== */}
+                      <div
+                        className={
+                          !this.state.formData.expirationDate.touched
+                            ? "col-md-8 has-feedback"
+                            : !this.state.formData.expirationDate.valid
+                              ? "col-md-8 has-feedback has-error"
+                              : "col-md-8 has-feedback has-success"
+                        }
+                      >
+                        <label htmlFor="expirationDate">Expiration Date</label>
+                        <input
+                          type="text"
+                          name="expirationDate"
+                          id="expirationDate"
+                          className="form-control"
+                          value={this.state.formData.expirationDate.value}
+                          onChange={this.onChange}
+                        />
+                        <i
+                          className={
+                            !this.state.formData.expirationDate.valid &&
+                            this.state.formData.expirationDate.touched
+                              ? "form-control-feedback glyphicon glyphicon-remove"
+                              : "form-control-feedback glyphicon glyphicon-ok"
+                          }
+                          data-bv-icon-for="description"
+                          style={{
+                            display: this.state.formData.expirationDate.touched
+                              ? "block"
+                              : "none"
+                          }}
+                        />
+                      </div>
+                      {/* ============================================================== */}
+                      <div
+                        className={
+                          !this.state.formData.points.touched
+                            ? "col-md-4 has-feedback"
+                            : !this.state.formData.points.valid
+                              ? "col-md-4 has-feedback has-error"
+                              : "col-md-4 has-feedback has-success"
+                        }
+                      >
+                        <label htmlFor="points">Points</label>
+                        <input
+                          type="number"
+                          name="points"
+                          id="points"
+                          className="form-control"
+                          value={this.state.formData.points.value}
+                          onChange={this.onChange}
+                        />
+                        <i
+                          className={
+                            !this.state.formData.points.valid &&
+                            this.state.formData.points.touched
+                              ? "form-control-feedback glyphicon glyphicon-remove"
+                              : "form-control-feedback glyphicon glyphicon-ok"
+                          }
+                          data-bv-icon-for="description"
+                          style={{
+                            display: this.state.formData.points.touched
+                              ? "block"
+                              : "none"
+                          }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+                {/* ============================================================== */}
+                <div className="form-actions">
+                  <div className="row">
+                    <div className="col-md-12">
+                      <div className="btn-group" role="group">
+                        <a
+                          type="button"
+                          onClick={this.onSave}
+                          className="btn btn-primary"
+                          disabled={!this.state.formValid}
+                        >
+                          Save
+                        </a>
+                        <a
+                          type="button"
+                          onClick={this.props.onCancel}
+                          className="btn btn-default"
+                        >
+                          Cancel
+                        </a>
+                        <a
+                          type="button"
+                          onClick={() =>
+                            this.props.onDelete(this.state.formData)
+                          }
+                          className="btn btn-danger"
+                          disabled={!this.state.formData._id}
+                        >
+                          Delete
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
           </div>
-          <div
-            className={
-              !this.state.formData.expirationDate.valid &&
-              this.state.formData.expirationDate.touched
-                ? "form-group has-error"
-                : "form-group"
-            }
-          >
-            <label htmlFor="expirationDate">Expiration Date</label>
-            <input
-              type="text"
-              name="expirationDate"
-              id="expirationDate"
-              className="form-control"
-              value={this.state.formData.expirationDate.value}
-              onChange={this.onChange}
-            />
-          </div>
-          <div
-            className={
-              !this.state.formData.points.valid &&
-              this.state.formData.points.touched
-                ? "form-group has-error"
-                : "form-group"
-            }
-          >
-            <label htmlFor="points">Points:</label>
-            <input
-              type="number"
-              name="points"
-              id="points"
-              className="form-control"
-              value={this.state.formData.points.value}
-              onChange={this.onChange}
-            />
-          </div>
-          <div
-            className={
-              !this.state.formData.dogOwnerType.valid &&
-              this.state.formData.dogOwnerType.touched
-                ? "form-group has-error"
-                : "form-group"
-            }
-          >
-            <label htmlFor="dogOwnerType">Dog Owner Type:</label>
-            <input
-              type="text"
-              name="dogOwnerType"
-              id="dogOwnerType"
-              className="form-control"
-              value={this.state.formData.dogOwnerType.value}
-              onChange={this.onChange}
-            />
-          </div>
-          <div className="btn-group" role="group">
-            <button
-              type="button"
-              onClick={this.onSave}
-              className="btn btn-primary btn-sm"
-              disabled={!this.state.formValid}
-            >
-              Save
-            </button>
-            <button
-              type="button"
-              onClick={this.props.onCancel}
-              className="btn btn-default btn-sm"
-            >
-              Cancel
-            </button>
-            <button
-              type="button"
-              onClick={() => this.props.onDelete(this.state.formData)}
-              className="btn btn-danger btn-sm"
-            >
-              Delete
-            </button>
-          </div>
-        </form>
+        </div>
       </React.Fragment>
     );
   }
