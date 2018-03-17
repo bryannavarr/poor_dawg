@@ -1,6 +1,6 @@
 import React from "react";
 import * as challengeService from "../services/challenge.service";
-import ChallengeForm from "./challengeForm";
+import ChallengeForm from "./ChallengeForm";
 
 class Challenges extends React.Component {
   constructor(props) {

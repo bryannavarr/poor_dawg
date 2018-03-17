@@ -21,7 +21,6 @@ class ChallengeForm extends React.Component {
   componentWillReceiveProps(nextProps) {
     const formData = this.convertPropsToFormData(nextProps);
     this.setState({ formData: formData });
-    this.setState({ challenges: this.props.challenges });
   }
 
   convertPropsToFormData(props) {
@@ -328,6 +327,7 @@ class ChallengeForm extends React.Component {
                             this.props.onDelete(this.state.formData)
                           }
                           className="btn btn-danger"
+                          disabled={!this.state.formData._id}
                         >
                           Delete
                         </a>
