@@ -35,7 +35,6 @@ class DogsMenu extends React.Component {
                 className="form-control"
                onChange={this.props.onChange}
                name="dogId"
-               //value={this.state.dogs.dogId}
                value={this.props.value}
             >
                {dogs}

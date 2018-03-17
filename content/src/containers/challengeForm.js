@@ -63,7 +63,8 @@ class ChallengeForm extends React.Component {
         value: initializedChallenge.expirationDate,
         valid: true,
         validation: {
-          required: true
+          required: true,
+          date: true
         },
         touched: false
       },
