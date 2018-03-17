@@ -2,14 +2,17 @@ import React, { Component } from "react";
 
 import "./App.css";
 
+import { BrowserRouter } from "react-router-dom";
 import Layout from "./components/Layout";
-import { BrowserRouter, Route } from "react-router-dom";
 
+
+require("jquery");
+require("bootstrap");
 class App extends Component {
   render() {
     return (
       <BrowserRouter>
-          <Layout />
+        <Layout />
       </BrowserRouter>
     );
   }

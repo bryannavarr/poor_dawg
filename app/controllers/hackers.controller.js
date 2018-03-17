@@ -1,5 +1,5 @@
 const responses = require('../models/responses');
-const hackersService = require('../services/hackers.service')
+const hackersService = require('../services/hackers.service');
 const apiPrefix = '/api/hackers';
 
 module.exports = {
@@ -67,7 +67,7 @@ function update(req, res) {
 
 function _delete(req, res) {
     hackersService
-        .delete(req.params.id)
+    .delete(req.params.id)
         .then(() => {
             const responseModel = new responses.SuccessResponse()
             res.status(200).json(responseModel)

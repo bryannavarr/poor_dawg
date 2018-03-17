@@ -13,13 +13,13 @@ module.exports = {
 
 function readAll() {
     return conn.db().collection('hackers').find().toArray()
-        .then( hackers => {
+        .then(hackers => {
             for (let i = 0; i < hackers.length; i++) {
                 let hacker = hackers[i]
                 hacker._id = hacker._id.toString() // convert ObjectId back to string
             }
             return hackers
-        } )
+        })
 }
 
 function readById(id) {
@@ -39,7 +39,7 @@ function update(id, doc) {
     // convert string id used outside of MongoDB into ObjectId needed by MongoDB
     doc._id = new ObjectId(doc._id)
 
-    return conn.db().collection('hackers').replaceOne( { _id: new ObjectId(id) }, doc )
+    return conn.db().collection('hackers').replaceOne({ _id: new ObjectId(id) }, doc )
         .then(result => Promise.resolve()) // "return" nothing
 }
 

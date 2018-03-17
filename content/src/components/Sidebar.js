@@ -10,7 +10,7 @@ export default function Sidebar() {
           {" "}
           {/* User image size is adjusted inside CSS, it should stay as it */}
           <a
-            href="javascript:void(0);"
+            href="/"
             id="show-shortcut"
             data-action="toggleShortcut"
           >
@@ -40,9 +40,24 @@ export default function Sidebar() {
               <span className="menu-item-parent">Dashboard</span>
             </Link>
             <ul style={{ display: "block" }}>
+            <li className="active">
+                <Link to="/notifications">
+                  <span className="menu-item-parent">Notifications</span>
+                </Link>
+              </li>
               <li className="active">
                 <Link to="/hackers">
                   <span className="menu-item-parent">Hackers</span>
+                </Link>
+              </li>
+              <li className="active">
+                <Link to="/vets">
+                  <span className="menu-item-parent">Vets</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/interactions">
+                  <span className="menu-item-parent">Interactions</span>
                 </Link>
               </li>
               <li>
@@ -58,7 +73,7 @@ export default function Sidebar() {
             </ul>
           </li>
           <li className="top-menu-invisible">
-            <a href="#">
+            <a href="/">
               <i className="fa fa-lg fa-fw fa-cube txt-color-blue" />{" "}
               <span className="menu-item-parent">SmartAdmin Intel</span>
             </a>
@@ -92,7 +107,7 @@ export default function Sidebar() {
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="/">
               <i className="fa fa-lg fa-fw fa-bar-chart-o" />{" "}
               <span className="menu-item-parent">Graphs</span>
             </a>
@@ -126,7 +141,7 @@ export default function Sidebar() {
             </ul>
           </li>
           <li>
-            <a href="#">
+            <a href="/">
               <i className="fa fa-lg fa-fw fa-table" />{" "}
               <span className="menu-item-parent">Tables</span>
             </a>
@@ -148,7 +163,7 @@ export default function Sidebar() {
             </ul>
           </li>
           <li>
-            <a href="#">
+            <a href="/">
               <i className="fa fa-lg fa-fw fa-pencil-square-o" />{" "}
               <span className="menu-item-parent">Forms</span>
             </a>
@@ -189,7 +204,7 @@ export default function Sidebar() {
             </ul>
           </li>
           <li>
-            <a href="#">
+            <a href="/">
               <i className="fa fa-lg fa-fw fa-desktop" />{" "}
               <span className="menu-item-parent">UI Elements</span>
             </a>
@@ -201,7 +216,7 @@ export default function Sidebar() {
                 <a href="buttons.html">Buttons</a>
               </li>
               <li>
-                <a href="#">Icons</a>
+                <a href="/">Icons</a>
                 <ul>
                   <li>
                     <a href="fa.html">
@@ -236,31 +251,31 @@ export default function Sidebar() {
                 <a href="typography.html">Typography</a>
               </li>
               <li>
-                <a href="#">Six Level Menu</a>
+                <a href="/">Six Level Menu</a>
                 <ul>
                   <li>
-                    <a href="#">
+                    <a href="/">
                       <i className="fa fa-fw fa-folder-open" /> Item #2
                     </a>
                     <ul>
                       <li>
-                        <a href="#">
+                        <a href="/">
                           <i className="fa fa-fw fa-folder-open" /> Sub #2.1{" "}
                         </a>
                         <ul>
                           <li>
-                            <a href="#">
+                            <a href="/">
                               <i className="fa fa-fw fa-file-text" /> Item
                               #2.1.1
                             </a>
                           </li>
                           <li>
-                            <a href="#">
+                            <a href="/">
                               <i className="fa fa-fw fa-plus" /> Expand
                             </a>
                             <ul>
                               <li>
-                                <a href="#">
+                                <a href="/">
                                   <i className="fa fa-fw fa-file-text" /> File
                                 </a>
                               </li>
@@ -271,23 +286,23 @@ export default function Sidebar() {
                     </ul>
                   </li>
                   <li>
-                    <a href="#">
+                    <a href="/">
                       <i className="fa fa-fw fa-folder-open" /> Item #3
                     </a>
 
                     <ul>
                       <li>
-                        <a href="#">
+                        <a href="/">
                           <i className="fa fa-fw fa-folder-open" /> 3ed Level{" "}
                         </a>
                         <ul>
                           <li>
-                            <a href="#">
+                            <a href="/">
                               <i className="fa fa-fw fa-file-text" /> File
                             </a>
                           </li>
                           <li>
-                            <a href="#">
+                            <a href="/">
                               <i className="fa fa-fw fa-file-text" /> File
                             </a>
                           </li>
@@ -296,7 +311,7 @@ export default function Sidebar() {
                     </ul>
                   </li>
                   <li>
-                    <a href="#" className="inactive">
+                    <a href="/" className="inactive">
                       <i className="fa fa-fw fa-folder-open" /> Item #4
                       (disabled)
                     </a>
@@ -312,7 +327,7 @@ export default function Sidebar() {
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="/">
               <i className="fa fa-lg fa-fw fa-cloud">
                 <em>3</em>
               </i>{" "}
@@ -337,7 +352,7 @@ export default function Sidebar() {
             </ul>
           </li>
           <li>
-            <a href="#">
+            <a href="/">
               <i className="fa fa-lg fa-fw fa-puzzle-piece" />{" "}
               <span className="menu-item-parent">App Views</span>
             </a>
@@ -358,7 +373,7 @@ export default function Sidebar() {
                 </a>
               </li>
               <li>
-                <a href="#">
+                <a href="/">
                   <i className="fa fa-comments" /> Forum Layout
                 </a>
                 <ul>
@@ -391,7 +406,7 @@ export default function Sidebar() {
             </ul>
           </li>
           <li>
-            <a href="#">
+            <a href="/">
               <i className="fa fa-lg fa-fw fa-shopping-cart" />{" "}
               <span className="menu-item-parent">E-Commerce</span>
             </a>
@@ -408,7 +423,7 @@ export default function Sidebar() {
             </ul>
           </li>
           <li>
-            <a href="#">
+            <a href="/">
               <i className="fa fa-lg fa-fw fa-windows" />{" "}
               <span className="menu-item-parent">Miscellaneous</span>
             </a>
@@ -456,7 +471,7 @@ export default function Sidebar() {
             </ul>
           </li>
           <li className="chat-users top-menu-invisible">
-            <a href="#">
+            <a href="/">
               <i className="fa fa-lg fa-fw fa-comment-o">
                 <em className="bg-color-pink flash animated">!</em>
               </i>{" "}
@@ -475,7 +490,7 @@ export default function Sidebar() {
                   />
 
                   <a
-                    href="#"
+                    href="/"
                     className="usr"
                     data-chat-id="cha1"
                     data-chat-fname="Sadi"
@@ -500,7 +515,7 @@ export default function Sidebar() {
                   </a>
 
                   <a
-                    href="#"
+                    href="/"
                     className="usr"
                     data-chat-id="cha2"
                     data-chat-fname="Jessica"
@@ -525,7 +540,7 @@ export default function Sidebar() {
                   </a>
 
                   <a
-                    href="#"
+                    href="/"
                     className="usr"
                     data-chat-id="cha3"
                     data-chat-fname="Zekarburg"
@@ -548,7 +563,7 @@ export default function Sidebar() {
                   </a>
 
                   <a
-                    href="#"
+                    href="/"
                     className="usr"
                     data-chat-id="cha4"
                     data-chat-fname="Barley"
@@ -571,7 +586,7 @@ export default function Sidebar() {
                   </a>
 
                   <a
-                    href="#"
+                    href="/"
                     className="usr offline"
                     data-chat-id="cha5"
                     data-chat-fname="Farhana"
@@ -594,7 +609,7 @@ export default function Sidebar() {
                   </a>
 
                   <a
-                    href="#"
+                    href="/"
                     className="usr offline"
                     data-chat-id="cha6"
                     data-chat-fname="Lezley"

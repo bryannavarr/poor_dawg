@@ -2,6 +2,7 @@ import React from "react";
 import * as validationHelper from "../helpers/validation.helper";
 import * as interactionService from "../services/interaction.service";
 import DogOwnersDropdown from "./DogOwnersDropdown";
+import DogsMenu from  './DogsMenu'
 
 class InteractionForm extends React.Component {
   constructor(props) {
@@ -19,11 +20,6 @@ class InteractionForm extends React.Component {
     this.onSave = this.onSave.bind(this);
   }
 
-  componentDidMount() {
-    interactionService.readAll().then(data => {
-      this.setState({ interactions: data.data.items });
-    });
-  }
 
   componentWillReceiveProps(nextProps) {
     const formData = this.convertPropsToFormData(nextProps);
@@ -112,12 +108,11 @@ class InteractionForm extends React.Component {
       points: this.state.formData.points.value,
       challengeId: this.state.formData.challengeId.value,
       dogOwnerId: this.state.formData.dogOwnerId.value,
-      dogId: this.state.formData.dogOwnerId.value
+      dogId: this.state.formData.dogId.value
     };
 
     if (this.state.formData._id.value.length > 0) {
       item._id = this.state.formData._id.value;
-      // add update date here
       interactionService
         .update(item)
         .then(data => {
@@ -143,7 +138,7 @@ class InteractionForm extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <form>
+        <form data-bv-feedbackicons-invalid="glyphicon glyphicon-remove">
           <div className="form-group">
             <label> Interaction ID</label>
             <input
@@ -156,78 +151,89 @@ class InteractionForm extends React.Component {
               onChange={this.onChange}
             />
           </div>
+          <label> Challenge ID</label>
           <div
             className={
               !this.state.formData.challengeId.valid &&
               this.state.formData.challengeId.touched
-                ? "form-group has-error"
-                : "form-group"
+                ? "form-group has-error has-feedback inputGroupContainer"
+                : "form-group  inputGroupContainer"
             }
           >
-            <label> Challenge ID</label>
             <input
               type="text"
               name="challengeId"
               id="challengeId"
-              className="form-control"
+              className="form-control "
               value={this.state.formData.challengeId.value}
               onChange={this.onChange}
             />
             {!this.state.formData.challengeId.valid &&
             this.state.formData.challengeId.touched ? (
-              <p className="has-error">Please enter a valid object ID</p>
+              <i className=" form-control-feedback bv-icon-input-group glyphicon glyphicon-remove" />
+            ) : null}
+            {!this.state.formData.challengeId.valid &&
+            this.state.formData.challengeId.touched ? (
+              <small className="has-error help-block">
+                Please enter a valid object ID
+              </small>
             ) : null}
           </div>
+          <label> Dog Owner</label>
           <div
             className={
               !this.state.formData.dogOwnerId.valid &&
               this.state.formData.dogOwnerId.touched
-                ? "form-group has-error"
-                : "form-group"
+                ? "form-group has-error has-feedback inputGroupContainer"
+                : "form-group inputGroupContainer"
             }
           >
-            <label> Dog Owner</label>
-
             <DogOwnersDropdown
               value={this.state.formData.dogOwnerId.value}
               onSelect={this.onChange}
             />
             {!this.state.formData.dogOwnerId.valid &&
             this.state.formData.dogOwnerId.touched ? (
-              <p className="has-error">Please select a dog owner</p>
+              <i className=" form-control-feedback bv-icon-input-group glyphicon glyphicon-remove" />
+            ) : null}
+            {!this.state.formData.dogOwnerId.valid &&
+            this.state.formData.dogOwnerId.touched ? (
+              <small className="has-error">Please select a dog owner</small>
             ) : null}
           </div>
+          <label> Dog ID</label>
           <div
             className={
               !this.state.formData.dogId.valid &&
               this.state.formData.dogId.touched
-                ? "form-group has-error"
-                : "form-group"
+                ? "form-group has-error has-feedback inputGroupContainer"
+                : "form-group inputGroupContainer"
             }
           >
-            <label> Dog ID</label>
-            <input
-              type="text"
-              name="dogId"
-              id="dogId"
-              className="form-control"
+            <DogsMenu
               value={this.state.formData.dogId.value}
               onChange={this.onChange}
             />
             {!this.state.formData.dogId.valid &&
             this.state.formData.dogId.touched ? (
-              <p className="has-error">Please enter a valid object ID</p>
+              <i className=" form-control-feedback bv-icon-input-group glyphicon glyphicon-remove" />
+            ) : null}
+            {!this.state.formData.dogId.valid &&
+            this.state.formData.dogId.touched ? (
+              <small className="has-error">
+                Please enter a valid object ID
+              </small>
             ) : null}
           </div>
+          <label> Points</label>
           <div
             className={
               !this.state.formData.points.valid &&
               this.state.formData.points.touched
-                ? "form-group has-error"
-                : "form-group"
+                ? "form-group has-error has-feedback inputGroupContainer"
+                : "form-group inputGroupContainer"
             }
           >
-            <label> Points</label>
             <input
               type="number"
               name="points"
@@ -238,34 +244,41 @@ class InteractionForm extends React.Component {
             />
             {!this.state.formData.points.valid &&
             this.state.formData.points.touched ? (
-              <p className="has-error">
+              <i className=" form-control-feedback bv-icon-input-group glyphicon glyphicon-remove" />
+            ) : null}
+            {!this.state.formData.points.valid &&
+            this.state.formData.points.touched ? (
+              <small className="has-error">
                 Please enter a points value under 100{" "}
-              </p>
+              </small>
             ) : null}
           </div>
-
-          <button
-            type="button"
-            onClick={this.onSave}
-            className="btn btn-primary btn-sm"
-            disabled={!this.state.formValid}
-          >
-            Save
-          </button>
-          <button
-            type="button"
-            onClick={this.props.onCancel}
-            className="btn btn-default btn-sm"
-          >
-            Cancel
-          </button>
-          <button
-            type="button"
-            onClick={() => this.props.onDelete(this.state.formData)}
-            className="btn btn-danger btn-sm"
-          >
-            Delete
-          </button>
+          <div className="form-actions btn-toolbar">
+            <div className="pull-right">
+              <button
+                type="button"
+                onClick={this.onSave}
+                className="btn btn-primary"
+                disabled={!this.state.formValid}
+              >
+                Save
+              </button>
+              <button
+                type="button"
+                onClick={this.props.onCancel}
+                className="btn btn-default"
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                onClick={() => this.props.onDelete(this.state.formData)}
+                className="btn btn-danger"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
         </form>
       </React.Fragment>
     );

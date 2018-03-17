@@ -1,6 +1,11 @@
 import React from "react";
 import InteractionForm from "./InteractionForm";
 import * as interactionService from "../services/interaction.service";
+import jquery from "jquery";
+import WizardGrid from "./widgets/WidgetGrid";
+import JarvisWidget from "./widgets/JarvisWidget";
+window.$ = window.jQuery = jquery;
+require("smartadmin-plugins/smartwidgets/jarvis.widget.ng2.js");
 
 class Interactions extends React.Component {
   constructor(props) {
@@ -17,7 +22,6 @@ class Interactions extends React.Component {
     interactionService
       .readAll()
       .then(data => {
-        //console.log(data)
         this.setState({ interactions: data.data.items });
       })
       .catch(err => console.log(err));
@@ -35,8 +39,6 @@ class Interactions extends React.Component {
   }
 
   onDelete() {
-    debugger;
-    // let id = formData._id.value
     const formData = this.state.formData;
     interactionService
       .deleteById(formData._id)
@@ -76,29 +78,93 @@ class Interactions extends React.Component {
   render() {
     const interactions = this.state.interactions ? (
       this.state.interactions.map(interaction => (
-        <li
+        <tr
           key={interaction._id}
           onClick={this.onSelect.bind(this, interaction)}
-        >{`ID: ${interaction._id}`}</li>
+        >
+          <td> {interaction._id}</td>
+          <td> {interaction.points}</td>
+          <td> {interaction.dogOwnerId}</td>
+        </tr>
       ))
-    ) : (
-      <h2> NONE</h2>
-    );
+    ) : null;
 
     return (
-      <div>
-        <h1> Interactions</h1>
-        {interactions}
-
-        <div>
-          <InteractionForm
-            formData={this.state.formData}
-            onSave={this.onSave}
-            onDelete={this.onDelete}
-            onCancel={this.onCancel}
-          />
+      <React.Fragment>
+        <div id="ribbon">
+          <span className="ribbon-button-alignment">
+            <span
+              id="refresh"
+              className="btn btn-ribbon"
+              data-action="resetWidgets"
+              data-title="refresh"
+              rel="tooltip"
+              data-placement="bottom"
+              data-original-title="<i className='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings."
+              data-html="true"
+            >
+              <i className="fa fa-refresh" />
+            </span>
+          </span>
+          <ol className="breadcrumb">
+            <li>Home</li>
+            <li>Interactions</li>
+          </ol>
         </div>
-      </div>
+        <div id="content">
+          <div className="row">
+            <div className="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+              <h1 className="page-title txt-color-blueDark">
+                <i className="fa fa-paw fa-fw " />
+                Interactions
+                <span> > Add or Update Interactions</span>
+              </h1>
+            </div>
+          </div>
+
+          <WizardGrid>
+            <div className="row">
+              <div className="col-sm-6">
+                <JarvisWidget title="Current Interactions">
+                  <div className="table-responsive">
+                    <table className="table table-bordered table-striped">
+                      <thead>
+                        <tr>
+                        <td>
+                          <strong> Interaction ID</strong>
+                        </td>
+                        <td>
+                          <strong>Points</strong>
+                        </td>
+                        <td>
+                          <strong> Dog Owner Id</strong>
+                        </td>
+                        </tr>            
+                      </thead>
+                      <tbody>
+                        {interactions}
+                      </tbody>
+                    </table>
+                  </div>
+                </JarvisWidget>
+              </div>
+              <div className="col-sm-6">
+                <JarvisWidget
+                  title="Interactions Form"
+                  legend="Please fill me out"
+                >
+                  <InteractionForm
+                    formData={this.state.formData}
+                    onSave={this.onSave}
+                    onDelete={this.onDelete}
+                    onCancel={this.onCancel}
+                  />
+                </JarvisWidget>
+              </div>
+            </div>
+          </WizardGrid>
+        </div>
+      </React.Fragment>
     );
   }
 }

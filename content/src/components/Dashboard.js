@@ -253,7 +253,7 @@ export default function Dashboard() {
                                 <span className="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                   {" "}
                                   <a
-                                    href="javascript:void(0);"
+                                    href="/"
                                     className="btn btn-default btn-block hidden-xs"
                                   >
                                     Generate PDF
@@ -262,7 +262,7 @@ export default function Dashboard() {
                                 <span className="col-xs-12 col-sm-6 col-md-6 col-lg-6">
                                   {" "}
                                   <a
-                                    href="javascript:void(0);"
+                                    href="/"
                                     className="btn btn-default btn-block hidden-xs"
                                   >
                                     Report a bug
@@ -428,7 +428,7 @@ export default function Dashboard() {
 
                       <div className="tab-pane fade" id="s2">
                         <div className="widget-body-toolbar bg-color-white">
-                          <form className="form-inline" role="form">
+                          <form className="form-inline">
                             <div className="form-group">
                               <label className="sr-only" for="s123">
                                 Show From
@@ -459,13 +459,13 @@ export default function Dashboard() {
                               </a>
                               <ul className="dropdown-menu pull-right">
                                 <li>
-                                  <a href="javascript:void(0);">
+                                  <a href="/">
                                     <i className="fa fa-file-text-alt" /> Export
                                     to PDF
                                   </a>
                                 </li>
                                 <li>
-                                  <a href="javascript:void(0);">
+                                  <a href="/">
                                     <i className="fa fa-question-sign" /> Help
                                   </a>
                                 </li>
@@ -527,13 +527,13 @@ export default function Dashboard() {
                             </a>
                             <ul className="dropdown-menu pull-right">
                               <li>
-                                <a href="javascript:void(0);">
+                                <a href="/">
                                   <i className="fa fa-file-text-alt" /> Export
                                   to PDF
                                 </a>
                               </li>
                               <li>
-                                <a href="javascript:void(0);">
+                                <a href="/">
                                   <i className="fa fa-question-sign" /> Help
                                 </a>
                               </li>
@@ -605,24 +605,24 @@ export default function Dashboard() {
                       </button>
                       <ul className="dropdown-menu pull-right js-status-update">
                         <li>
-                          <a href="javascript:void(0);">
+                          <a href="/">
                             <i className="fa fa-circle txt-color-green" />{" "}
                             Online
                           </a>
                         </li>
                         <li>
-                          <a href="javascript:void(0);">
+                          <a href="/">
                             <i className="fa fa-circle txt-color-red" /> Busy
                           </a>
                         </li>
                         <li>
-                          <a href="javascript:void(0);">
+                          <a href="/">
                             <i className="fa fa-circle txt-color-orange" /> Away
                           </a>
                         </li>
                         <li className="divider" />
                         <li>
-                          <a href="javascript:void(0);">
+                          <a href="/">
                             <i className="fa fa-power-off" /> Log Off
                           </a>
                         </li>
@@ -655,7 +655,7 @@ export default function Dashboard() {
                       <div className="chat-list-body custom-scroll">
                         <ul id="chat-users">
                           <li>
-                            <a href="javascript:void(0);">
+                            <a href="/">
                               <img src="img/avatars/5.png" alt="" />Robin Berry{" "}
                               <span className="badge badge-inverse">23</span>
                               <span className="state">
@@ -664,7 +664,7 @@ export default function Dashboard() {
                             </a>
                           </li>
                           <li>
-                            <a href="javascript:void(0);">
+                            <a href="/">
                               <img src="img/avatars/male.png" alt="" />Mark
                               Zeukartech{" "}
                               <span className="state">
@@ -673,7 +673,7 @@ export default function Dashboard() {
                             </a>
                           </li>
                           <li>
-                            <a href="javascript:void(0);">
+                            <a href="/">
                               <img src="img/avatars/male.png" alt="" />Belmain
                               Dolson{" "}
                               <span className="state">
@@ -682,7 +682,7 @@ export default function Dashboard() {
                             </a>
                           </li>
                           <li>
-                            <a href="javascript:void(0);">
+                            <a href="/">
                               <img src="img/avatars/male.png" alt="" />Galvitch
                               Drewbery{" "}
                               <span className="state">
@@ -691,7 +691,7 @@ export default function Dashboard() {
                             </a>
                           </li>
                           <li>
-                            <a href="javascript:void(0);">
+                            <a href="/">
                               <img src="img/avatars/male.png" alt="" />Sadi
                               Orlaf{" "}
                               <span className="state">
@@ -700,7 +700,7 @@ export default function Dashboard() {
                             </a>
                           </li>
                           <li>
-                            <a href="javascript:void(0);">
+                            <a href="/">
                               <img src="img/avatars/male.png" alt="" />Markus{" "}
                               <span className="state">
                                 <i className="last-online pull-right">2m</i>
@@ -708,7 +708,7 @@ export default function Dashboard() {
                             </a>
                           </li>
                           <li>
-                            <a href="javascript:void(0);">
+                            <a href="/">
                               <img src="img/avatars/sunny.png" alt="" />Sunny{" "}
                               <span className="state">
                                 <i className="last-online pull-right">2m</i>
@@ -716,7 +716,7 @@ export default function Dashboard() {
                             </a>
                           </li>
                           <li>
-                            <a href="javascript:void(0);">
+                            <a href="/">
                               <img src="img/avatars/male.png" alt="" />Denmark{" "}
                               <span className="state">
                                 <i className="last-online pull-right">2m</i>
@@ -753,7 +753,7 @@ export default function Dashboard() {
                           />
                           <div className="message-text">
                             <time>2014-01-13</time>{" "}
-                            <a href="javascript:void(0);" className="username">
+                            <a href="/" className="username">
                               Sadi Orlaf
                             </a>{" "}
                             Hey did you meet the new board of director? He's a
@@ -770,13 +770,13 @@ export default function Dashboard() {
                               <span className="col-sm-6 pull-right">
                                 {" "}
                                 <a
-                                  href="javascript:void(0);"
+                                  href="/"
                                   className="btn btn-xs btn-default"
                                 >
                                   cancel
                                 </a>{" "}
                                 <a
-                                  href="javascript:void(0);"
+                                  href="/"
                                   className="btn btn-xs btn-success"
                                 >
                                   save
@@ -792,7 +792,7 @@ export default function Dashboard() {
                               <span className="col-sm-6 pull-right">
                                 {" "}
                                 <a
-                                  href="javascript:void(0);"
+                                  href="/"
                                   className="btn btn-xs btn-primary"
                                 >
                                   open
@@ -809,7 +809,7 @@ export default function Dashboard() {
                           />
                           <div className="message-text">
                             <time>2014-01-13</time>{" "}
-                            <a href="javascript:void(0);" className="username">
+                            <a href="/" className="username">
                               John Doe
                             </a>{" "}
                             Haha! Yeah I know what you mean. Thanks for the file
@@ -855,7 +855,7 @@ export default function Dashboard() {
                             <i />Press <strong> ENTER </strong> to send{" "}
                           </label>{" "}
                         </span>{" "}
-                        <a href="javascript:void(0);" className="pull-left">
+                        <a href="/" className="pull-left">
                           <i className="fa fa-camera fa-fw fa-lg" />
                         </a>{" "}
                       </span>
@@ -904,17 +904,17 @@ export default function Dashboard() {
                       </button>
                       <ul className="dropdown-menu js-status-update pull-right">
                         <li>
-                          <a href="javascript:void(0);" id="mt">
+                          <a href="/" id="mt">
                             Month
                           </a>
                         </li>
                         <li>
-                          <a href="javascript:void(0);" id="ag">
+                          <a href="/" id="ag">
                             Agenda
                           </a>
                         </li>
                         <li>
-                          <a href="javascript:void(0);" id="td">
+                          <a href="/" id="td">
                             Today
                           </a>
                         </li>
@@ -937,14 +937,14 @@ export default function Dashboard() {
                       <div id="calendar-buttons">
                         <div className="btn-group">
                           <a
-                            href="javascript:void(0)"
+                            href="/"
                             className="btn btn-default btn-xs"
                             id="btn-prev"
                           >
                             <i className="fa fa-chevron-left" />
                           </a>
                           <a
-                            href="javascript:void(0)"
+                            href="/"
                             className="btn btn-default btn-xs"
                             id="btn-next"
                           >
@@ -1052,7 +1052,7 @@ export default function Dashboard() {
                       <tbody>
                         <tr>
                           <td>
-                            <a href="javascript:void(0);">USA</a>
+                            <a href="/">USA</a>
                           </td>
                           <td>4,977</td>
                           <td className="text-align-center">
@@ -1086,20 +1086,20 @@ export default function Dashboard() {
                               </button>
                               <ul className="dropdown-menu dropdown-menu-xs pull-right">
                                 <li>
-                                  <a href="javascript:void(0);">
+                                  <a href="/">
                                     <i className="fa fa-file fa-lg fa-fw txt-color-greenLight" />{" "}
                                     <u>P</u>DF
                                   </a>
                                 </li>
                                 <li>
-                                  <a href="javascript:void(0);">
+                                  <a href="/">
                                     <i className="fa fa-times fa-lg fa-fw txt-color-red" />{" "}
                                     <u>D</u>elete
                                   </a>
                                 </li>
                                 <li className="divider" />
                                 <li className="text-align-center">
-                                  <a href="javascript:void(0);">Cancel</a>
+                                  <a href="/">Cancel</a>
                                 </li>
                               </ul>
                             </div>
@@ -1107,7 +1107,7 @@ export default function Dashboard() {
                         </tr>
                         <tr>
                           <td>
-                            <a href="javascript:void(0);">Australia</a>
+                            <a href="/">Australia</a>
                           </td>
                           <td>4,873</td>
                           <td className="text-align-center">
@@ -1141,20 +1141,20 @@ export default function Dashboard() {
                               </button>
                               <ul className="dropdown-menu dropdown-menu-xs pull-right">
                                 <li>
-                                  <a href="javascript:void(0);">
+                                  <a href="/">
                                     <i className="fa fa-file fa-lg fa-fw txt-color-greenLight" />{" "}
                                     <u>P</u>DF
                                   </a>
                                 </li>
                                 <li>
-                                  <a href="javascript:void(0);">
+                                  <a href="/">
                                     <i className="fa fa-times fa-lg fa-fw txt-color-red" />{" "}
                                     <u>D</u>elete
                                   </a>
                                 </li>
                                 <li className="divider" />
                                 <li className="text-align-center">
-                                  <a href="javascript:void(0);">Cancel</a>
+                                  <a href="/">Cancel</a>
                                 </li>
                               </ul>
                             </div>
@@ -1162,7 +1162,7 @@ export default function Dashboard() {
                         </tr>
                         <tr>
                           <td>
-                            <a href="javascript:void(0);">India</a>
+                            <a href="/">India</a>
                           </td>
                           <td>3,671</td>
                           <td className="text-align-center">
@@ -1196,20 +1196,20 @@ export default function Dashboard() {
                               </button>
                               <ul className="dropdown-menu dropdown-menu-xs pull-right">
                                 <li>
-                                  <a href="javascript:void(0);">
+                                  <a href="/">
                                     <i className="fa fa-file fa-lg fa-fw txt-color-greenLight" />{" "}
                                     <u>P</u>DF
                                   </a>
                                 </li>
                                 <li>
-                                  <a href="javascript:void(0);">
+                                  <a href="/">
                                     <i className="fa fa-times fa-lg fa-fw txt-color-red" />{" "}
                                     <u>D</u>elete
                                   </a>
                                 </li>
                                 <li className="divider" />
                                 <li className="text-align-center">
-                                  <a href="javascript:void(0);">Cancel</a>
+                                  <a href="/">Cancel</a>
                                 </li>
                               </ul>
                             </div>
@@ -1217,7 +1217,7 @@ export default function Dashboard() {
                         </tr>
                         <tr>
                           <td>
-                            <a href="javascript:void(0);">Brazil</a>
+                            <a href="/">Brazil</a>
                           </td>
                           <td>2,476</td>
                           <td className="text-align-center">
@@ -1251,20 +1251,20 @@ export default function Dashboard() {
                               </button>
                               <ul className="dropdown-menu dropdown-menu-xs pull-right">
                                 <li>
-                                  <a href="javascript:void(0);">
+                                  <a href="/">
                                     <i className="fa fa-file fa-lg fa-fw txt-color-greenLight" />{" "}
                                     <u>P</u>DF
                                   </a>
                                 </li>
                                 <li>
-                                  <a href="javascript:void(0);">
+                                  <a href="/">
                                     <i className="fa fa-times fa-lg fa-fw txt-color-red" />{" "}
                                     <u>D</u>elete
                                   </a>
                                 </li>
                                 <li className="divider" />
                                 <li className="text-align-center">
-                                  <a href="javascript:void(0);">Cancel</a>
+                                  <a href="/">Cancel</a>
                                 </li>
                               </ul>
                             </div>
@@ -1272,7 +1272,7 @@ export default function Dashboard() {
                         </tr>
                         <tr>
                           <td>
-                            <a href="javascript:void(0);">Turkey</a>
+                            <a href="/">Turkey</a>
                           </td>
                           <td>1,476</td>
                           <td className="text-align-center">
@@ -1306,20 +1306,20 @@ export default function Dashboard() {
                               </button>
                               <ul className="dropdown-menu dropdown-menu-xs pull-right">
                                 <li>
-                                  <a href="javascript:void(0);">
+                                  <a href="/">
                                     <i className="fa fa-file fa-lg fa-fw txt-color-greenLight" />{" "}
                                     <u>P</u>DF
                                   </a>
                                 </li>
                                 <li>
-                                  <a href="javascript:void(0);">
+                                  <a href="/">
                                     <i className="fa fa-times fa-lg fa-fw txt-color-red" />{" "}
                                     <u>D</u>elete
                                   </a>
                                 </li>
                                 <li className="divider" />
                                 <li className="text-align-center">
-                                  <a href="javascript:void(0);">Cancel</a>
+                                  <a href="/">Cancel</a>
                                 </li>
                               </ul>
                             </div>
@@ -1327,7 +1327,7 @@ export default function Dashboard() {
                         </tr>
                         <tr>
                           <td>
-                            <a href="javascript:void(0);">Canada</a>
+                            <a href="/">Canada</a>
                           </td>
                           <td>146</td>
                           <td className="text-align-center">
@@ -1360,20 +1360,20 @@ export default function Dashboard() {
                               </button>
                               <ul className="dropdown-menu dropdown-menu-xs pull-right">
                                 <li>
-                                  <a href="javascript:void(0);">
+                                  <a href="/">
                                     <i className="fa fa-file fa-lg fa-fw txt-color-greenLight" />{" "}
                                     <u>P</u>DF
                                   </a>
                                 </li>
                                 <li>
-                                  <a href="javascript:void(0);">
+                                  <a href="/">
                                     <i className="fa fa-times fa-lg fa-fw txt-color-red" />{" "}
                                     <u>D</u>elete
                                   </a>
                                 </li>
                                 <li className="divider" />
                                 <li className="text-align-center">
-                                  <a href="javascript:void(0);">Cancel</a>
+                                  <a href="/">Cancel</a>
                                 </li>
                               </ul>
                             </div>
@@ -1385,19 +1385,19 @@ export default function Dashboard() {
                           <td colspan="5">
                             <ul className="pagination pagination-xs no-margin">
                               <li className="prev disabled">
-                                <a href="javascript:void(0);">Previous</a>
+                                <a href="/">Previous</a>
                               </li>
                               <li className="active">
-                                <a href="javascript:void(0);">1</a>
+                                <a href="/">1</a>
                               </li>
                               <li>
-                                <a href="javascript:void(0);">2</a>
+                                <a href="/">2</a>
                               </li>
                               <li>
-                                <a href="javascript:void(0);">3</a>
+                                <a href="/">3</a>
                               </li>
                               <li className="next">
-                                <a href="javascript:void(0);">Next</a>
+                                <a href="/">Next</a>
                               </li>
                             </ul>
                           </td>
@@ -1475,7 +1475,7 @@ export default function Dashboard() {
                         <p>
                           <strong>Ticket #17643</strong> - Hotfix for WebApp
                           interface issue [<a
-                            href="javascript:void(0);"
+                            href="/"
                             className="font-xs"
                           >
                             More Details
@@ -1505,7 +1505,7 @@ export default function Dashboard() {
                         <p>
                           <strong>Ticket #1347</strong> - Inbox email is being
                           sent twice <small>(bug fix)</small> [<a
-                            href="javascript:void(0);"
+                            href="/"
                             className="font-xs"
                           >
                             More Details
@@ -1523,7 +1523,7 @@ export default function Dashboard() {
                         <p>
                           <strong>Ticket #1314</strong> - Call customer support
                           re: Issue{" "}
-                          <a href="javascript:void(0);" className="font-xs">
+                          <a href="/" className="font-xs">
                             #6134
                           </a>
                           <small>(code review)</small>
@@ -1541,7 +1541,7 @@ export default function Dashboard() {
                         <p>
                           <strong>Ticket #17643</strong> - Hotfix for WebApp
                           interface issue [<a
-                            href="javascript:void(0);"
+                            href="/"
                             className="font-xs"
                           >
                             More Details
@@ -1577,7 +1577,7 @@ export default function Dashboard() {
                         <p>
                           <strong>Ticket #17643</strong> - Hotfix for WebApp
                           interface issue [<a
-                            href="javascript:void(0);"
+                            href="/"
                             className="font-xs"
                           >
                             More Details

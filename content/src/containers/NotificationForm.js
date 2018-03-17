@@ -2,6 +2,7 @@ import React from "react";
 import * as validationHelper from "../helpers/validation.helper";
 import * as notificationService from "../services/notification.service";
 import DogOwnersDropdown from './DogOwnersDropdown'
+import DogsMenu from './DogsMenu'
 
 class NotificationsForm extends React.Component {
   constructor(props) {
@@ -63,21 +64,27 @@ class NotificationsForm extends React.Component {
         originalValue: initializedNotification.dogOwnerId,
         value: initializedNotification.dogOwnerId,
         valid: true,
-        validation: {},
+        validation: {
+            required: true
+        },
         touched: false
       },
       dogId: {
         originalValue: initializedNotification.dogId,
         value: initializedNotification.dogId,
         valid: true,
-        validation: {},
+        validation: {
+            required: true
+        },
         touched: false
       },
       message: {
         originalValue: initializedNotification.message,
         value: initializedNotification.message,
         valid: true,
-        validation: {},
+        validation: {
+            required: true
+        },
         touched: false
       }
     };
@@ -146,8 +153,11 @@ class NotificationsForm extends React.Component {
             className={
               !this.state.formData.type.valid &&
               this.state.formData.type.touched
-                ? "form-group has-error"
-                : "form-group"
+                ? "form-group has-feedback has-error"
+                : this.state.formData.type.valid &&
+                this.state.formData.type.touched ?
+                "form-group has-feedback has-success"
+                : "form-group has-feedback"
             }
           >
             <label htmlFor="type">Type:</label>
@@ -159,6 +169,16 @@ class NotificationsForm extends React.Component {
               value={this.state.formData.type.value}
               onChange={this.onChange}
             />
+            <i className={
+                !this.state.formData.type.valid &&
+                this.state.formData.type.touched
+                  ? "form-control-feedback glyphicon glyphicon-remove"
+                  : this.state.formData.type.valid &&
+                    this.state.formData.type.touched
+                  ? "form-control-feedback glyphicon glyphicon-ok"
+                  : "form-control-feedback"
+            }
+            />
             {!this.state.formData.type.valid &&
             this.state.formData.type.touched ? (
               <p className="text-danger">A type is required.</p>
@@ -169,8 +189,11 @@ class NotificationsForm extends React.Component {
             className={
               !this.state.formData.message.valid &&
               this.state.formData.message.touched
-                ? "form-group has-error"
-                : "form-group"
+                ? "form-group has-feedback has-error"
+                : this.state.formData.message.valid &&
+                  this.state.formData.message.touched
+                ? "form-group has-feedback has-success"
+                : "form-group has-feedback"
             }
           >
             <label htmlFor="message">Message:</label>
@@ -181,6 +204,16 @@ class NotificationsForm extends React.Component {
               className="form-control"
               value={this.state.formData.message.value}
               onChange={this.onChange}
+            />
+            <i className={
+                !this.state.formData.message.valid &&
+                this.state.formData.message.touched
+                  ? "form-control-feedback glyphicon glyphicon-remove"
+                  : this.state.formData.message.valid &&
+                  this.state.formData.message.touched
+                  ? "form-control-feedback glyphicon glyphicon-ok"
+                  : "form-control-feedback"
+            }
             />
             {!this.state.formData.message.valid &&
             this.state.formData.message.touched ? (
@@ -201,24 +234,60 @@ class NotificationsForm extends React.Component {
             />
           </div>
 
-          <div className="form-group">
+          <div className=
+          {
+              !this.state.formData.dogOwnerId.valid &&
+              this.state.formData.dogOwnerId.touched
+                ? "form-group has-feedback has-error"
+                : this.state.formData.dogOwnerId.valid &&
+                  this.state.formData.dogOwnerId.touched
+                ? "form-group has-feedback has-success"
+                : "form-group has-feedback"
+            }>
             <label htmlFor="dogOwnerId">Dog Owner Id:</label>
             <DogOwnersDropdown
               value={this.state.formData.dogOwnerId.value}
               onSelect={this.onChange}
             />
+            <i className={
+                !this.state.formData.dogOwnerId.valid &&
+                this.state.formData.dogOwnerId.touched
+                  ? "form-control-feedback glyphicon glyphicon-remove"
+                  : this.state.formData.dogOwnerId.valid &&
+                  this.state.formData.dogOwnerId.touched
+                  ? "form-control-feedback glyphicon glyphicon-ok"
+                  : "form-control-feedback"
+            }
+            />
           </div>
 
-          <div className="form-group">
+          <div className={
+              !this.state.formData.dogId.valid &&
+              this.state.formData.dogId.touched
+                ? "form-group has-feedback has-error"
+                : this.state.formData.dogId.valid &&
+                  this.state.formData.dogId.touched
+                ? "form-group has-feedback has-success"
+                : "form-group has-feedback"
+            }>
             <label htmlFor="dogId">Dog Id:</label>
-            <input
-              type="text"
-              name="dogId"
-              id="dogId"
-              className="form-control"
+            <DogsMenu
               value={this.state.formData.dogId.value}
               onChange={this.onChange}
             />
+            <i className={
+                !this.state.formData.dogId.valid &&
+                this.state.formData.dogId.touched
+                  ? "form-control-feedback glyphicon glyphicon-remove"
+                  : this.state.formData.dogId.valid &&
+                  this.state.formData.dogId.touched
+                  ? "form-control-feedback glyphicon glyphicon-ok"
+                  : "form-control-feedback"
+            }
+            />
+          </div>
+          <div>
+            
           </div>
           <div className="btn-group" role="group">
             <button

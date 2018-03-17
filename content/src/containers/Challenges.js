@@ -1,6 +1,6 @@
 import React from "react";
 import * as challengeService from "../services/challenge.service";
-import ChallengeForm from "./ChallengeForm";
+import ChallengeForm from "./challengeForm";
 
 class Challenges extends React.Component {
   constructor(props) {
@@ -102,7 +102,7 @@ class Challenges extends React.Component {
           <div className="row">
             <div className="col-xs-12 col-sm-7 col-md-7 col-lg-4" />
             <h1 className="page-title txt-color-blueDark">
-              <i className="fa fa-bomb fa-fw" />
+              <i className="fa fa-trophy fa-fw" />
               Challenges
               <span>  >  Are you worthy!?</span>
             </h1>
