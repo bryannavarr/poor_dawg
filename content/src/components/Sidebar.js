@@ -1,10 +1,12 @@
 import React from "react";
+
 import { Link } from "react-router-dom";
-import jquery from 'jquery'
+import {findDOMNode} from 'react-dom'
+import jquery from "jquery";
 window.$ = window.jQuery = jquery;
 require('smartadmin-plugins/jquery-ui-custom/jquery-ui.core.min.js')
-
-//require("smartadmin-plugins/smartwidgets/jarvis.widget.ng2.js");
+require("smartadmin-plugins/smartwidgets/jarvis.widget.ng2.js");
+require('smartadmin-plugins/jquery-ui-custom/jquery-ui.widgets.min.js')
 
 
 
@@ -13,26 +15,28 @@ class Sidebar extends React.Component {
       super(props)
   }
   
+
   componentDidMount(){
-    window.$.fn.extend({
+    
+    
 	
 		//pass the options variable to the function
-		jarvismenu : function(options) {
+		
 	
 			var defaults = {
-				accordion : 'true',
+				accordion : true,
 				speed : 200,
 				closedSign : '[+]',
 				openedSign : '[-]'
 			},
 	
 			// Extend our default options with those provided.
-				opts = window.$.extend(defaults, options),
+				opts = window.$.extend(defaults, this.props),
 			//Assign current element to variable, in this case is UL element
-				$this = window.$(this);
+				$this = window.$(findDOMNode(this));
 	
 			//add a mark [+] to a multilevel menu
-			window.$this.find("li").each(function() {
+			$this.find("li").each(function() {
 				if (window.$(this).find("ul").length !== 0) {
 					//add the multilevel sign next to the link
 					window.$(this).find("a:first").append("<b class='collapse-sign'>" + opts.closedSign + "</b>");
@@ -47,13 +51,13 @@ class Sidebar extends React.Component {
 			});
 	
 			//open active level
-			window.$this.find("li.active").each(function() {
+			$this.find("li.active").each(function() {
 				window.$(this).parents("ul").slideDown(opts.speed);
 				window.$(this).parents("ul").parent("li").find("b:first").html(opts.openedSign);
 				window.$(this).parents("ul").parent("li").addClass("open");
 			});
 	
-			window.$this.find("li a").click(function() {
+			$this.find("li a").click(function() {
 	
 				if (window.$(this).parent().find("ul").length !== 0) {
 	
@@ -61,7 +65,7 @@ class Sidebar extends React.Component {
 						//Do nothing when the list is open
 						if (!window.$(this).parent().find("ul").is(':visible')) {
 							var parents = window.$(this).parent().parents("ul");
-							var visible = window.$this.find("ul:visible");
+							var visible = $this.find("ul:visible");
 							visible.each(function(visibleIndex) {
 								var close = true;
 								parents.each(function(parentIndex) {
@@ -97,8 +101,8 @@ class Sidebar extends React.Component {
 					} // end else
 				} // end if
 			});
-		} // end function
-	});
+		 // end function
+	
   }
   
     render(){
@@ -134,7 +138,7 @@ class Sidebar extends React.Component {
 				*/}
 
         <ul>
-          <li className="active open">
+          <li className="active">
             <Link to="/dashboard">
               <i className="fa fa-lg fa-fw fa-home" />{" "}
               <span className="menu-item-parent">Dashboard</span>
@@ -173,7 +177,7 @@ class Sidebar extends React.Component {
             </ul>
           </li>
           <li className="top-menu-invisible">
-            <a href="/">
+            <a href="#">
               <i className="fa fa-lg fa-fw fa-cube txt-color-blue" />{" "}
               <span className="menu-item-parent">SmartAdmin Intel</span>
             </a>
@@ -207,7 +211,7 @@ class Sidebar extends React.Component {
             </a>
           </li>
           <li>
-            <a href="/">
+            <a href="#">
               <i className="fa fa-lg fa-fw fa-bar-chart-o" />{" "}
               <span className="menu-item-parent">Graphs</span>
             </a>
@@ -241,7 +245,7 @@ class Sidebar extends React.Component {
             </ul>
           </li>
           <li>
-            <a href="/">
+            <a href="#">
               <i className="fa fa-lg fa-fw fa-table" />{" "}
               <span className="menu-item-parent">Tables</span>
             </a>
@@ -263,7 +267,7 @@ class Sidebar extends React.Component {
             </ul>
           </li>
           <li>
-            <a href="/">
+            <a href="#">
               <i className="fa fa-lg fa-fw fa-pencil-square-o" />{" "}
               <span className="menu-item-parent">Forms</span>
             </a>
@@ -304,7 +308,7 @@ class Sidebar extends React.Component {
             </ul>
           </li>
           <li>
-            <a href="/">
+            <a href="#">
               <i className="fa fa-lg fa-fw fa-desktop" />{" "}
               <span className="menu-item-parent">UI Elements</span>
             </a>
@@ -316,7 +320,7 @@ class Sidebar extends React.Component {
                 <a href="buttons.html">Buttons</a>
               </li>
               <li>
-                <a href="/">Icons</a>
+                <a href="#">Icons</a>
                 <ul>
                   <li>
                     <a href="fa.html">
@@ -427,7 +431,7 @@ class Sidebar extends React.Component {
             </a>
           </li>
           <li>
-            <a href="/">
+            <a href="#">
               <i className="fa fa-lg fa-fw fa-cloud">
                 <em>3</em>
               </i>{" "}
@@ -452,7 +456,7 @@ class Sidebar extends React.Component {
             </ul>
           </li>
           <li>
-            <a href="/">
+            <a href="#">
               <i className="fa fa-lg fa-fw fa-puzzle-piece" />{" "}
               <span className="menu-item-parent">App Views</span>
             </a>
@@ -506,7 +510,7 @@ class Sidebar extends React.Component {
             </ul>
           </li>
           <li>
-            <a href="/">
+            <a href="#">
               <i className="fa fa-lg fa-fw fa-shopping-cart" />{" "}
               <span className="menu-item-parent">E-Commerce</span>
             </a>
@@ -523,7 +527,7 @@ class Sidebar extends React.Component {
             </ul>
           </li>
           <li>
-            <a href="/">
+            <a href="#">
               <i className="fa fa-lg fa-fw fa-windows" />{" "}
               <span className="menu-item-parent">Miscellaneous</span>
             </a>
@@ -571,7 +575,7 @@ class Sidebar extends React.Component {
             </ul>
           </li>
           <li className="chat-users top-menu-invisible">
-            <a href="/">
+            <a href="#">
               <i className="fa fa-lg fa-fw fa-comment-o">
                 <em className="bg-color-pink flash animated">!</em>
               </i>{" "}
