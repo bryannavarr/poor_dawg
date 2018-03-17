@@ -1,9 +1,108 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import jquery from 'jquery'
+window.$ = window.jQuery = jquery;
+require('smartadmin-plugins/jquery-ui-custom/jquery-ui.core.min.js')
+
+//require("smartadmin-plugins/smartwidgets/jarvis.widget.ng2.js");
 
 
-export default function Sidebar() {
-  return (
+
+class Sidebar extends React.Component {
+  constructor(props) {
+      super(props)
+  }
+  
+  componentDidMount(){
+    window.$.fn.extend({
+	
+		//pass the options variable to the function
+		jarvismenu : function(options) {
+	
+			var defaults = {
+				accordion : 'true',
+				speed : 200,
+				closedSign : '[+]',
+				openedSign : '[-]'
+			},
+	
+			// Extend our default options with those provided.
+				opts = window.$.extend(defaults, options),
+			//Assign current element to variable, in this case is UL element
+				$this = window.$(this);
+	
+			//add a mark [+] to a multilevel menu
+			window.$this.find("li").each(function() {
+				if (window.$(this).find("ul").length !== 0) {
+					//add the multilevel sign next to the link
+					window.$(this).find("a:first").append("<b class='collapse-sign'>" + opts.closedSign + "</b>");
+	
+					//avoid jumping to the top of the page when the href is an #
+					if (window.$(this).find("a:first").attr('href') == "#") {
+						window.$(this).find("a:first").click(function() {
+							return false;
+						});
+					}
+				}
+			});
+	
+			//open active level
+			window.$this.find("li.active").each(function() {
+				window.$(this).parents("ul").slideDown(opts.speed);
+				window.$(this).parents("ul").parent("li").find("b:first").html(opts.openedSign);
+				window.$(this).parents("ul").parent("li").addClass("open");
+			});
+	
+			window.$this.find("li a").click(function() {
+	
+				if (window.$(this).parent().find("ul").length !== 0) {
+	
+					if (opts.accordion) {
+						//Do nothing when the list is open
+						if (!window.$(this).parent().find("ul").is(':visible')) {
+							var parents = window.$(this).parent().parents("ul");
+							var visible = window.$this.find("ul:visible");
+							visible.each(function(visibleIndex) {
+								var close = true;
+								parents.each(function(parentIndex) {
+									if (parents[parentIndex] == visible[visibleIndex]) {
+										close = false;
+										return false;
+									}
+								});
+								if (close) {
+									if (window.$(this).parent().find("ul") != visible[visibleIndex]) {
+										window.$(visible[visibleIndex]).slideUp(opts.speed, function() {
+											window.$(this).parent("li").find("b:first").html(opts.closedSign);
+											window.$(this).parent("li").removeClass("open");
+										});
+	
+									}
+								}
+							});
+						}
+					}// end if
+					if (window.$(this).parent().find("ul:first").is(":visible") && !window.$(this).parent().find("ul:first").hasClass("active")) {
+						window.$(this).parent().find("ul:first").slideUp(opts.speed, function() {
+							window.$(this).parent("li").removeClass("open");
+							window.$(this).parent("li").find("b:first").delay(opts.speed).html(opts.closedSign);
+						});
+	
+					} else {
+						window.$(this).parent().find("ul:first").slideDown(opts.speed, function() {
+							/*window.$(this).effect("highlight", {color : '#616161'}, 500); - disabled due to CPU clocking on phones*/
+							window.$(this).parent("li").addClass("open");
+							window.$(this).parent("li").find("b:first").delay(opts.speed).html(opts.openedSign);
+						});
+					} // end else
+				} // end if
+			});
+		} // end function
+	});
+  }
+  
+    render(){
+    return (
     <aside id="left-panel">
       {/* {/* User info */} */}
       <div className="login-info">
@@ -649,5 +748,7 @@ export default function Sidebar() {
         <i className="fa fa-arrow-circle-left hit" />
       </span>
     </aside>
-  );
+  )};
 }
+
+export default Sidebar
