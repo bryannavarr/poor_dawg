@@ -91,14 +91,45 @@ class Sponsors extends Component {
     });
     return (
       <React.Fragment>
-        <h1>Welcome Sponsor!</h1>
-        {this.state.sponsors && <ul>{sponsorItem}</ul>}
-        <SponsorsForm
-          formData={this.state.formData}
-          onSave={this.onSave}
-          onCancel={this.onCancel}
-          onDelete={this.onDelete}
-        />
+        <div id="ribbon">
+          <span className="ribbon-button-alignment">
+            <span
+              id="refresh"
+              className="btn btn-ribbon"
+              data-action="resetWidgets"
+              data-title="refresh"
+              rel="tooltip"
+              data-placement="bottom"
+              data-original-title="<i className='text-warning fa fa-warning'></i> Warning! This will reset all your widget settings."
+              data-html="true"
+            >
+              <i className="fa fa-refresh" />
+            </span>
+          </span>
+          <ol className="breadcrumb">
+            <li>Home</li>
+            <li>Sponsors</li>
+          </ol>
+        </div>
+        <div id="content">
+          <div className="row">
+            <div className="col-xs-12 col-sm-7 col-md-7 col-lg-4">
+              <h1 className="page-title txt-color-blueDark">
+                <i className="fa fa-building fa-fw" />
+                Welcome Sponsor!
+              </h1>
+            </div>
+          </div>
+          {this.state.sponsors && <ul>{sponsorItem}</ul>}
+          <div>
+            <SponsorsForm
+              formData={this.state.formData}
+              onSave={this.onSave}
+              onCancel={this.onCancel}
+              onDelete={this.onDelete}
+            />
+          </div>
+        </div>
       </React.Fragment>
     );
   }

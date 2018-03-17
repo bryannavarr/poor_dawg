@@ -162,8 +162,8 @@ class SponsorsForm extends Component {
           that.props.onSave({
             ...item,
             _id: data.id,
-            createDate:data.createDate,
-            updateDate:data.updateDate
+            createDate: data.createDate,
+            updateDate: data.updateDate
           });
           this.setState({
             formValid: false
@@ -179,20 +179,31 @@ class SponsorsForm extends Component {
     return (
       <React.Fragment>
         <form>
-          <div className="form-group">
-            <label htmlFor="company-name">Id</label>
-            <input
-              type="text"
-              name="id"
-              value={this.state.formData._id.value}
-              disabled
-            />
-          </div>
-          <div className="form-group">
+          {this.state.formData._id.value && (
+            <div className="form-group">
+              <label htmlFor="company-name">Id</label>
+              <input
+                type="text"
+                name="id"
+                className="form-control"
+                value={this.state.formData._id.value}
+                disabled
+              />
+            </div>
+          )}
+          <div
+            className={
+              !this.state.formData.companyName.valid &&
+              this.state.formData.companyName.touched
+                ? "form-group has-error"
+                : "form-group"
+            }
+          >
             <label htmlFor="company-name">Company Name</label>
             <input
               type="text"
               name="companyName"
+              className="form-control"
               value={this.state.formData.companyName.value}
               placeholder="Company Name"
               onChange={this.onChange}
@@ -202,11 +213,19 @@ class SponsorsForm extends Component {
               <p className="text-danger">This field is required</p>
             ) : null}
           </div>
-          <div className="form-group">
+          <div
+            className={
+              !this.state.formData.firstName.valid &&
+              this.state.formData.firstName.touched
+                ? "form-group has-error"
+                : "form-group"
+            }
+          >
             <label htmlFor="first-name">First Name</label>
             <input
               type="text"
               name="firstName"
+              className="form-control"
               value={this.state.formData.firstName.value}
               placeholder="First Name"
               onChange={this.onChange}
@@ -216,11 +235,19 @@ class SponsorsForm extends Component {
               <p className="text-danger">This field is required</p>
             ) : null}
           </div>
-          <div className="form-group">
+          <div
+            className={
+              !this.state.formData.lastName.valid &&
+              this.state.formData.lastName.touched
+                ? "form-group has-error"
+                : "form-group"
+            }
+          >
             <label htmlFor="last-name">Last Name</label>
             <input
               type="text"
               name="lastName"
+              className="form-control"
               value={this.state.formData.lastName.value}
               placeholder="Last Name"
               onChange={this.onChange}
@@ -230,11 +257,19 @@ class SponsorsForm extends Component {
               <p className="text-danger">This field is required</p>
             ) : null}
           </div>
-          <div className="form-group">
+          <div
+            className={
+              !this.state.formData.email.valid &&
+              this.state.formData.email.touched
+                ? "form-group has-error"
+                : "form-group"
+            }
+          >
             <label htmlFor="email">Email</label>
             <input
               type="email"
               name="email"
+              className="form-control"
               value={this.state.formData.email.value}
               placeholder="Email"
               onChange={this.onChange}
@@ -244,21 +279,37 @@ class SponsorsForm extends Component {
               <p className="text-danger">This field is required</p>
             ) : null}
           </div>
-          <div className="form-group">
+          <div className={
+              !this.state.formData.zipCode.valid &&
+              this.state.formData.zipCode.touched
+                ? "form-group has-error"
+                : "form-group"
+            }>
             <label htmlFor="zip-code">Zip Code</label>
             <input
               type="text"
               name="zipCode"
+              className="form-control"
               value={this.state.formData.zipCode.value}
               placeholder="Zip Code"
               onChange={this.onChange}
             />
+            {!this.state.formData.zipCode.valid &&
+            this.state.formData.zipCode.touched ? (
+              <p className="text-danger">This field is required</p>
+            ) : null}
           </div>
-          <div className="form-group">
+          <div className={
+              !this.state.formData.phone.valid &&
+              this.state.formData.phone.touched
+                ? "form-group has-error"
+                : "form-group"
+            }>
             <label htmlFor="phone">Phone Number</label>
             <input
               type="number"
               name="phone"
+              className="form-control"
               value={this.state.formData.phone.value}
               placeholder="Phone Number"
               onChange={this.onChange}
@@ -268,26 +319,32 @@ class SponsorsForm extends Component {
               <p className="text-danger">This field is required</p>
             ) : null}
           </div>
-          <div className="form-group">
-            <label htmlFor="phone">Create Date</label>
-            <input
-              type="text"
-              name="create-date"
-              value={this.state.formData.createDate.value}
-              onChange={this.onChange}
-              disabled
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="phone">Update Date</label>
-            <input
-              type="text"
-              name="update-date"
-              value={this.state.formData.updateDate.value}
-              onChange={this.onChange}
-              disabled
-            />
-          </div>
+          {this.state.formData.createDate.value && (
+            <div className="form-group">
+              <label htmlFor="phone">Create Date</label>
+              <input
+                type="text"
+                name="create-date"
+                className="form-control"
+                value={this.state.formData.createDate.value}
+                onChange={this.onChange}
+                disabled
+              />
+            </div>
+          )}
+          {this.state.formData.updateDate.value && (
+            <div className="form-group">
+              <label htmlFor="phone">Update Date</label>
+              <input
+                type="text"
+                name="update-date"
+                className="form-control"
+                value={this.state.formData.updateDate.value}
+                onChange={this.onChange}
+                disabled
+              />
+            </div>
+          )}
         </form>
         <input
           type="button"
