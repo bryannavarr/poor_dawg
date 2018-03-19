@@ -355,31 +355,31 @@ class Sidebar extends React.Component {
                 <a href="typography.html">Typography</a>
               </li>
               <li>
-                <a href="/">Six Level Menu</a>
+                <a href="#">Six Level Menu</a>
                 <ul>
                   <li>
-                    <a href="/">
+                    <a href="#">
                       <i className="fa fa-fw fa-folder-open" /> Item #2
                     </a>
                     <ul>
                       <li>
-                        <a href="/">
+                        <a href="#">
                           <i className="fa fa-fw fa-folder-open" /> Sub #2.1{" "}
                         </a>
                         <ul>
                           <li>
-                            <a href="/">
+                            <a href="#">
                               <i className="fa fa-fw fa-file-text" /> Item
                               #2.1.1
                             </a>
                           </li>
                           <li>
-                            <a href="/">
+                            <a href="#">
                               <i className="fa fa-fw fa-plus" /> Expand
                             </a>
                             <ul>
                               <li>
-                                <a href="/">
+                                <a href="#">
                                   <i className="fa fa-fw fa-file-text" /> File
                                 </a>
                               </li>
@@ -390,23 +390,23 @@ class Sidebar extends React.Component {
                     </ul>
                   </li>
                   <li>
-                    <a href="/">
+                    <a href="#">
                       <i className="fa fa-fw fa-folder-open" /> Item #3
                     </a>
 
                     <ul>
                       <li>
-                        <a href="/">
+                        <a href="#">
                           <i className="fa fa-fw fa-folder-open" /> 3ed Level{" "}
                         </a>
                         <ul>
                           <li>
-                            <a href="/">
+                            <a href="#">
                               <i className="fa fa-fw fa-file-text" /> File
                             </a>
                           </li>
                           <li>
-                            <a href="/">
+                            <a href="#">
                               <i className="fa fa-fw fa-file-text" /> File
                             </a>
                           </li>
@@ -415,7 +415,7 @@ class Sidebar extends React.Component {
                     </ul>
                   </li>
                   <li>
-                    <a href="/" className="inactive">
+                    <a href="#" className="inactive">
                       <i className="fa fa-fw fa-folder-open" /> Item #4
                       (disabled)
                     </a>
@@ -477,7 +477,7 @@ class Sidebar extends React.Component {
                 </a>
               </li>
               <li>
-                <a href="/">
+                <a href="#">
                   <i className="fa fa-comments" /> Forum Layout
                 </a>
                 <ul>
