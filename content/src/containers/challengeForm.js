@@ -176,7 +176,7 @@ class ChallengeForm extends React.Component {
                 </div>
                 {/* ============================================================== */}
                 <OwnerTypeDropdown
-                  onchange={this.onChange}
+                  onChange={this.onChange}
                   ownerType={this.state.formData.dogOwnerType.value}
                 />
                 {/* ============================================================== */}
@@ -264,14 +264,6 @@ class ChallengeForm extends React.Component {
                 <div className="btn-group" role="group">
                   <button
                     type="button"
-                    onClick={this.onSave}
-                    className="btn btn-primary"
-                    disabled={!this.state.formValid}
-                  >
-                    Save
-                  </button>
-                  <button
-                    type="button"
                     onClick={this.props.onCancel}
                     className="btn btn-default"
                   >
@@ -279,12 +271,22 @@ class ChallengeForm extends React.Component {
                   </button>
                   <button
                     type="button"
-                    onClick={() => this.props.onDelete(this.state.formData)}
-                    className="btn btn-danger"
+                    onClick={this.onSave}
+                    className="btn btn-primary"
                     disabled={!this.state.formValid}
                   >
-                    Delete
+                    Save
                   </button>
+                  {this.state.formData._id.value ? (
+                    <button
+                      type="button"
+                      onClick={() => this.props.onDelete(this.state.formData)}
+                      className="btn btn-danger"
+                      disabled={!this.state.formValid}
+                    >
+                      Delete
+                    </button>
+                  ) : null}
                 </div>
               </div>
             </div>

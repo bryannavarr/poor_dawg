@@ -21,7 +21,7 @@ class OwnerTypeDropdown extends React.Component {
         ownerType: event.target.value
       }
     });
-    return event.target.value
+    return event;
   }
 
   render() {
@@ -45,7 +45,9 @@ class OwnerTypeDropdown extends React.Component {
           className="form-control"
           data-bv-field="dogOwnerType"
           value={this.state.dogOwnerType.ownerType}
-          onChange={this.updateOwnerType}
+          onChange={(event) =>
+            this.props.onChange(this.updateOwnerType(event))
+          }
         >
           <option value="">Choose Owner Type</option>
           <option value="DogLover">DogLover</option>
