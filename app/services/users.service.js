@@ -36,7 +36,6 @@ function create(model) {
             result.insertedIds[0].toString())
 }
 
-
 function update(id, doc) {
     doc._id = new ObjectId(doc._id)
     return conn.db().collection('hackers').replaceOne( { _id: new ObjectId(id) }, doc )
