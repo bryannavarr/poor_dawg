@@ -50,6 +50,11 @@ export default function Sidebar() {
                   <span className="menu-item-parent">Vets</span>
                 </Link>
               </li>
+              <li className="active">
+                <Link to="/users">
+                  <span className="menu-item-parent">Users</span>
+                </Link>
+              </li>
               <li>
                 <a href="dashboard-marketing.html" title="Dashboard">
                   <span className="menu-item-parent">Marketing Dashboard</span>

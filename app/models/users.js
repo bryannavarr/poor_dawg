@@ -2,6 +2,7 @@ const Joi = require('joi')
 Joi.objectId = require('joi-objectid')(Joi)
 
 const schema = {
+    // email: Joi.string().email(),
     role: Joi.any().valid(['Admin', 'DogOwner', 'DogLover', 'Sponsor']),
     password: Joi.string().length(6).required(),
     isEmailConfirmed: Joi.boolean().required(),
