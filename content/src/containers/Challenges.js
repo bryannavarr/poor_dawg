@@ -139,7 +139,7 @@ class Challenges extends React.Component {
                     </span>
                   }
                 >
-                  <div className="well">
+                  <div className="well" style={{background: "linear-gradient(grey,white)"}}git >
                     <div className="row">
                       <div className="col-sm-3"> Description</div>
                       <div className="col-sm-3">Expiration Date</div>

@@ -11,7 +11,6 @@ class OwnerTypeDropdown extends React.Component {
   }
 
   componentWillReceiveProps(nextprops) {
-    // const ownerType = nextprops;
     this.setState({ dogOwnerType: nextprops });
   }
 
