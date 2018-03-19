@@ -79,7 +79,7 @@ class Users extends React.Component {
           key={user._id}
           onClick={this.onSelect.bind(this, user)}
         >
-          {/* <li>{user.email},</li> */}
+          <li>{user.email},</li>
           <li>{user._id},</li>
           <li>{user.password},</li>
           <li>{user.isEmailConfirmed.toString()},</li>

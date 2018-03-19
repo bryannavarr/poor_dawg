@@ -18,12 +18,6 @@ class Users extends React.Component {
     this.onSave = this.onSave.bind(this);
   }
 
-  // componentDidMount() {
-  //     usersService.readAll().then(data => {
-  //         this.setState({ users: data })
-  //     })
-  // }
-
   componentWillReceiveProps(nextProps) {
     const formData = this.convertPropsToFormData(nextProps);
     this.setState({ formData: formData });
@@ -38,7 +32,7 @@ class Users extends React.Component {
       role: user.role || "",
       createDate: user.createDate || "",
       updateDate: user.updateDate || "",
-      // email: user.email || '',
+      email: user.email || "",
       isEmailConfirmed:
         typeof user.isEmailConfirmed === "undefined"
           ? ""
@@ -46,15 +40,15 @@ class Users extends React.Component {
     };
 
     let formData = {
-      // email: {
-      //     originalValue: initializedUser.email,
-      //     value: initializedUser.email,
-      //     valid: true,
-      //     validation: {
-      //         required: true
-      //     },
-      //     touched: false
-      // },
+      email: {
+        originalValue: initializedUser.email,
+        value: initializedUser.email,
+        valid: true,
+        validation: {
+          required: true
+        },
+        touched: false
+      },
       password: {
         originalValue: initializedUser.password,
         value: initializedUser.password,
@@ -80,12 +74,6 @@ class Users extends React.Component {
         valid: true,
         validation: {
           required: true
-          // minLength: 5,
-          // maxLength: 8,
-          // list: ['Admin',
-          //     'DogOwner',
-          //     'DogLover',
-          //     'Sponsor']
         },
         touched: false
       },
@@ -130,7 +118,7 @@ class Users extends React.Component {
     }
     const that = this;
     let item = {
-      // email: this.state.formData.email.value,
+      email: this.state.formData.email.value,
       isEmailConfirmed: this.state.formData.isEmailConfirmed.value,
       role: this.state.formData.role.value,
       password: this.state.formData.password.value
@@ -170,12 +158,24 @@ class Users extends React.Component {
           <fieldset>
             <div className="form-group">
               <div className="row">
-                {/* <div className={!this.state.formData.email.valid && this.state.formData.email.touched
-                                    ? "form-group has-error" : "form-group col-md-8"}>
-                                    <label htmlFor="email">Email </label>
-                                    <input type="text" className="form-control" placeholder="Email" name="email" value={this.state.formData.email.value}
-                                        onChange={this.onChange} />
-                                </div> */}
+                <div
+                  className={
+                    !this.state.formData.email.valid &&
+                    this.state.formData.email.touched
+                      ? "form-group has-error"
+                      : "form-group col-md-8"
+                  }
+                >
+                  <label htmlFor="email">Email </label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    placeholder="Email"
+                    name="email"
+                    value={this.state.formData.email.value}
+                    onChange={this.onChange}
+                  />
+                </div>
                 <div
                   className={
                     !this.state.formData.isEmailConfirmed.valid &&
@@ -264,46 +264,88 @@ class Users extends React.Component {
                 </div>
               </div>
             </div>
-            {/* <div className="form-group">
-                            <div className="row">
-                                <div className="col-sm-12 col-md-12">
-                                    <label htmlFor="role">Your Role:</label>
-                                </div>
-                                <div className={!this.state.formData.role.valid && this.state.formData.isEmailConfirmed.touched
-                                    ? "form-group has-error" : "col-md-4 selectContainer"}>
-                                    <select className="form-control" name="role" value={this.state.formData.role.value}
-                                        onChange={this.onChange} >
-                                        <option value="" ></option>
-                                        <option value="Admin" >Admin</option>
-                                        <option value="DogOwner">Dog Owner</option>
-                                        <option value="DogLover">Dog Lover</option>
-                                        <option value="Sponsor">Sponsor</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div> */}
-            {/* <div className="form-group">
-                            <div className="row">
-                                <div className="col-sm-12 col-md-12">
-                                    <label htmlFor="role">Your Role</label>
-                                </div>
-                                <div className={!this.state.formData.role.valid && this.state.formData.role.touched
-                                    ? "form-group has-error" : "form-group col-sm-12 col-md-10 well"}>
-                                    <label htmlFor="radio radio-inline no-margin">
-                                        <input type="radio" id="rating" name="radioBtn" value="admin" className="radiobox style-2" />
-                                        <span>Admin</span> </label>
-                                    <label htmlFor="radio radio-inline no-margin">
-                                        <input type="radio" id="dogOwner" name="radioBtn" value="dogowner" className="radiobox style-2" />
-                                        <span>Dog Owner</span> </label>
-                                    <label htmlFor="radio radio-inline no-margin">
-                                        <input type="radio" id="dogLover" name="radioBtn" value="doglover" className="radiobox style-2" />
-                                        <span>Dog Lover</span> </label>
-                                    <label htmlFor="radio radio-inline no-margin">
-                                        <input type="radio" id="sponsor" name="radioBtn" value="sponsor" className="radiobox style-2" />
-                                        <span>Sponsor</span> </label>
-                                </div>
-                            </div>
-                        </div> */}
+
+            <div className="row">
+              <div className="col-sm-12 col-md-12">
+                <label htmlFor="role">Your Role:</label>
+              </div>
+              <div
+                className={
+                  !this.state.formData.role.valid &&
+                  this.state.formData.isEmailConfirmed.touched
+                    ? "form-group has-error"
+                    : "col-md-4 selectContainer"
+                }
+              >
+                <select
+                  className="form-control"
+                  name="role"
+                  value={this.state.formData.role.value}
+                  onChange={this.onChange}
+                >
+                  <option value="" />
+                  <option value="Admin">Admin</option>
+                  <option value="DogOwner">Dog Owner</option>
+                  <option value="DogLover">Dog Lover</option>
+                  <option value="Sponsor">Sponsor</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="row">
+              <div className="col-sm-12 col-md-12">
+                <label htmlFor="role">Your Role</label>
+              </div>
+              <div
+                className={
+                  !this.state.formData.role.valid &&
+                  this.state.formData.role.touched
+                    ? "form-group has-error"
+                    : "form-group col-sm-12 col-md-10 well"
+                }
+              >
+                <label htmlFor="radio radio-inline no-margin">
+                  <input
+                    type="radio"
+                    id="rating"
+                    name="radioBtn"
+                    value="admin"
+                    className="radiobox style-2"
+                  />
+                  <span>Admin</span>{" "}
+                </label>
+                <label htmlFor="radio radio-inline no-margin">
+                  <input
+                    type="radio"
+                    id="dogOwner"
+                    name="radioBtn"
+                    value="dogowner"
+                    className="radiobox style-2"
+                  />
+                  <span>Dog Owner</span>{" "}
+                </label>
+                <label htmlFor="radio radio-inline no-margin">
+                  <input
+                    type="radio"
+                    id="dogLover"
+                    name="radioBtn"
+                    value="doglover"
+                    className="radiobox style-2"
+                  />
+                  <span>Dog Lover</span>{" "}
+                </label>
+                <label htmlFor="radio radio-inline no-margin">
+                  <input
+                    type="radio"
+                    id="sponsor"
+                    name="radioBtn"
+                    value="sponsor"
+                    className="radiobox style-2"
+                  />
+                  <span>Sponsor</span>{" "}
+                </label>
+              </div>
+            </div>
           </fieldset>
           <fieldset>
             <div className="form-group">
