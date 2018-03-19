@@ -21,8 +21,8 @@ class Sidebar extends React.Component {
 			var defaults = {
 				accordion : true,
 				speed : 200,
-				closedSign : '[+]',
-				openedSign : '[-]'
+				closedSign : '<em class="fa fa-plus-square-o">',
+				openedSign : '<em class="fa fa-minus-square-o">'
 			},
 	
 				opts = window.$.extend(defaults, this.props),
