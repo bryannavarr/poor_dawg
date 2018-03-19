@@ -131,11 +131,11 @@ class Notifications extends React.Component {
                            <JarvisWidget
                               title={
                                  <span>
-                                    <i className="fa fa-bell-o" /> Notifications Form
+                                    <i className="fa fa-bell-o" /> Notifications
+                                    Form
                                  </span>
                               }
                            >
-                              
                               <NotificationsForm
                                  formData={this.state.formData}
                                  onSave={this.onSave}
@@ -145,13 +145,15 @@ class Notifications extends React.Component {
                            </JarvisWidget>
                         </div>
                         <div className="col-sm-6">
-                              <JarvisWidget title={
+                           <JarvisWidget
+                              title={
                                  <span>
                                     <i className="fa fa-bell-o" /> Notifications
                                  </span>
-                              }>
+                              }
+                           >
                               <ul>{notifications}</ul>
-                              </JarvisWidget>
+                           </JarvisWidget>
                         </div>
                      </div>
                   </WizardGrid>
