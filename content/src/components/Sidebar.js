@@ -18,11 +18,6 @@ class Sidebar extends React.Component {
 
   componentDidMount(){
     
-    
-	
-		//pass the options variable to the function
-		
-	
 			var defaults = {
 				accordion : true,
 				speed : 200,
@@ -30,18 +25,13 @@ class Sidebar extends React.Component {
 				openedSign : '[-]'
 			},
 	
-			// Extend our default options with those provided.
 				opts = window.$.extend(defaults, this.props),
-			//Assign current element to variable, in this case is UL element
 				$this = window.$(findDOMNode(this));
 	
-			//add a mark [+] to a multilevel menu
 			$this.find("li").each(function() {
 				if (window.$(this).find("ul").length !== 0) {
-					//add the multilevel sign next to the link
 					window.$(this).find("a:first").append("<b class='collapse-sign'>" + opts.closedSign + "</b>");
 	
-					//avoid jumping to the top of the page when the href is an #
 					if (window.$(this).find("a:first").attr('href') == "#") {
 						window.$(this).find("a:first").click(function() {
 							return false;
@@ -50,7 +40,6 @@ class Sidebar extends React.Component {
 				}
 			});
 	
-			//open active level
 			$this.find("li.active").each(function() {
 				window.$(this).parents("ul").slideDown(opts.speed);
 				window.$(this).parents("ul").parent("li").find("b:first").html(opts.openedSign);
@@ -62,7 +51,6 @@ class Sidebar extends React.Component {
 				if (window.$(this).parent().find("ul").length !== 0) {
 	
 					if (opts.accordion) {
-						//Do nothing when the list is open
 						if (!window.$(this).parent().find("ul").is(':visible')) {
 							var parents = window.$(this).parent().parents("ul");
 							var visible = $this.find("ul:visible");
@@ -85,7 +73,7 @@ class Sidebar extends React.Component {
 								}
 							});
 						}
-					}// end if
+					}
 					if (window.$(this).parent().find("ul:first").is(":visible") && !window.$(this).parent().find("ul:first").hasClass("active")) {
 						window.$(this).parent().find("ul:first").slideUp(opts.speed, function() {
 							window.$(this).parent("li").removeClass("open");
@@ -94,25 +82,21 @@ class Sidebar extends React.Component {
 	
 					} else {
 						window.$(this).parent().find("ul:first").slideDown(opts.speed, function() {
-							/*window.$(this).effect("highlight", {color : '#616161'}, 500); - disabled due to CPU clocking on phones*/
 							window.$(this).parent("li").addClass("open");
 							window.$(this).parent("li").find("b:first").delay(opts.speed).html(opts.openedSign);
 						});
-					} // end else
-				} // end if
+					} 
+				} 
 			});
-		 // end function
 	
   }
   
     render(){
     return (
     <aside id="left-panel">
-      {/* {/* User info */} */}
       <div className="login-info">
         <span>
           {" "}
-          {/* User image size is adjusted inside CSS, it should stay as it */}
           <a
             href="/"
             id="show-shortcut"
@@ -128,15 +112,7 @@ class Sidebar extends React.Component {
           </a>
         </span>
       </div>
-      {/* end user info */}
-      {/* NAVIGATION : This navigation is also responsive*/}
       <nav>
-        {/* 
-				NOTE: Notice the gaps after each icon usage <i></i>..
-				Please note that these links work a bit different than
-				traditional href="" links. See documentation for details.
-				*/}
-
         <ul>
           <li className="active">
             <Link to="/dashboard">
@@ -590,7 +566,6 @@ class Sidebar extends React.Component {
             </a>
             <ul>
               <li>
-                {/* DISPLAY USERS */}
                 <div className="display-users">
                   <input
                     className="form-control chat-user-filter"
@@ -747,7 +722,6 @@ class Sidebar extends React.Component {
                     About the API
                   </a>
                 </div>
-                {/* END DISPLAY USERS */}
               </li>
             </ul>
           </li>
