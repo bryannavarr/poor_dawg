@@ -3,10 +3,12 @@ import React from "react";
 class JarvisWidget extends React.Component {
   render() {
     return (
-      <div className="jarviswidget" 
-      data-widget-togglebutton
-      data-widget-editbutton
-      data-widget-deletebutton>
+      <div
+        className="jarviswidget"
+        data-widget-togglebutton
+        data-widget-editbutton
+        data-widget-deletebutton
+      >
         <header>
           <h2>{this.props.title}</h2>
         </header>
@@ -18,6 +20,5 @@ class JarvisWidget extends React.Component {
     );
   }
 }
-
 
 export default JarvisWidget;

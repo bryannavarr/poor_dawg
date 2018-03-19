@@ -146,6 +146,11 @@ class Sidebar extends React.Component {
                 </Link>
               </li>
               <li>
+                <Link to="/challenges">
+                  <span className="menu-item-parent">Challenges</span>
+                </Link>
+              </li>
+              <li>
                 <Link to="/sponsors">
                   <span className="menu-item-parent">Sponsors</span>
                 </Link>
