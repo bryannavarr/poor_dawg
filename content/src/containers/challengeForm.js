@@ -142,7 +142,7 @@ class ChallengeForm extends React.Component {
             </span>
             <h2>Challenges</h2>
           </header>
-          <div role="content">
+          <div /* role="content" */>
             <div className="widget-body">
               <form className="bv-form">
                 <fieldset>

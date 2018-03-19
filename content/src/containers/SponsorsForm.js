@@ -87,15 +87,22 @@ class SponsorsForm extends Component {
         originalValue: initializedSponsor.zipCode,
         value: initializedSponsor.zipCode,
         valid: true,
-        validation: {},
-        touched: true
+        validation: {
+          required: true,
+          number: true,
+          maxLength: 5
+        },
+        touched: false
       },
       phone: {
         originalValue: initializedSponsor.phone,
         value: initializedSponsor.phone,
         valid: true,
         validation: {
-          required: true
+          required: true,
+          number: true,
+          minLength: 10,
+          maxLength: 10
         },
         touched: false
       },
@@ -140,8 +147,7 @@ class SponsorsForm extends Component {
       lastName: this.state.formData.lastName.value,
       email: this.state.formData.email.value,
       zipCode: this.state.formData.zipCode.value,
-      phone: this.state.formData.phone.value,
-      updateDate: this.state.formData.updateDate.value
+      phone: this.state.formData.phone.value
     };
     if (this.state.formData._id.value.length > 0) {
       item.createDate = this.state.formData.createDate.value;
@@ -178,187 +184,276 @@ class SponsorsForm extends Component {
   render() {
     return (
       <React.Fragment>
-        <form>
-          {this.state.formData._id.value && (
-            <div className="form-group">
-              <label htmlFor="company-name">Id</label>
-              <input
-                type="text"
-                name="id"
-                className="form-control"
-                value={this.state.formData._id.value}
-                disabled
-              />
+        <div>
+          <div>
+            <legend>Please enter your information</legend>
+          </div>
+          <form>
+            <fieldset className="row">
+              {this.state.formData._id.value && (
+                <div className="col-md-12 form-group">
+                  <label htmlFor="company-name">Id</label>
+                  <input
+                    type="text"
+                    name="id"
+                    className="form-control"
+                    value={this.state.formData._id.value}
+                    disabled
+                  />
+                </div>
+              )}
+            </fieldset>
+            <fieldset className="row">
+              <div
+                className={
+                  !this.state.formData.companyName.touched
+                    ? "col-md-12 form-group"
+                    : this.state.formData.companyName.touched &&
+                      !this.state.formData.companyName.valid
+                      ? "col-md-12 form-group has-error has-feedback"
+                      : "col-md-12 form-group has-success has-feedback"
+                }
+              >
+                <label htmlFor="company-name">Company Name</label>
+                <input
+                  type="text"
+                  name="companyName"
+                  className="form-control"
+                  value={this.state.formData.companyName.value}
+                  placeholder="Company Name"
+                  onChange={this.onChange}
+                />
+                {!this.state.formData.companyName.touched ? (
+                  <span />
+                ) : this.state.formData.companyName.touched &&
+                !this.state.formData.companyName.valid ? (
+                  <React.Fragment>
+                    <i className="glyphicon glyphicon-remove form-control-feedback" />
+                    <p className="text-danger">This field is required</p>
+                  </React.Fragment>
+                ) : (
+                  <i className="glyphicon glyphicon-ok form-control-feedback" />
+                )}
+              </div>
+            </fieldset>
+            <fieldset className="row">
+              <div
+                className={
+                  !this.state.formData.firstName.touched
+                    ? "col-md-6 form-group"
+                    : this.state.formData.firstName.touched &&
+                      !this.state.formData.firstName.valid
+                      ? "col-md-6 form-group has-error has-feedback"
+                      : "col-md-6 form-group has-success has-feedback"
+                }
+              >
+                <label htmlFor="first-name">First Name</label>
+                <input
+                  type="text"
+                  name="firstName"
+                  className="form-control"
+                  value={this.state.formData.firstName.value}
+                  placeholder="First Name"
+                  onChange={this.onChange}
+                />
+                {!this.state.formData.firstName.touched ? (
+                  <span />
+                ) : this.state.formData.firstName.touched &&
+                !this.state.formData.firstName.valid ? (
+                  <React.Fragment>
+                    <i className="glyphicon glyphicon-remove form-control-feedback" />
+                    <p className="text-danger">This field is required</p>
+                  </React.Fragment>
+                ) : (
+                  <i className="glyphicon glyphicon-ok form-control-feedback" />
+                )}
+              </div>
+              <div
+                className={
+                  !this.state.formData.lastName.touched
+                    ? "col-md-6 form-group"
+                    : this.state.formData.lastName.touched &&
+                      !this.state.formData.lastName.valid
+                      ? "col-md-6 form-group has-error has-feedback"
+                      : "col-md-6 form-group has-success has-feedback"
+                }
+              >
+                <label htmlFor="last-name">Last Name</label>
+                <input
+                  type="text"
+                  name="lastName"
+                  className="form-control"
+                  value={this.state.formData.lastName.value}
+                  placeholder="Last Name"
+                  onChange={this.onChange}
+                />
+                {!this.state.formData.lastName.touched ? (
+                  <span />
+                ) : this.state.formData.lastName.touched &&
+                !this.state.formData.lastName.valid ? (
+                  <React.Fragment>
+                    <i className="glyphicon glyphicon-remove form-control-feedback" />
+                    <p className="text-danger">This field is required</p>
+                  </React.Fragment>
+                ) : (
+                  <i className="glyphicon glyphicon-ok form-control-feedback" />
+                )}
+              </div>
+            </fieldset>
+            <fieldset className="row">
+              <div
+                className={
+                  !this.state.formData.email.touched
+                    ? "col-md-8 form-group"
+                    : this.state.formData.email.touched &&
+                      !this.state.formData.email.valid
+                      ? "col-md-8 form-group has-error has-feedback"
+                      : "col-md-8 form-group has-success has-feedback"
+                }
+              >
+                <label htmlFor="email">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  className="form-control"
+                  value={this.state.formData.email.value}
+                  placeholder="Email"
+                  onChange={this.onChange}
+                />
+                {!this.state.formData.email.touched ? (
+                  <span />
+                ) : this.state.formData.email.touched &&
+                !this.state.formData.email.valid ? (
+                  <React.Fragment>
+                    <i className="glyphicon glyphicon-remove form-control-feedback" />
+                    <p className="text-danger">This field is required</p>
+                  </React.Fragment>
+                ) : (
+                  <i className="glyphicon glyphicon-ok form-control-feedback" />
+                )}
+              </div>
+            </fieldset>
+            <fieldset className="row">
+              <div
+                className={
+                  !this.state.formData.zipCode.touched
+                    ? "col-md-4 form-group"
+                    : this.state.formData.zipCode.touched &&
+                      !this.state.formData.zipCode.valid
+                      ? "col-md-4 form-group has-error has-feedback"
+                      : "col-md-4 form-group has-success has-feedback"
+                }
+              >
+                <label htmlFor="zip-code">Zip Code</label>
+                <input
+                  type="number"
+                  name="zipCode"
+                  className="form-control"
+                  value={this.state.formData.zipCode.value}
+                  placeholder="Zip Code"
+                  onChange={this.onChange}
+                />
+                {!this.state.formData.zipCode.touched ? (
+                  <span />
+                ) : this.state.formData.zipCode.touched &&
+                !this.state.formData.zipCode.valid ? (
+                  <React.Fragment>
+                    <i className="glyphicon glyphicon-remove form-control-feedback" />
+                    <p className="text-danger">This field is required</p>
+                  </React.Fragment>
+                ) : (
+                  <i className="glyphicon glyphicon-ok form-control-feedback" />
+                )}
+              </div>
+              <div
+                className={
+                  !this.state.formData.phone.touched
+                    ? "col-md-6 form-group"
+                    : this.state.formData.phone.touched &&
+                      !this.state.formData.phone.valid
+                      ? "col-md-6 form-group has-error has-feedback"
+                      : "col-md-6 form-group has-success has-feedback"
+                }
+              >
+                <label htmlFor="phone">Phone Number</label>
+                <input
+                  type="number"
+                  name="phone"
+                  className="form-control"
+                  value={this.state.formData.phone.value}
+                  placeholder="eg. 0001112222"
+                  onChange={this.onChange}
+                />
+                {!this.state.formData.phone.touched ? (
+                  <span />
+                ) : this.state.formData.phone.touched &&
+                !this.state.formData.phone.valid ? (
+                  <React.Fragment>
+                    <i className="glyphicon glyphicon-remove form-control-feedback" />
+                    <p className="text-danger">This field is required</p>
+                  </React.Fragment>
+                ) : (
+                  <i className="glyphicon glyphicon-ok form-control-feedback" />
+                )}
+              </div>
+            </fieldset>
+            <fieldset className="row">
+              {this.state.formData.createDate.value && (
+                <div className="col-md-12 form-group">
+                  <label htmlFor="phone">Create Date</label>
+                  <input
+                    type="text"
+                    name="create-date"
+                    className="form-control"
+                    value={this.state.formData.createDate.value}
+                    onChange={this.onChange}
+                    disabled
+                  />
+                </div>
+              )}
+              {this.state.formData.updateDate.value && (
+                <div className="col-md-12 form-group">
+                  <label htmlFor="phone">Update Date</label>
+                  <input
+                    type="text"
+                    name="update-date"
+                    className="form-control"
+                    value={this.state.formData.updateDate.value}
+                    onChange={this.onChange}
+                    disabled
+                  />
+                </div>
+              )}
+            </fieldset>
+            <div className="form-actions">
+              <div className="row">
+                <div className="col-md-12">
+                  <input
+                    type="button"
+                    className="btn btn-primary"
+                    value="Save"
+                    onClick={this.onSave}
+                  />
+                  <input
+                    type="button"
+                    className="btn"
+                    value="Cancel"
+                    onClick={this.props.onCancel}
+                  />
+                  {this.state.formData._id.value && (
+                    <input
+                      type="button"
+                      className="btn btn-danger"
+                      value="Delete"
+                      onClick={() => this.props.onDelete(this.state.formData)}
+                    />
+                  )}
+                </div>
+              </div>
             </div>
-          )}
-          <div
-            className={
-              !this.state.formData.companyName.valid &&
-              this.state.formData.companyName.touched
-                ? "form-group has-error"
-                : "form-group"
-            }
-          >
-            <label htmlFor="company-name">Company Name</label>
-            <input
-              type="text"
-              name="companyName"
-              className="form-control"
-              value={this.state.formData.companyName.value}
-              placeholder="Company Name"
-              onChange={this.onChange}
-            />
-            {!this.state.formData.companyName.valid &&
-            this.state.formData.companyName.touched ? (
-              <p className="text-danger">This field is required</p>
-            ) : null}
-          </div>
-          <div
-            className={
-              !this.state.formData.firstName.valid &&
-              this.state.formData.firstName.touched
-                ? "form-group has-error"
-                : "form-group"
-            }
-          >
-            <label htmlFor="first-name">First Name</label>
-            <input
-              type="text"
-              name="firstName"
-              className="form-control"
-              value={this.state.formData.firstName.value}
-              placeholder="First Name"
-              onChange={this.onChange}
-            />
-            {!this.state.formData.firstName.valid &&
-            this.state.formData.firstName.touched ? (
-              <p className="text-danger">This field is required</p>
-            ) : null}
-          </div>
-          <div
-            className={
-              !this.state.formData.lastName.valid &&
-              this.state.formData.lastName.touched
-                ? "form-group has-error"
-                : "form-group"
-            }
-          >
-            <label htmlFor="last-name">Last Name</label>
-            <input
-              type="text"
-              name="lastName"
-              className="form-control"
-              value={this.state.formData.lastName.value}
-              placeholder="Last Name"
-              onChange={this.onChange}
-            />
-            {!this.state.formData.lastName.valid &&
-            this.state.formData.lastName.touched ? (
-              <p className="text-danger">This field is required</p>
-            ) : null}
-          </div>
-          <div
-            className={
-              !this.state.formData.email.valid &&
-              this.state.formData.email.touched
-                ? "form-group has-error"
-                : "form-group"
-            }
-          >
-            <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              name="email"
-              className="form-control"
-              value={this.state.formData.email.value}
-              placeholder="Email"
-              onChange={this.onChange}
-            />
-            {!this.state.formData.email.valid &&
-            this.state.formData.email.touched ? (
-              <p className="text-danger">This field is required</p>
-            ) : null}
-          </div>
-          <div className={
-              !this.state.formData.zipCode.valid &&
-              this.state.formData.zipCode.touched
-                ? "form-group has-error"
-                : "form-group"
-            }>
-            <label htmlFor="zip-code">Zip Code</label>
-            <input
-              type="text"
-              name="zipCode"
-              className="form-control"
-              value={this.state.formData.zipCode.value}
-              placeholder="Zip Code"
-              onChange={this.onChange}
-            />
-            {!this.state.formData.zipCode.valid &&
-            this.state.formData.zipCode.touched ? (
-              <p className="text-danger">This field is required</p>
-            ) : null}
-          </div>
-          <div className={
-              !this.state.formData.phone.valid &&
-              this.state.formData.phone.touched
-                ? "form-group has-error"
-                : "form-group"
-            }>
-            <label htmlFor="phone">Phone Number</label>
-            <input
-              type="number"
-              name="phone"
-              className="form-control"
-              value={this.state.formData.phone.value}
-              placeholder="Phone Number"
-              onChange={this.onChange}
-            />
-            {!this.state.formData.phone.valid &&
-            this.state.formData.phone.touched ? (
-              <p className="text-danger">This field is required</p>
-            ) : null}
-          </div>
-          {this.state.formData.createDate.value && (
-            <div className="form-group">
-              <label htmlFor="phone">Create Date</label>
-              <input
-                type="text"
-                name="create-date"
-                className="form-control"
-                value={this.state.formData.createDate.value}
-                onChange={this.onChange}
-                disabled
-              />
-            </div>
-          )}
-          {this.state.formData.updateDate.value && (
-            <div className="form-group">
-              <label htmlFor="phone">Update Date</label>
-              <input
-                type="text"
-                name="update-date"
-                className="form-control"
-                value={this.state.formData.updateDate.value}
-                onChange={this.onChange}
-                disabled
-              />
-            </div>
-          )}
-        </form>
-        <input
-          type="button"
-          value="Save"
-          onClick={this.onSave}
-          disabled={!this.state.formValid}
-        />
-        <input type="button" value="Cancel" onClick={this.props.onCancel} />
-        <input
-          type="button"
-          value="Delete"
-          onClick={() => this.props.onDelete(this.state.formData)}
-          disabled={!this.state.formData._id.value}
-        />
+            <p />
+          </form>
+        </div>
       </React.Fragment>
     );
   }

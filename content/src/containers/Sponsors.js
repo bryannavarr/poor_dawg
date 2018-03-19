@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import SponsorsForm from "./SponsorsForm";
 import * as SponsorsService from "../services/sponsors.service";
+import WidgetGrid from "./widgets/WidgetGrid";
+import JarvisWidget from "./widgets/JarvisWidget";
 
 class Sponsors extends Component {
   constructor(props) {
@@ -79,14 +81,17 @@ class Sponsors extends Component {
   render() {
     const sponsorItem = this.state.sponsors.map(sponsors => {
       return (
-        <li key={sponsors._id} onClick={this.onSelect.bind(this, sponsors)}>
-          <h3>
-            {sponsors.firstName} {sponsors.lastName} of {sponsors.companyName}
-          </h3>
-          <p>Email:{sponsors.email}</p>
-          <p>Zip Code:{sponsors.zipCode}</p>
-          <p>Phone #:{sponsors.phone}</p>
-        </li>
+        <div key={sponsors._id}>
+          <li key={sponsors._id} onClick={this.onSelect.bind(this, sponsors)}>
+            <h3>
+              {sponsors.firstName} {sponsors.lastName} of {sponsors.companyName}
+            </h3>
+            <p>Email:{sponsors.email}</p>
+            <p>Zip Code:{sponsors.zipCode}</p>
+            <p>Phone #:{sponsors.phone}</p>
+          </li>
+          <legend />
+        </div>
       );
     });
     return (
@@ -120,14 +125,24 @@ class Sponsors extends Component {
               </h1>
             </div>
           </div>
-          {this.state.sponsors && <ul>{sponsorItem}</ul>}
-          <div>
-            <SponsorsForm
-              formData={this.state.formData}
-              onSave={this.onSave}
-              onCancel={this.onCancel}
-              onDelete={this.onDelete}
-            />
+          <div className="row">
+            <WidgetGrid>
+              <div className="col-sm-6">
+                <JarvisWidget title={"Sponsors Form"}>
+                  <SponsorsForm
+                    formData={this.state.formData}
+                    onSave={this.onSave}
+                    onCancel={this.onCancel}
+                    onDelete={this.onDelete}
+                  />
+                </JarvisWidget>
+              </div>
+              <div className="col-sm-5">
+                <JarvisWidget title={"Sponsors List"}>
+                  <div>{this.state.sponsors && <ul>{sponsorItem}</ul>}</div>
+                </JarvisWidget>
+              </div>
+            </WidgetGrid>
           </div>
         </div>
       </React.Fragment>
