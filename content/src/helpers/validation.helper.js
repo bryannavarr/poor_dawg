@@ -4,7 +4,7 @@ export function validate(value, rules) {
 
   if (rules.required) {
     if (typeof value === "string") {
-      isValid = value && value.trim() !== "" && isValid;
+      isValid = !!value && value.trim() !== "" && isValid;
     } else if (typeof value === "number") {
       isValid = (value || value === 0) && isValid;
     } else {

@@ -1,6 +1,11 @@
 import React from "react";
 import * as challengeService from "../services/challenge.service";
 import ChallengeForm from "./ChallengeForm";
+import WizardGrid from "./widgets/WidgetGrid";
+import JarvisWidget from "./widgets/JarvisWidget";
+import jquery from "jquery";
+window.$ = window.jQuery = jquery;
+require("smartadmin-plugins/smartwidgets/jarvis.widget.ng2.js");
 
 class Challenges extends React.Component {
   constructor(props) {
@@ -104,30 +109,49 @@ class Challenges extends React.Component {
             <h1 className="page-title txt-color-blueDark">
               <i className="fa fa-trophy fa-fw" />
               Challenges
-              <span>  >  Are you worthy!?</span>
+              <span> > Are you worthy!?</span>
             </h1>
           </div>
-          <div className="row">
-            <div className="col-sm-6">
-              <ChallengeForm
-                formData={this.state.formData}
-                onSave={this.onSave}
-                onCancel={this.onCancel}
-                onDelete={this.onDelete}
-              />
-            </div>
-            <div id="challengeGrid" className="col-md-6">
-              <div className="well">
-                <div className="row">
-                  <div className="col-sm-3"> Description</div>
-                  <div className="col-sm-3">Expiration Date</div>
-                  <div className="col-sm-3">Points</div>
-                  <div className="col-sm-3">Dog Owner Type</div>
-                </div>
+
+          <WizardGrid>
+            <div className="row">
+              <div className="col-sm-6">
+                <JarvisWidget
+                  title={
+                    <span>
+                      <i className="fa fa-trophy" /> Challenges
+                    </span>
+                  }
+                >
+                  <ChallengeForm
+                    formData={this.state.formData}
+                    onSave={this.onSave}
+                    onCancel={this.onCancel}
+                    onDelete={this.onDelete}
+                  />
+                </JarvisWidget>
               </div>
-              <div className="jarviswidget">{challenges}</div>
+              <div className="col-sm-6">
+                <JarvisWidget
+                  title={
+                    <span>
+                      <i className="fa fa-trophy" /> Challenges
+                    </span>
+                  }
+                >
+                  <div className="well">
+                    <div className="row">
+                      <div className="col-sm-3"> Description</div>
+                      <div className="col-sm-3">Expiration Date</div>
+                      <div className="col-sm-3">Points</div>
+                      <div className="col-sm-3">Dog Owner Type</div>
+                    </div>
+                  </div>
+                  <div className="jarviswidget">{challenges}</div>
+                </JarvisWidget>
+              </div>
             </div>
-          </div>
+          </WizardGrid>
         </div>
       </React.Fragment>
     );
