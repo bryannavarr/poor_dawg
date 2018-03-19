@@ -1,6 +1,7 @@
 
 const router = require("express").Router();
 const hackersRoutes = require("./hackers.routes");
+const sponsorsRoutes = require("./sponsors.routes")
 const clientRoutes = require("./client.routes");
 const authenticate = require("../filters/authenticate");
 const interactionRoutes = require("./interaction.routes");
@@ -29,6 +30,7 @@ router.use("/api/challenges", challengeRoutes);
 router.use("/api/notifications/", notificationsRoutes);
 router.use("/api/breeds", breedsRoutes);
 router.use('/api/dogOwners', dogOwnersRoutes)
+router.use("/api/sponsors", sponsorsRoutes)
 // router.use('/api/entities', entitiesRoutes)
 // router.use('/api/examples', examplesRoutes)
 

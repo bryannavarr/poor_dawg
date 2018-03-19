@@ -40,6 +40,11 @@ export default function Sidebar() {
               <span className="menu-item-parent">Dashboard</span>
             </Link>
             <ul style={{ display: "block" }}>
+            <li className="active">
+                <Link to="/notifications">
+                  <span className="menu-item-parent">Notifications</span>
+                </Link>
+              </li>
               <li className="active">
                 <Link to="/hackers">
                   <span className="menu-item-parent">Hackers</span>
@@ -53,6 +58,11 @@ export default function Sidebar() {
               <li className="active">
                 <Link to="/users">
                   <span className="menu-item-parent">Users</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/interactions">
+                  <span className="menu-item-parent">Interactions</span>
                 </Link>
               </li>
               <li>

@@ -35,6 +35,11 @@ export function validate(value, rules) {
     isValid =
       isValid && !isNaN(value) && typeof parseInt(value, 10) === "number";
   }
+  if (rules.date) {
+    var dateVal = new Date(value)
+    isValid =
+      isValid && (dateVal instanceof Date) && (!isNaN(dateVal.valueOf()));
+  }
 
   return isValid;
 }
