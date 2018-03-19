@@ -1,6 +1,6 @@
 import React from "react";
 import * as challengeService from "../services/challenge.service";
-import ChallengeForm from "./challengeForm";
+import ChallengeForm from "./ChallengeForm";
 
 class Challenges extends React.Component {
   constructor(props) {
@@ -73,12 +73,16 @@ class Challenges extends React.Component {
   render() {
     const challenges = this.state.challenges ? (
       this.state.challenges.map(challenge => (
-        <li key={challenge._id} onClick={this.onSelect.bind(this, challenge)}>
-          <p>{challenge.description}</p>
-          <p>{challenge.expirationDate}</p>
-          <p>{challenge.points}</p>
-          <p>{challenge.dogOwnerType}</p>
-        </li>
+        <div
+          className="row"
+          key={challenge._id}
+          onClick={this.onSelect.bind(this, challenge)}
+        >
+          <div className="col-md-3">{challenge.description}</div>
+          <div className="col-md-3">{challenge.expirationDate}</div>
+          <div className="col-md-3">{challenge.points}</div>
+          <div className="col-md-3">{challenge.dogOwnerType}</div>
+        </div>
       ))
     ) : (
       <React.Fragment />
@@ -86,15 +90,43 @@ class Challenges extends React.Component {
 
     return (
       <React.Fragment>
-        <div className="container">
-          <ul className="col-md-6">{challenges}</ul>
-          <div className="col-md-offset-6">
-            <ChallengeForm
-              formData={this.state.formData}
-              onSave={this.onSave}
-              onCancel={this.onCancel}
-              onDelete={this.onDelete}
-            />
+        <div id="ribbon">
+          <span className="ribbon-button-assignment" />
+          <ol className="breadcrumb">
+            <li>Home</li>
+            <li>Hacker</li>
+            <li>Challenge</li>
+          </ol>
+        </div>
+        <div id="content">
+          <div className="row">
+            <div className="col-xs-12 col-sm-7 col-md-7 col-lg-4" />
+            <h1 className="page-title txt-color-blueDark">
+              <i className="fa fa-trophy fa-fw" />
+              Challenges
+              <span>  >  Are you worthy!?</span>
+            </h1>
+          </div>
+          <div className="row">
+            <div className="col-sm-6">
+              <ChallengeForm
+                formData={this.state.formData}
+                onSave={this.onSave}
+                onCancel={this.onCancel}
+                onDelete={this.onDelete}
+              />
+            </div>
+            <div id="challengeGrid" className="col-md-6">
+              <div className="well">
+                <div className="row">
+                  <div className="col-sm-3"> Description</div>
+                  <div className="col-sm-3">Expiration Date</div>
+                  <div className="col-sm-3">Points</div>
+                  <div className="col-sm-3">Dog Owner Type</div>
+                </div>
+              </div>
+              <div className="jarviswidget">{challenges}</div>
+            </div>
           </div>
         </div>
       </React.Fragment>
