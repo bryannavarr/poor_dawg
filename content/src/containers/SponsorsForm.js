@@ -90,6 +90,7 @@ class SponsorsForm extends Component {
         validation: {
           required: true,
           number: true,
+          minLength: 5,
           maxLength: 5
         },
         touched: false
@@ -154,6 +155,7 @@ class SponsorsForm extends Component {
       item._id = this.state.formData._id.value;
       SponsorsService.update(item)
         .then(data => {
+          item.updateDate = data.updateDate;
           that.props.onSave(item);
           this.setState({
             formValid: false
@@ -190,18 +192,16 @@ class SponsorsForm extends Component {
           </div>
           <form>
             <fieldset className="row">
-              {this.state.formData._id.value && (
-                <div className="col-md-12 form-group">
-                  <label htmlFor="company-name">Id</label>
-                  <input
-                    type="text"
-                    name="id"
-                    className="form-control"
-                    value={this.state.formData._id.value}
-                    disabled
-                  />
-                </div>
-              )}
+              <div className="col-md-12 form-group">
+                <label htmlFor="company-name">Id</label>
+                <input
+                  type="text"
+                  name="id"
+                  className="form-control"
+                  value={this.state.formData._id.value}
+                  disabled
+                />
+              </div>
             </fieldset>
             <fieldset className="row">
               <div
@@ -326,7 +326,9 @@ class SponsorsForm extends Component {
                 !this.state.formData.email.valid ? (
                   <React.Fragment>
                     <i className="glyphicon glyphicon-remove form-control-feedback" />
-                    <p className="text-danger">This field is required</p>
+                    <p className="text-danger">
+                      This field is requires a valid email address.
+                    </p>
                   </React.Fragment>
                 ) : (
                   <i className="glyphicon glyphicon-ok form-control-feedback" />
@@ -359,7 +361,9 @@ class SponsorsForm extends Component {
                 !this.state.formData.zipCode.valid ? (
                   <React.Fragment>
                     <i className="glyphicon glyphicon-remove form-control-feedback" />
-                    <p className="text-danger">This field is required</p>
+                    <p className="text-danger">
+                      This field is requires a 5 digit zip code.
+                    </p>
                   </React.Fragment>
                 ) : (
                   <i className="glyphicon glyphicon-ok form-control-feedback" />
@@ -390,7 +394,9 @@ class SponsorsForm extends Component {
                 !this.state.formData.phone.valid ? (
                   <React.Fragment>
                     <i className="glyphicon glyphicon-remove form-control-feedback" />
-                    <p className="text-danger">This field is required</p>
+                    <p className="text-danger">
+                      This field is requires a 10 digit phone number.
+                    </p>
                   </React.Fragment>
                 ) : (
                   <i className="glyphicon glyphicon-ok form-control-feedback" />
@@ -398,32 +404,28 @@ class SponsorsForm extends Component {
               </div>
             </fieldset>
             <fieldset className="row">
-              {this.state.formData.createDate.value && (
-                <div className="col-md-12 form-group">
-                  <label htmlFor="phone">Create Date</label>
-                  <input
-                    type="text"
-                    name="create-date"
-                    className="form-control"
-                    value={this.state.formData.createDate.value}
-                    onChange={this.onChange}
-                    disabled
-                  />
-                </div>
-              )}
-              {this.state.formData.updateDate.value && (
-                <div className="col-md-12 form-group">
-                  <label htmlFor="phone">Update Date</label>
-                  <input
-                    type="text"
-                    name="update-date"
-                    className="form-control"
-                    value={this.state.formData.updateDate.value}
-                    onChange={this.onChange}
-                    disabled
-                  />
-                </div>
-              )}
+              <div className="col-md-12 form-group">
+                <label htmlFor="phone">Create Date</label>
+                <input
+                  type="text"
+                  name="create-date"
+                  className="form-control"
+                  value={this.state.formData.createDate.value}
+                  onChange={this.onChange}
+                  disabled
+                />
+              </div>
+              <div className="col-md-12 form-group">
+                <label htmlFor="phone">Update Date</label>
+                <input
+                  type="text"
+                  name="update-date"
+                  className="form-control"
+                  value={this.state.formData.updateDate.value}
+                  onChange={this.onChange}
+                  disabled
+                />
+              </div>
             </fieldset>
             <div className="form-actions">
               <div className="row">
