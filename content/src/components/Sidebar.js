@@ -55,6 +55,11 @@ export default function Sidebar() {
                   <span className="menu-item-parent">Vets</span>
                 </Link>
               </li>
+              <li className="active">
+                <Link to="/users">
+                  <span className="menu-item-parent">Users</span>
+                </Link>
+              </li>
               <li>
                 <Link to="/interactions">
                   <span className="menu-item-parent">Interactions</span>

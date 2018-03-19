@@ -1,5 +1,4 @@
 export function validate(value, rules) {
-
   let isValid = true;
 
   if (rules.required) {
@@ -11,12 +10,12 @@ export function validate(value, rules) {
       isValid = false;
     }
   }
-  
-  if (rules.minLength && typeof value==="string") {
+
+  if (rules.minLength && typeof value === "string") {
     isValid = value.trim().length >= rules.minLength && isValid;
   }
 
-  if (rules.maxLength && typeof value==="string") {
+  if (rules.maxLength && typeof value === "string") {
     isValid = value.trim().length <= rules.maxLength && isValid;
   }
   if (rules.min || rules.min === 0) {
@@ -36,9 +35,8 @@ export function validate(value, rules) {
       isValid && !isNaN(value) && typeof parseInt(value, 10) === "number";
   }
   if (rules.date) {
-    var dateVal = new Date(value)
-    isValid =
-      isValid && (dateVal instanceof Date) && (!isNaN(dateVal.valueOf()));
+    var dateVal = new Date(value);
+    isValid = isValid && dateVal instanceof Date && !isNaN(dateVal.valueOf());
   }
 
   return isValid;
